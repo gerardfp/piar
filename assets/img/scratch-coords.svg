@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 380" width="100%" height="auto" style="max-width: 600px; display: block; margin: 1.5rem auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
+  <defs>
+    <!-- Marcadores de flechas -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#16a34a"/>
+    </marker>
+  </defs>
+
+  <!-- Marco de la pantalla Scratch (480 x 360 escala 1:1 en caja de 500x380) -->
+  <rect x="30" y="20" width="480" height="340" fill="#f8fafc" stroke="#94a3b8" stroke-width="2" rx="8"/>
+
+  <!-- Cuadrícula tenue -->
+  <g stroke="#e2e8f0" stroke-width="1" stroke-dasharray="3,3">
+    <!-- Líneas verticales -->
+    <line x1="90" y1="20" x2="90" y2="360" />
+    <line x1="150" y1="20" x2="150" y2="360" />
+    <line x1="210" y1="20" x2="210" y2="360" />
+    <line x1="330" y1="20" x2="330" y2="360" />
+    <line x1="390" y1="20" x2="390" y2="360" />
+    <line x1="450" y1="20" x2="450" y2="360" />
+
+    <!-- Líneas horizontales -->
+    <line x1="30" y1="76" x2="510" y2="76" />
+    <line x1="30" y1="133" x2="510" y2="133" />
+    <line x1="30" y1="246" x2="510" y2="246" />
+    <line x1="30" y1="303" x2="510" y2="303" />
+  </g>
+
+  <!-- Eje X (Horizontal) -->
+  <line x1="30" y1="190" x2="505" y2="190" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)"/>
+  <!-- Eje Y (Vertical) -->
+  <line x1="270" y1="360" x2="270" y2="25" stroke="#16a34a" stroke-width="2.5" marker-end="url(#arrow-green)"/>
+
+  <!-- Centro (0, 0) -->
+  <circle cx="270" cy="190" r="5" fill="#ef4444"/>
+  <rect x="278" y="196" width="60" height="22" rx="4" fill="#fee2e2" stroke="#f87171"/>
+  <text x="308" y="211" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle">(0, 0)</text>
+
+  <!-- Etiquetas de los extremos -->
+  <!-- X izquierda (-240) -->
+  <rect x="35" y="198" width="66" height="20" rx="4" fill="#dbeafe"/>
+  <text x="68" y="212" font-family="monospace" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">X: -240</text>
+
+  <!-- X derecha (+240) -->
+  <rect x="435" y="198" width="66" height="20" rx="4" fill="#dbeafe"/>
+  <text x="468" y="212" font-family="monospace" font-size="11" font-weight="bold" fill="#1e40af" text-anchor="middle">X: +240</text>
+
+  <!-- Y arriba (+180) -->
+  <rect x="278" y="28" width="66" height="20" rx="4" fill="#dcfce7"/>
+  <text x="311" y="42" font-family="monospace" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">Y: +180</text>
+
+  <!-- Y abajo (-180) -->
+  <rect x="278" y="332" width="66" height="20" rx="4" fill="#dcfce7"/>
+  <text x="311" y="346" font-family="monospace" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">Y: -180</text>
+
+  <!-- Nombres de los ejes -->
+  <text x="495" y="180" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#2563eb">+X (Derecha)</text>
+  <text x="45" y="180" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#2563eb">-X (Izquierda)</text>
+  <text x="210" y="42" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#16a34a">+Y (Arriba)</text>
+  <text x="210" y="346" font-family="system-ui, sans-serif" font-size="13" font-weight="bold" fill="#16a34a">-Y (Abajo)</text>
+
+  <!-- Leyenda informativa -->
+  <rect x="40" y="30" width="165" height="48" rx="6" fill="#ffffff" stroke="#cbd5e1" opacity="0.95"/>
+  <text x="50" y="49" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#0f172a">Dimensiones de Scratch:</text>
+  <text x="50" y="66" font-family="system-ui, sans-serif" font-size="11" fill="#475569">Ancho: 480 px | Alto: 360 px</text>
+</svg>

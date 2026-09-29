@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 280" width="100%" height="auto" style="max-width: 650px; display: block; margin: 1.5rem auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border: 1px solid #e2e8f0;">
+  <!-- Títulos de los dos tipos de movimiento -->
+  <text x="140" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#1e40af" text-anchor="middle">1. Salto Vertical (Solo Eje Y)</text>
+  <text x="440" y="32" font-family="system-ui, sans-serif" font-size="14" font-weight="bold" fill="#7c3aed" text-anchor="middle">2. Salto Parabólico (Eje X + Eje Y + Giro)</text>
+
+  <!-- Separador central -->
+  <line x1="290" y1="20" x2="290" y2="260" stroke="#e2e8f0" stroke-width="1.5" stroke-dasharray="4,4"/>
+
+  <!-- Suelo -->
+  <line x1="20" y1="220" x2="270" y2="220" stroke="#16a34a" stroke-width="3"/>
+  <line x1="310" y1="220" x2="600" y2="220" stroke="#16a34a" stroke-width="3"/>
+
+  <!-- 1. SALTO VERTICAL -->
+  <!-- Colchoneta 1 -->
+  <rect x="90" y="215" width="100" height="12" rx="3" fill="#3b82f6"/>
+  <rect x="95" y="210" width="90" height="6" rx="2" fill="#0284c7"/>
+
+  <!-- Flecha de subida -->
+  <path d="M 125 200 L 125 90" stroke="#2563eb" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="125,80 120,95 130,95" fill="#2563eb"/>
+  <text x="110" y="145" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#2563eb" text-anchor="end">Subir (+Y)</text>
+
+  <!-- Flecha de bajada -->
+  <path d="M 155 90 L 155 200" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="155,210 150,195 160,195" fill="#dc2626"/>
+  <text x="170" y="145" font-family="system-ui, sans-serif" font-size="12" font-weight="bold" fill="#dc2626">Bajar (-Y)</text>
+
+  <!-- Código resumen bajo salto vertical -->
+  <rect x="50" y="235" width="180" height="32" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+  <text x="140" y="255" font-family="monospace" font-size="11" fill="#334155" text-anchor="middle">X no cambia (constante)</text>
+
+  <!-- 2. SALTO PARABÓLICO ENTRE COLCHONETAS -->
+  <!-- Colchoneta A -->
+  <rect x="330" y="215" width="70" height="12" rx="3" fill="#3b82f6"/>
+  <!-- Colchoneta B -->
+  <rect x="510" y="215" width="70" height="12" rx="3" fill="#3b82f6"/>
+
+  <!-- Curva parabólica -->
+  <path d="M 365 200 Q 455 50 545 200" fill="none" stroke="#7c3aed" stroke-width="3.5" stroke-dasharray="6,4"/>
+  <polygon points="548,206 536,196 544,191" fill="#7c3aed"/>
+
+  <!-- Puntos del salto en curva -->
+  <circle cx="365" cy="200" r="5" fill="#2563eb"/>
+  <circle cx="410" cy="110" r="5" fill="#7c3aed"/>
+  <circle cx="455" cy="75" r="6" fill="#f59e0b"/>
+  <circle cx="500" cy="110" r="5" fill="#7c3aed"/>
+  <circle cx="545" cy="200" r="5" fill="#16a34a"/>
+
+  <!-- Indicador de giro / acrobacia -->
+  <path d="M 445 60 A 16 16 0 1 1 470 70" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+  <polygon points="475,70 467,65 473,59" fill="#f59e0b"/>
+  <text x="455" y="48" font-family="system-ui, sans-serif" font-size="10" font-weight="bold" fill="#d97706" text-anchor="middle">Giro 360°</text>
+
+  <!-- Indicador X + Y simultáneo -->
+  <text x="410" y="150" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#2563eb">+X y +Y</text>
+  <text x="500" y="150" font-family="system-ui, sans-serif" font-size="11" font-weight="bold" fill="#dc2626">+X y -Y</text>
+
+  <!-- Código resumen bajo salto parabólico -->
+  <rect x="340" y="235" width="230" height="32" rx="6" fill="#f3e8ff" stroke="#d8b4fe"/>
+  <text x="455" y="255" font-family="monospace" font-size="11" font-weight="bold" fill="#6b21a8" text-anchor="middle">X cambia + Y cambia + Rotación</text>
+</svg>

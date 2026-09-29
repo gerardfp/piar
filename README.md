@@ -1,0 +1,73 @@
+# PIAR · Portal de Aprendizaje Digital
+**Programación, Inteligencia Artificial y Robótica**
+
+Portal web educativo moderno, estático y sin dependencias para el seguimiento didáctico de la asignatura de **PIAR**. Diseñado con metodología de Aprendizaje Basado en Proyectos (ABP) y pensamiento computacional para estudiantes de Secundaria (ESO) y Bachillerato.
+
+---
+
+## 🗂️ Estructura del Portal
+
+```text
+/home/gerard/piar/
+├── index.html                           # Portada y visión general de PIAR
+├── README.md                            # Guía del profesor y documentación
+├── activitat colchoneta.sb3             # Archivo Scratch de referencia del alumno
+├── css/
+│   ├── style.css                        # Estilos globales y responsive
+│   ├── scratch-blocks.css               # Renderizador visual CSS de bloques Scratch 3.0
+│   └── simulator.css                    # Estilos del simulador interactivo
+├── js/
+│   ├── main.js                          # Control de acordeones, navegación y quiz
+│   └── colchoneta-sim.js                # Motor del simulador interactivo en Canvas
+├── assets/
+│   ├── img/
+│   │   ├── scratch-coords.svg           # Diagrama del plano cartesiano en Scratch
+│   │   └── jump-physics.svg             # Esquema físico del salto y parábola
+│   └── scratch/colchoneta/
+│       ├── cat1.svg / cat2.svg          # Disfraces del gato de Scratch
+│       ├── trampoline.png               # Gráfico de la cama elástica
+│       └── pop.wav / meow.wav           # Efectos de audio
+└── temas/
+    ├── programacion/
+    │   ├── index.html                   # Índice del Bloque 1: Programación
+    │   └── scratch/
+    │       ├── index.html               # Índice del Tema 1: Scratch Creativo
+    │       └── colchoneta.html          # TUTORIAL: Proyecto 1 "Acrobacias en la Cama Elástica"
+    ├── ia/
+    │   └── index.html                   # Bloque 2: Inteligencia Artificial
+    └── robotica/
+        └── index.html                   # Bloque 3: Robótica y Computación Física
+```
+
+---
+
+## 🚀 Cómo Visualizar el Portal
+
+Al estar construido en **HTML5, CSS3 y JavaScript nativo**, el portal es 100% estático y no requiere `npm`, compilación ni bases de datos.
+
+### Opción 1: Abrir directamente en el navegador
+Haz doble clic sobre el archivo [index.html](file:///home/gerard/piar/index.html) o ábrelo con cualquier navegador web moderno (Chrome, Firefox, Safari, Edge).
+
+### Opción 2: Servidor local ligero
+En una terminal en la carpeta `/home/gerard/piar`:
+```bash
+python3 -m http.server 8000
+```
+Y abre en tu navegador `http://localhost:8000`.
+
+---
+
+## 🤸 Proyecto 1: Acrobacias en la Cama Elástica
+
+Tutorial interactivo paso a paso basado en el archivo `activitat colchoneta.sb3`:
+- **Simulador Interactivo:** Permite ver la animación completa, ejecutar paso a paso, pausar, alternar el rastro de la parábola, activar el eje de coordenadas X/Y y escuchar el efecto de rebote.
+- **Conceptos Clave Desglosados:**
+  1. Sistema de coordenadas de Scratch (480x360 px, centro en 0,0) y la regla de oro de la inicialización con Bandera Verde.
+  2. Animación fluida con `sumar a y` y `esperar 0.05 s` (evitando el teletransporte brusco).
+  3. Bucles y bucles anidados (`repetir N veces`).
+  4. Salto en parábola (combinación de avance en X y elevación en Y).
+  5. Giros y rotación angular (las matemáticas de los 360° en una voltereta perfecta).
+- **Misiones Guiadas:** 5 fases secuenciales para que el alumno monte el proyecto por su cuenta en [scratch.mit.edu](https://scratch.mit.edu).
+- **Pistas y Solución Oculta:** Acordeones desplegables con explicaciones y renderizado visual hiperrealista de los bloques de Scratch.
+- **Desafíos Pro de Ampliación:** Sonido al rebotar, disfraces dinámicos y control con teclado.
+- **Test de Autocomprobación:** Preguntas interactivas con retroalimentación inmediata.

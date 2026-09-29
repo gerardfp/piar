@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial: Acrobacias en la Cama Elástica | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/scratch-blocks.css">
+  <link rel="stylesheet" href="../../../css/simulator.css">
+</head>
+<body>
+
+  <!-- Cabecera y Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan (Breadcrumb) -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Proyecto 1: Acrobacias en la Cama Elástica</span>
+    </nav>
+
+    <div class="tutorial-layout">
+      <!-- Índice lateral de navegación rápida -->
+      <aside class="tutorial-sidebar">
+        <h3 class="sidebar-title">En este tutorial</h3>
+        <ul class="toc-list">
+          <li><a href="#el-reto" class="toc-link">1. El Reto y Simulador</a></li>
+          <li><a href="#conceptos-clave" class="toc-link">2. Conceptos Básicos</a></li>
+          <li><a href="#misiones-guiadas" class="toc-link">3. Misiones Paso a Paso</a></li>
+          <li><a href="#codigo-referencia" class="toc-link">4. Pistas y Código</a></li>
+          <li><a href="#desafios-pro" class="toc-link">5. Desafíos Pro</a></li>
+          <li><a href="#autoevaluacion" class="toc-link">6. Test de Comprensión</a></li>
+        </ul>
+
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+          <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch" style="width: 100%; text-align: center; font-size: 0.85rem;">
+            Abrir Scratch Web ↗
+          </a>
+        </div>
+      </aside>
+
+      <!-- Contenido Principal del Tutorial -->
+      <article class="tutorial-content">
+        <header class="tutorial-header">
+          <div class="tutorial-badge-row">
+            <span class="card-badge-top badge-scratch" style="position: static;">Tema 1: Scratch</span>
+            <span class="card-badge-top badge-prog" style="position: static;">Nivel: Iniciación</span>
+            <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 600;">⏱️ 2 a 3 sesiones de clase</span>
+          </div>
+          <h1 class="tutorial-title">Proyecto 1: Acrobacias en la Cama Elástica</h1>
+          <p class="tutorial-lead">
+            Aprende los fundamentos de Scratch: coordenadas cartesianas, bucles, animación cuadro a cuadro y rotación espacial para programar un gato gimnasta que bota y hace volteretas entre dos camas elásticas.
+          </p>
+        </header>
+
+        <!-- SECCIÓN 1: EL RETO Y SIMULADOR -->
+        <section id="el-reto">
+          <div class="section-header">
+            <h2 class="section-title">🎯 1. El Objetivo del Proyecto</h2>
+            <p class="section-desc">
+              Antes de ponernos a encajar bloques en Scratch, experimenta con el resultado final. Observa con atención qué hace el personaje:
+            </p>
+          </div>
+
+          <div class="callout callout-info">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <strong>Secuencia de la acrobacia:</strong>
+              1. Comienza en reposo sobre la <strong>Colchoneta 1</strong> (izquierda).<br>
+              2. Da <strong>3 botes verticales</strong> para ganar impulso.<br>
+              3. Hace un <strong>salto mortal con voltereta de 360°</strong> hacia la <strong>Colchoneta 2</strong> (derecha).<br>
+              4. Aterriza, da <strong>3 botes verticales</strong> en la segunda cama elástica.<br>
+              5. Realiza un <strong>salto acrobático de vuelta</strong> aterrizando de nuevo en la posición inicial.
+            </div>
+          </div>
+
+          <!-- SIMULADOR INTERACTIVO INTEGRADO -->
+          <div class="simulator-box">
+            <div class="simulator-header">
+              <div class="scratch-toolbar">
+                <button id="btnSimPlay" class="btn-flag" title="Iniciar animación (Bandera Verde)">
+                  <svg viewBox="0 0 24 24"><path d="M4 2v20l17-10L4 2z"/></svg>
+                </button>
+                <button id="btnSimStop" class="btn-stop" title="Detener animación">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+                <button id="btnSimPause" class="btn-sim-action">⏸️ Pausa</button>
+                <button id="btnSimStep" class="btn-sim-action" style="background: #e0f2fe; border-color: #7dd3fc; color: #0369a1;">
+                  ⏭️ Paso a paso
+                </button>
+                <button id="btnSimReset" class="btn-sim-action">🔄 Reiniciar</button>
+              </div>
+
+              <div class="simulator-toggles">
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="chkTrajectory" checked> Estela de salto
+                </label>
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="chkGrid" checked> Eje X / Y
+                </label>
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="chkSound" checked> Sonido (Pop)
+                </label>
+                <label class="sim-toggle-label" style="gap: 0.25rem;">
+                  Velocidad:
+                  <input type="range" id="speedRange" min="0.5" max="2.5" step="0.5" value="1" style="width: 60px;">
+                </label>
+              </div>
+            </div>
+
+            <div class="simulator-main">
+              <div class="canvas-wrapper">
+                <canvas id="colchonetaCanvas" width="640" height="480" data-basepath="../../../"></canvas>
+              </div>
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Coordenada X:</span>
+                  <span class="telemetry-value" id="telemetryX">-132</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Coordenada Y:</span>
+                  <span class="telemetry-value" id="telemetryY">-57</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Dirección:</span>
+                  <span class="telemetry-value" id="telemetryDir">90°</span>
+                </div>
+                <div class="telemetry-item" style="flex-grow: 1; text-align: right;">
+                  <span class="telemetry-status" id="telemetryStatus">Listo. Pulsa la Bandera Verde para iniciar.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 2: CONCEPTOS BÁSICOS -->
+        <section id="conceptos-clave" style="margin-top: 3.5rem;">
+          <div class="section-header">
+            <h2 class="section-title">🧠 2. Las Herramientas del Programador (Conceptos Clave)</h2>
+            <p class="section-desc">
+              Para poder resolver este reto sin copiar a ciegas, necesitas dominar cinco conceptos esenciales de Scratch:
+            </p>
+          </div>
+
+          <!-- Concepto 1: Coordenadas -->
+          <div class="step-card" id="concepto-coordenadas">
+            <div class="step-card-header">
+              <div class="step-number">A</div>
+              <h3 class="step-title">El Plano Cartesiano en Scratch: Ejes X e Y</h3>
+            </div>
+            <p class="step-explanation">
+              En Scratch, cualquier objeto se sitúa en un escenario de <strong>480 píxeles de ancho</strong> y <strong>360 píxeles de alto</strong>. El centro exacto de la pantalla es el punto <code>(0, 0)</code>.
+            </p>
+
+            <img src="../../../assets/img/scratch-coords.svg" alt="Diagrama de coordenadas en Scratch" style="max-width: 500px; margin: 1.5rem auto;">
+
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
+              <li><strong>Eje X (Horizontal):</strong> Si te mueves a la derecha, X <strong>aumenta</strong> (hasta +240). Si te mueves a la izquierda, X <strong>disminuye</strong> (hasta -240).</li>
+              <li><strong>Eje Y (Vertical):</strong> Si subes hacia el cielo, Y <strong>aumenta</strong> (hasta +180). Si caes hacia el suelo, Y <strong>disminuye</strong> (hasta -180).</li>
+            </ul>
+
+            <div class="callout callout-warning">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-content">
+                <strong>¡La Regla de Oro del Reinicio!</strong>
+                Cada vez que programes un proyecto, debes indicarle al personaje dónde colocarse nada más empezar. Si no pones el bloque de posición inicial, cuando vuelvas a pulsar la bandera verde el gato arrancará desde donde se quedó la última vez.
+              </div>
+            </div>
+
+            <div class="scratch-code">
+              <div class="scratch-stack">
+                <div class="sb sb-hat sb-events">
+                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
+                </div>
+                <div class="sb sb-motion">
+                  ir a x: <span class="sb-input-number">-132</span> y: <span class="sb-input-number">-57</span>
+                </div>
+                <div class="sb sb-motion">
+                  apuntar en dirección <span class="sb-input-number">90</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Concepto 2: Movimiento Progresivo -->
+          <div class="step-card" id="concepto-animacion">
+            <div class="step-card-header">
+              <div class="step-number">B</div>
+              <h3 class="step-title">Animación Fluida vs Teletransporte</h3>
+            </div>
+            <p class="step-explanation">
+              Si intentas hacer saltar al gato usando solo <span class="sb sb-inline sb-motion">dar a y el valor (50)</span> y luego <span class="sb sb-inline sb-motion">dar a y el valor (-50)</span>, el ordenador ejecuta las órdenes en millonésimas de segundo y el gato parecerá parpadear o teletransportarse.
+            </p>
+            <p class="step-explanation">
+              Para crear una <strong>ilusión de movimiento suave</strong> como en las películas de animación, cambiamos la posición poco a poco en pequeños pasos con una pausa diminuta:
+            </p>
+
+            <img src="../../../assets/img/jump-physics.svg" alt="Física del salto vertical y salto en parábola" style="max-width: 600px; margin: 1.5rem auto;">
+
+            <div class="scratch-code">
+              <div class="scratch-stack">
+                <!-- Subida -->
+                <div class="sb-c-block">
+                  <div class="sb sb-control sb-c-header">
+                    repetir <span class="sb-input-number">10</span>
+                  </div>
+                  <div class="sb-c-body sb-control-border">
+                    <div class="sb sb-motion">
+                      sumar a y <span class="sb-input-number">10</span>
+                    </div>
+                    <div class="sb sb-control">
+                      esperar <span class="sb-input-number">0.05</span> segundos
+                    </div>
+                  </div>
+                  <div class="sb-c-footer sb-control-footer"></div>
+                </div>
+
+                <!-- Bajada -->
+                <div class="sb-c-block">
+                  <div class="sb sb-control sb-c-header">
+                    repetir <span class="sb-input-number">10</span>
+                  </div>
+                  <div class="sb-c-body sb-control-border">
+                    <div class="sb sb-motion">
+                      sumar a y <span class="sb-input-number">-10</span>
+                    </div>
+                    <div class="sb sb-control">
+                      esperar <span class="sb-input-number">0.05</span> segundos
+                    </div>
+                  </div>
+                  <div class="sb-c-footer sb-control-footer"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-content">
+                <strong>¿Por qué esperar 0.05 segundos?</strong>
+                Al poner <code>0.05 segundos</code>, cada salto completo (10 pasos subiendo + 10 bajando = 20 pasos) tarda exactamente 1 segundo. ¡Se ve natural y realista!
+              </div>
+            </div>
+          </div>
+
+          <!-- Concepto 3: Bucles Anidados -->
+          <div class="step-card" id="concepto-bucles">
+            <div class="step-card-header">
+              <div class="step-number">C</div>
+              <h3 class="step-title">Bucles Anidados (Un bucle dentro de otro)</h3>
+            </div>
+            <p class="step-explanation">
+              Si queremos que el gato bote 3 veces seguidas, un programador principiante copiaría y pegaría los bloques de subir y bajar 3 veces consecutivas. Pero los buenos programadores aplican el principio <strong>DRY</strong> (<em>Don't Repeat Yourself</em>).
+            </p>
+            <p class="step-explanation">
+              Podemos meter todo el ciclo del salto dentro de un bloque <span class="sb sb-inline sb-control">repetir (3)</span>:
+            </p>
+
+            <div class="scratch-code">
+              <div class="scratch-stack">
+                <div class="sb-c-block">
+                  <div class="sb sb-control sb-c-header">
+                    repetir <span class="sb-input-number">3</span>
+                  </div>
+                  <div class="sb-c-body sb-control-border">
+                    <!-- Bucle de subida -->
+                    <div class="sb-c-block">
+                      <div class="sb sb-control sb-c-header">
+                        repetir <span class="sb-input-number">10</span>
+                      </div>
+                      <div class="sb-c-body sb-control-border">
+                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
+                        <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                      </div>
+                      <div class="sb-c-footer sb-control-footer"></div>
+                    </div>
+                    <!-- Bucle de bajada -->
+                    <div class="sb-c-block">
+                      <div class="sb sb-control sb-c-header">
+                        repetir <span class="sb-input-number">10</span>
+                      </div>
+                      <div class="sb-c-body sb-control-border">
+                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
+                        <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                      </div>
+                      <div class="sb-c-footer sb-control-footer"></div>
+                    </div>
+                  </div>
+                  <div class="sb-c-footer sb-control-footer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Concepto 4: La Parábola y Giros -->
+          <div class="step-card" id="concepto-parabola">
+            <div class="step-card-header">
+              <div class="step-number">D</div>
+              <h3 class="step-title">El Salto Parabólico y la Voltereta de 360°</h3>
+            </div>
+            <p class="step-explanation">
+              Para saltar de una colchoneta a la otra, el personaje debe desplazarse en horizontal al mismo tiempo que sube y baja. Eso genera una <strong>curva parabólica</strong>:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
+              <li>En la subida: sumamos a <code>y</code> un valor positivo (+10) y a <code>x</code> un valor positivo (+12.5).</li>
+              <li>En la bajada: sumamos a <code>y</code> un valor negativo (-10) pero a <code>x</code> seguimos sumando positivo (+12.5) para que avance.</li>
+            </ul>
+
+            <div class="callout callout-challenge">
+              <div class="callout-icon">🤸</div>
+              <div class="callout-content">
+                <strong>El truco de la voltereta perfecta:</strong>
+                Una vuelta completa en el aire son 360°. Si nuestro salto consta de 10 pasos de subida y 10 de bajada (total 20 pasos de bucle):
+                <br>
+                <code>360° ÷ 20 pasos = 18° por cada paso</code>.
+                <br>
+                Al girar en cada ciclo del bucle, el gato realiza una acrobacia continua y cae exactamente de pie.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 3: MISIONES PASO A PASO -->
+        <section id="misiones-guiadas" style="margin-top: 3.5rem;">
+          <div class="section-header">
+            <h2 class="section-title">🛠️ 3. Misiones Guiadas para Construir tu Proyecto</h2>
+            <p class="section-desc">
+              Abre una nueva pestaña en <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener"><strong>scratch.mit.edu</strong></a> y sigue estas misiones en orden.
+            </p>
+          </div>
+
+          <!-- Misión 1 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">1</div>
+              <h3 class="step-title">Misión 1: Prepara el Escenario y los Objetos</h3>
+            </div>
+            <p class="step-explanation">
+              1. En la esquina inferior derecha de Scratch, añade un fondo a tu gusto (por ejemplo <em>Blue Sky</em> o un gimnasio).<br>
+              2. Busca en la biblioteca de objetos el objeto <strong>"Trampoline"</strong> (cama elástica).<br>
+              3. Duplica el trampolín para tener dos: <strong>Trampoline</strong> y <strong>Trampoline2</strong>.<br>
+              4. Coloca el primer trampolín en <code>x: -150, y: -153</code> y el segundo en <code>x: 109, y: -152</code>.<br>
+              5. Selecciona el <strong>Objeto1</strong> (el gato) para empezar a programar su código.
+            </p>
+          </div>
+
+          <!-- Misión 2 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">2</div>
+              <h3 class="step-title">Misión 2: El Despegue y la Posición de Salida</h3>
+            </div>
+            <p class="step-explanation">
+              Comienza con el bloque de evento y fija las coordenadas iniciales del gato justo encima de la primera cama elástica.
+            </p>
+            <div class="scratch-code">
+              <div class="scratch-stack">
+                <div class="sb sb-hat sb-events">
+                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
+                </div>
+                <div class="sb sb-motion" id="block-init">
+                  ir a x: <span class="sb-input-number">-132</span> y: <span class="sb-input-number">-57</span>
+                </div>
+                <div class="sb sb-motion">
+                  apuntar en dirección <span class="sb-input-number">90</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Misión 3 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">3</div>
+              <h3 class="step-title">Misión 3: El Triple Rebote en la Primera Colchoneta</h3>
+            </div>
+            <p class="step-explanation">
+              Une debajo el bucle anidado que hace que el gato suba 100 píxeles y baje 100 píxeles, repitiendo la acción 3 veces seguidas.
+            </p>
+            <div class="scratch-code">
+              <div class="scratch-stack">
+                <div class="sb-c-block">
+                  <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">3</span></div>
+                  <div class="sb-c-body sb-control-border">
+                    <div class="sb-c-block" id="block-bounce-up-1">
+                      <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                      <div class="sb-c-body sb-control-border">
+                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
+                        <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                      </div>
+                      <div class="sb-c-footer sb-control-footer"></div>
+                    </div>
+                    <div class="sb-c-block" id="block-bounce-down-1">
+                      <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                      <div class="sb-c-body sb-control-border">
+                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
+                        <div class="sb-control sb">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                      </div>
+                      <div class="sb-c-footer sb-control-footer"></div>
+                    </div>
+                  </div>
+                  <div class="sb-c-footer sb-control-footer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Misión 4 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">4</div>
+              <h3 class="step-title">Misión 4: El Gran Salto Mortal hacia la Segunda Colchoneta</h3>
+            </div>
+            <p class="step-explanation">
+              Ahora añade los dos bucles que forman la parábola hacia la derecha:
+              <br>
+              1. <strong>Ascenso con giro:</strong> Sumar 10 a Y, avanzar 12.5 en X y girar a la derecha.
+              <br>
+              2. <strong>Descenso con avance:</strong> Sumar -10 a Y, avanzar 12.5 en X y completar el giro a la derecha.
+              <br>
+              3. Al aterrizar, añade un bloque de seguridad <span class="sb sb-inline sb-motion">ir a x: (118) y: (-57)</span> y <span class="sb sb-inline sb-motion">apuntar en dirección (90)</span> para asegurar que queda perfectamente centrado y en pie.
+            </p>
+          </div>
+
+          <!-- Misión 5 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">5</div>
+              <h3 class="step-title">Misión 5: Rebotes en la Cama 2 y Regreso</h3>
+            </div>
+            <p class="step-explanation">
+              Por último:
+              <br>
+              1. Vuelve a repetir 3 botes verticales sobre la segunda colchoneta.
+              <br>
+              2. Programa el salto de regreso: <strong>¿Qué valores deben cambiar?</strong>
+              <br>
+              En lugar de sumar positivo a X, deberás <span class="sb sb-inline sb-motion">sumar a x (-12.5)</span> para retroceder, y rotar en sentido inverso (<span class="sb sb-inline sb-motion"><span class="sb-icon-turn-ccw"></span> girar a la izquierda</span> o usar grados negativos).
+            </p>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 4: PISTAS Y CÓDIGO -->
+        <section id="codigo-referencia" style="margin-top: 3.5rem;">
+          <div class="section-header">
+            <h2 class="section-title">🔍 4. Pistas y Código de Referencia</h2>
+            <p class="section-desc">
+              Si te has atascado en algún paso, abre los acordeones siguientes para consultar pistas o comprobar la solución completa:
+            </p>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 1: ¿Por qué mi gato cae torcido o de cabeza al saltar?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Si tu gato no cae de pie en dirección 90°, revisa los grados que gira en cada repetición. Recuerda que una vuelta son 360°. Además, puedes colocar siempre justo después del aterrizaje el bloque azul <span class="sb sb-inline sb-motion">apuntar en dirección (90)</span> para corregir cualquier pequeño desfase de ángulo.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 2: ¿Cómo calculo la distancia entre las dos colchonetas?</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>La colchoneta 1 está en X = -132 y la colchoneta 2 en X = 118. La distancia total que debe recorrer el gato es:</p>
+              <p><code>118 - (-132) = 250 píxeles</code>.</p>
+              <p>Si el salto dura 20 pasos (10 subiendo + 10 bajando), en cada paso debe avanzar:</p>
+              <p><code>250 píxeles ÷ 20 pasos = 12.5 píxeles</code> por cada repetición.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>🔓 Solución Completa del Bloque de Código (Desplegar)</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p style="margin-bottom: 1rem; color: var(--text-muted);">
+                Aquí tienes la estructura completa del script que va dentro de <strong>Objeto1</strong>:
+              </p>
+              <div class="scratch-code">
+                <div class="scratch-stack">
+                  <!-- Inicio -->
+                  <div class="sb sb-hat sb-events">
+                    <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
+                  </div>
+                  <div class="sb sb-motion">ir a x: <span class="sb-input-number">-132</span> y: <span class="sb-input-number">-57</span></div>
+                  <div class="sb sb-motion">apuntar en dirección <span class="sb-input-number">90</span></div>
+
+                  <!-- 3 botes en colchoneta 1 -->
+                  <div class="sb-c-block">
+                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">3</span></div>
+                    <div class="sb-c-body sb-control-border">
+                      <div class="sb-c-block">
+                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                        <div class="sb-c-body sb-control-border">
+                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
+                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                        </div>
+                        <div class="sb-c-footer sb-control-footer"></div>
+                      </div>
+                      <div class="sb-c-block">
+                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                        <div class="sb-c-body sb-control-border">
+                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
+                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                        </div>
+                        <div class="sb-c-footer sb-control-footer"></div>
+                      </div>
+                    </div>
+                    <div class="sb-c-footer sb-control-footer"></div>
+                  </div>
+
+                  <!-- Salto acrobático hacia colchoneta 2 -->
+                  <div class="sb-c-block">
+                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                    <div class="sb-c-body sb-control-border">
+                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
+                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">12</span> grados</div>
+                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">12</span> grados</div>
+                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">12.5</span></div>
+                    </div>
+                    <div class="sb-c-footer sb-control-footer"></div>
+                  </div>
+
+                  <div class="sb-c-block">
+                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                    <div class="sb-c-body sb-control-border">
+                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
+                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">12.5</span></div>
+                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">12</span> grados</div>
+                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                    </div>
+                    <div class="sb-c-footer sb-control-footer"></div>
+                  </div>
+
+                  <!-- Ajuste en colchoneta 2 -->
+                  <div class="sb sb-control">esperar <span class="sb-input-number">0.02</span> segundos</div>
+                  <div class="sb sb-motion">ir a x: <span class="sb-input-number">118</span> y: <span class="sb-input-number">-57</span></div>
+                  <div class="sb sb-motion">apuntar en dirección <span class="sb-input-number">90</span></div>
+
+                  <!-- 3 botes en colchoneta 2 -->
+                  <div class="sb-c-block">
+                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">3</span></div>
+                    <div class="sb-c-body sb-control-border">
+                      <div class="sb-c-block">
+                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                        <div class="sb-c-body sb-control-border">
+                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
+                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                        </div>
+                        <div class="sb-c-footer sb-control-footer"></div>
+                      </div>
+                      <div class="sb-c-block">
+                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                        <div class="sb-c-body sb-control-border">
+                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
+                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                        </div>
+                        <div class="sb-c-footer sb-control-footer"></div>
+                      </div>
+                    </div>
+                    <div class="sb-c-footer sb-control-footer"></div>
+                  </div>
+
+                  <!-- Salto de regreso hacia colchoneta 1 -->
+                  <div class="sb-c-block">
+                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                    <div class="sb-c-body sb-control-border">
+                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
+                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">-12</span> grados</div>
+                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">-12</span> grados</div>
+                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">-12.5</span></div>
+                    </div>
+                    <div class="sb-c-footer sb-control-footer"></div>
+                  </div>
+
+                  <div class="sb-c-block">
+                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
+                    <div class="sb-c-body sb-control-border">
+                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
+                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">-12.5</span></div>
+                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">-12</span> grados</div>
+                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
+                    </div>
+                    <div class="sb-c-footer sb-control-footer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 5: DESAFÍOS PRO -->
+        <section id="desafios-pro" style="margin-top: 3.5rem;">
+          <div class="section-header">
+            <h2 class="section-title">🚀 5. Desafíos Pro (Ampliación)</h2>
+            <p class="section-desc">
+              ¿Ya has terminado la animación básica? ¡Lleva tu proyecto al siguiente nivel con estos retos opcionales!
+            </p>
+          </div>
+
+          <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+            <div class="card">
+              <span class="card-badge-top badge-prog">Nivel 1</span>
+              <div class="card-icon prog">🔊</div>
+              <h3 class="card-title">Efectos de Sonido</h3>
+              <p class="card-text">
+                Añade el bloque morado <span class="sb sb-inline sb-sound">iniciar sonido [pop]</span> cada vez que el gato descienda y toque la tela del trampolín.
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-badge-top badge-scratch">Nivel 2</span>
+              <div class="card-icon" style="background: #fef3c7; color: #b45309;">👗</div>
+              <h3 class="card-title">Cambio de Disfraz</h3>
+              <p class="card-text">
+                Usa <span class="sb sb-inline sb-looks">cambiar disfraz a [disfraz2]</span> mientras vuela por los aires y vuelve a <code>[disfraz1]</code> al tocar el suelo para que flexione las piernas.
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-badge-top badge-ai">Nivel 3</span>
+              <div class="card-icon ai">🎮</div>
+              <h3 class="card-title">Control con Teclado</h3>
+              <p class="card-text">
+                Haz que el gato rebote continuamente sobre la cama elástica hasta que el jugador presione la tecla <code>ESPACIO</code>, momento en el que ejecutará el salto acrobático.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 6: TEST DE AUTOEVALUACIÓN -->
+        <section id="autoevaluacion" style="margin-top: 3.5rem;">
+          <div class="section-header">
+            <h2 class="section-title">📝 6. Test de Autocomprobación</h2>
+            <p class="section-desc">
+              Comprueba si has entendido los conceptos antes de entregar la actividad al profesor:
+            </p>
+          </div>
+
+          <div class="quiz-container">
+            <!-- Pregunta 1 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">1. ¿Qué coordenada debes cambiar si quieres que un personaje suba hacia arriba en el escenario?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-explanation="El eje X controla el movimiento horizontal (izquierda y derecha).">
+                  A) Sumar un valor positivo al eje X
+                </button>
+                <button class="quiz-option" data-correct="true" data-explanation="¡Exacto! El eje Y controla la altura vertical. Los valores positivos suben y los negativos bajan.">
+                  B) Sumar un valor positivo al eje Y
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="Sumar un valor negativo al eje Y hace que el objeto descienda hacia el suelo.">
+                  C) Sumar un valor negativo al eje Y
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">2. ¿Por qué es fundamental poner "ir a x: ... y: ..." al hacer clic en Bandera Verde?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-explanation="Scratch no da ningún error técnico, pero el personaje empezará descolocado.">
+                  A) Porque si no Scratch da un mensaje de error y no arranca
+                </button>
+                <button class="quiz-option" data-correct="true" data-explanation="¡Así es! Si no reinicias la posición, cada vez que pulses la bandera el programa empezará desde el lugar donde terminó la ejecución anterior.">
+                  B) Para garantizar que el proyecto siempre empieza desde la posición inicial correcta
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="La velocidad del proyecto se controla con los tiempos de espera, no con la posición.">
+                  C) Para que el ordenador ejecute los bucles más deprisa
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">3. Si queremos que el gato avance hacia la colchoneta de la izquierda, ¿qué cambio debemos hacer en X?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true" data-explanation="¡Correcto! En Scratch, desplazarse a la izquierda significa restar o sumar valores negativos al eje X.">
+                  A) Sumar un valor negativo a X (por ejemplo, sumar a x -12.5)
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="Sumar valores positivos a X hace que el personaje se desplace hacia la derecha.">
+                  B) Sumar un valor positivo a X (por ejemplo, sumar a x +12.5)
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="Cambiar Y solo afectará a su altura vertical, no a si va a la izquierda o derecha.">
+                  C) Cambiar el valor de Y a cero
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN DE DESCARGA Y ENTREGA -->
+        <section style="margin-top: 3.5rem; padding: 2rem; background: #eff6ff; border: 1px solid #bfdbfe; border-radius: var(--radius-lg);">
+          <h3 style="font-size: 1.3rem; color: #1e40af; margin-bottom: 0.75rem;">📦 Materiales del Proyecto para Descargar</h3>
+          <p style="color: #334155; margin-bottom: 1.25rem;">
+            Puedes descargar el archivo original del proyecto para abrirlo en Scratch offline o consultar la solución de referencia en caso de duda:
+          </p>
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="../../../activitat colchoneta.sb3" download class="btn btn-primary" style="background: #2563eb; color: white;">
+              📥 Descargar activitat colchoneta.sb3 (61 KB)
+            </a>
+            <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch">
+              🚀 Ir al Editor de Scratch en Línea
+            </a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica. Materiales didácticos y proyectos prácticos para el alumnado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Temario</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Programación con Scratch</a></li>
+          <li><a href="../../ia/index.html">Inteligencia Artificial</a></li>
+          <li><a href="../../robotica/index.html">Robótica y Sensores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT</a></li>
+          <li><a href="../../../index.html">Página Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando · Pensamiento Computacional</span>
+    </div>
+  </footer>
+
+  <script src="../../../js/main.js"></script>
+  <script src="../../../js/colchoneta-sim.js"></script>
+</body>
+</html>

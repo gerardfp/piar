@@ -1,0 +1,199 @@
+/* ==========================================================================
+   PIAR - Scratch Blocks CSS Renderer
+   Renderizado visual hiperrealista de bloques de Scratch 3.0
+   ========================================================================== */
+
+/* Contenedor de código Scratch */
+.scratch-code {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-md, 10px);
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  user-select: none;
+}
+
+.scratch-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.12));
+}
+
+/* Bloque individual base */
+.sb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.45rem 0.75rem;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  margin-bottom: -1px; /* encajan uno sobre otro */
+  white-space: nowrap;
+}
+
+/* Bloque "Hat" (Sombrero de inicio, p.ej: Al hacer clic en bandera verde) */
+.sb-hat {
+  border-radius: 18px 18px 4px 4px;
+  padding-top: 0.65rem;
+  padding-bottom: 0.5rem;
+  position: relative;
+}
+
+/* Colores según categorías oficiales Scratch 3.0 */
+.sb-motion {
+  background-color: #4C97FF;
+  border-color: #3373CC;
+}
+
+.sb-looks {
+  background-color: #9966FF;
+  border-color: #774DCB;
+}
+
+.sb-sound {
+  background-color: #CF63CF;
+  border-color: #BD42BD;
+}
+
+.sb-events {
+  background-color: #FFBF00;
+  border-color: #CC9900;
+  color: #573e00;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.sb-control {
+  background-color: #FFAB19;
+  border-color: #CF8B17;
+  color: #ffffff;
+}
+
+.sb-sensing {
+  background-color: #5CB1D6;
+  border-color: #2E8EB8;
+}
+
+.sb-operators {
+  background-color: #59C059;
+  border-color: #389438;
+}
+
+.sb-variables {
+  background-color: #FF8C1A;
+  border-color: #DB6E00;
+}
+
+/* Bloques C (Bucles: Repetir, Por siempre) */
+.sb-c-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: -1px;
+}
+
+.sb-c-header {
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+}
+
+.sb-c-body {
+  padding-left: 1.25rem;
+  border-left: 14px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -1px;
+  margin-bottom: -1px;
+  background-clip: padding-box;
+}
+
+.sb-control-border {
+  border-left-color: #FFAB19;
+}
+
+.sb-c-footer {
+  height: 12px;
+  width: 50px;
+  border-radius: 0 0 4px 4px;
+}
+
+.sb-control-footer {
+  background-color: #FFAB19;
+  border: 1px solid #CF8B17;
+  border-top: none;
+}
+
+/* Entradas / Inputs */
+.sb-input-number, .sb-input-text {
+  background-color: #ffffff;
+  color: #575e75;
+  border-radius: 12px;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  min-width: 1.5rem;
+  text-align: center;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.sb-dropdown {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sb-dropdown::after {
+  content: "▼";
+  font-size: 0.6rem;
+  opacity: 0.8;
+}
+
+/* Iconos dentro de bloques */
+.sb-icon-flag {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: #45b734;
+  clip-path: polygon(0 0, 100% 30%, 0 60%);
+  border-left: 2px solid #237a16;
+  vertical-align: middle;
+  margin-right: 2px;
+}
+
+.sb-icon-turn-cw::before {
+  content: "↻";
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.sb-icon-turn-ccw::before {
+  content: "↺";
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Bloques en línea dentro del texto explicativo */
+.sb-inline {
+  display: inline-flex;
+  vertical-align: middle;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  margin: 0 0.15rem;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
