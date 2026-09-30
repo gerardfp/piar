@@ -1,141 +1,169 @@
 /* ==========================================================================
-   PIAR - Simulator CSS
-   Estilos para el simulador interactivo de Scratch y Colchoneta
+   PIAR - Simulator CSS (Robotics Lab Test Console)
+   Estética de laboratorio futurista: blanco tecnológico, halos cian sutiles
    ========================================================================== */
 
 .simulator-box {
-  background: #ffffff;
-  border: 2px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  margin: 2rem 0;
+  background: var(--surface-card, #ffffff);
+  border: 1px solid var(--border-tech, #cbd8e6);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 4px 20px -2px rgba(15, 29, 46, 0.06), 0 0 0 1px rgba(6, 182, 212, 0.15), var(--halo-subtle, 0 0 16px rgba(6, 182, 212, 0.08));
+  margin: 1.5rem 0;
   overflow: hidden;
+  position: relative;
+}
+
+.simulator-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan-light, #22d3ee), transparent);
+  opacity: 0.8;
+  z-index: 10;
+  pointer-events: none;
 }
 
 .simulator-header {
-  background: #f1f5f9;
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 0.75rem 1.25rem;
+  background: linear-gradient(180deg, #fbfcfe 0%, #f0f4f9 100%);
+  border-bottom: 1px solid var(--border-subtle, #e1e8f2);
+  padding: 0.65rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .scratch-toolbar {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .btn-flag {
-  background-color: #45b734;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
-  border: none;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm, 6px);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(69, 183, 52, 0.4);
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: var(--transition, all 0.15s ease);
 }
 
 .btn-flag:hover {
-  background-color: #3aa32c;
-  transform: scale(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4), 0 0 10px rgba(16, 185, 129, 0.3);
 }
 
 .btn-flag svg {
-  width: 20px;
-  height: 20px;
+  width: 15px;
+  height: 15px;
   fill: white;
 }
 
 .btn-stop {
-  background-color: #ef4444;
+  background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
   color: white;
-  border: none;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm, 6px);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(239, 68, 68, 0.4);
-  transition: transform 0.15s ease, background-color 0.15s ease;
+  box-shadow: 0 2px 6px rgba(225, 29, 72, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: var(--transition, all 0.15s ease);
 }
 
 .btn-stop:hover {
-  background-color: #dc2626;
-  transform: scale(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4), 0 0 10px rgba(225, 29, 72, 0.3);
 }
 
 .btn-stop svg {
-  width: 16px;
-  height: 16px;
+  width: 13px;
+  height: 13px;
   fill: white;
 }
 
 .btn-sim-action {
   background: #ffffff;
-  border: 1px solid var(--border-strong);
-  color: var(--text-main);
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
+  border: 1px solid var(--border-tech, #cbd8e6);
+  color: var(--text-main, #0f1d2e);
+  padding: 0.35rem 0.7rem;
+  border-radius: var(--radius-sm, 6px);
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  transition: var(--transition);
+  gap: 0.35rem;
+  transition: var(--transition, all 0.15s ease);
+  box-shadow: 0 1px 2px rgba(15, 29, 46, 0.04);
 }
 
 .btn-sim-action:hover {
-  background: #f8fafc;
-  border-color: var(--primary);
-  color: var(--primary);
+  background: var(--surface-hover, #f8fbff);
+  border-color: var(--cyan-core, #06b6d4);
+  color: var(--blue-deep, #0369a1);
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.25);
+  transform: translateY(-1px);
 }
 
 .simulator-toggles {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  gap: 0.85rem;
+  font-size: 0.78rem;
+  color: var(--text-muted, #3a4d63);
 }
 
 .sim-toggle-label {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.35rem;
   cursor: pointer;
   user-select: none;
+  font-weight: 500;
+}
+
+.sim-toggle-label input[type="checkbox"] {
+  accent-color: var(--cyan-core, #06b6d4);
+  cursor: pointer;
+}
+
+.sim-toggle-label input[type="range"] {
+  accent-color: var(--cyan-core, #06b6d4);
 }
 
 .simulator-main {
   display: grid;
   grid-template-columns: 1fr;
-  background-color: #0f172a;
+  background-color: #0c1825;
   position: relative;
 }
 
 .canvas-wrapper {
   position: relative;
   width: 100%;
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
   aspect-ratio: 4 / 3;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #dbeafe 0%, #bfdbfe 70%, #86efac 70%, #4ade80 100%);
+  background: linear-gradient(180deg, #d8e8f8 0%, #b8d4f0 70%, #82c896 70%, #46aa62 100%);
   overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(12, 24, 37, 0.3);
 }
 
 #colchonetaCanvas {
@@ -145,51 +173,81 @@
 }
 
 .telemetry-bar {
-  background: #1e293b;
-  color: white;
-  padding: 0.85rem 1.25rem;
+  background: #09131f;
+  color: #e2e8f0;
+  border-top: 1px solid rgba(6, 182, 212, 0.2);
+  padding: 0.65rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
-  font-family: monospace;
-  font-size: 0.9rem;
+  gap: 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.8rem;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 .telemetry-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .telemetry-label {
-  color: #94a3b8;
-  font-size: 0.8rem;
+  color: #7991a8;
+  font-size: 0.72rem;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .telemetry-value {
-  background: #0f172a;
-  padding: 0.2rem 0.55rem;
+  background: #050b12;
+  padding: 0.15rem 0.45rem;
   border-radius: 4px;
-  font-weight: bold;
+  font-weight: 700;
   color: #38bdf8;
-  border: 1px solid #334155;
-  min-width: 55px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  min-width: 48px;
   text-align: center;
+  text-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
 }
 
 .telemetry-status {
-  color: #fbbf24;
-  font-weight: 600;
-  font-family: system-ui, sans-serif;
-  font-size: 0.88rem;
+  color: #67e8f9;
+  font-weight: 500;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.telemetry-status::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #22d3ee;
+  box-shadow: 0 0 6px #22d3ee;
+  animation: pulse-telemetry 2s ease-in-out infinite;
+}
+
+@keyframes pulse-telemetry {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .telemetry-status::before {
+    animation: none;
+    opacity: 0.9;
+  }
 }
 
 /* Indicador de bloque Scratch activo */
 .code-highlight {
-  outline: 3px solid #facc15 !important;
-  box-shadow: 0 0 12px rgba(250, 204, 21, 0.8) !important;
+  outline: 2px solid var(--cyan-light, #22d3ee) !important;
+  box-shadow: 0 0 14px rgba(6, 182, 212, 0.7) !important;
   transition: all 0.15s ease-in-out;
 }
