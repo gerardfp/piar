@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 580 240" width="100%" height="auto" style="max-width: 600px; display: block; margin: 1.5rem auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 29, 46, 0.06); border: 1px solid #cbd8e6;">
+  <defs>
+    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="100%" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="valGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Título del diagrama -->
+  <text x="290" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0f1d2e" text-anchor="middle">¿CÓMO FUNCIONA UNA VARIABLE EN MEMORIA?</text>
+
+  <!-- Caja 1: Inicialización -->
+  <g transform="translate(40, 55)">
+    <rect x="0" y="0" width="140" height="110" rx="8" fill="url(#boxGrad)" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <!-- Etiqueta de la variable -->
+    <rect x="15" y="-12" width="110" height="24" rx="12" fill="#ea580c" stroke="#c2410c" stroke-width="1"/>
+    <text x="70" y="4" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">📦 Puntos</text>
+    
+    <!-- Valor dentro de la caja -->
+    <circle cx="70" cy="55" r="24" fill="url(#valGrad)"/>
+    <text x="70" y="62" font-family="ui-monospace, monospace" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">0</text>
+    
+    <text x="70" y="135" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#0284c7" text-anchor="middle">1. Reiniciar a 0</text>
+    <text x="70" y="150" font-family="ui-monospace, monospace" font-size="9" fill="#62778f" text-anchor="middle">dar a [Puntos] valor 0</text>
+  </g>
+
+  <!-- Flecha de transición 1 -->
+  <path d="M 195 110 L 225 110" stroke="#06b6d4" stroke-width="2.5" marker-end="url(#arrowCyan)" fill="none"/>
+  <polygon points="225,105 235,110 225,115" fill="#06b6d4"/>
+  <text x="215" y="98" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#0891b2" text-anchor="middle">+1</text>
+
+  <!-- Caja 2: Atrapas objeto (+1) -->
+  <g transform="translate(245, 55)">
+    <rect x="0" y="0" width="140" height="110" rx="8" fill="url(#boxGrad)" stroke="#06b6d4" stroke-width="2"/>
+    <rect x="15" y="-12" width="110" height="24" rx="12" fill="#ea580c" stroke="#c2410c" stroke-width="1"/>
+    <text x="70" y="4" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#ffffff" text-anchor="middle">📦 Puntos</text>
+    
+    <!-- Valor incrementado -->
+    <circle cx="70" cy="55" r="24" fill="url(#valGrad)"/>
+    <text x="70" y="62" font-family="ui-monospace, monospace" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">1</text>
+    
+    <text x="70" y="135" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#0d9488" text-anchor="middle">2. Atrapas objeto</text>
+    <text x="70" y="150" font-family="ui-monospace, monospace" font-size="9" fill="#62778f" text-anchor="middle">sumar a [Puntos] 1</text>
+  </g>
+
+  <!-- Flecha de transición 2 -->
+  <path d="M 400 110 L 430 110" stroke="#06b6d4" stroke-width="2.5" fill="none"/>
+  <polygon points="430,105 440,110 430,115" fill="#06b6d4"/>
+  <text x="420" y="98" font-family="-apple-system, sans-serif" font-size="10" font-weight="700" fill="#0891b2" text-anchor="middle">+1</text>
+
+  <!-- Caja 3: Continúa el juego -->
+  <g transform="translate(450, 55)">
+    <rect x="0" y="0" width="110" height="110" rx="8" fill="url(#boxGrad)" stroke="#cbd8e6" stroke-width="1.5"/>
+    <rect x="5" y="-12" width="100" height="24" rx="12" fill="#ea580c" stroke="#c2410c" stroke-width="1"/>
+    <text x="55" y="4" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">📦 Puntos</text>
+    
+    <circle cx="55" cy="55" r="24" fill="url(#valGrad)"/>
+    <text x="55" y="62" font-family="ui-monospace, monospace" font-size="20" font-weight="800" fill="#ffffff" text-anchor="middle">N...</text>
+    
+    <text x="55" y="135" font-family="-apple-system, sans-serif" font-size="11" font-weight="600" fill="#0284c7" text-anchor="middle">3. Se actualiza</text>
+    <text x="55" y="150" font-family="-apple-system, sans-serif" font-size="9" fill="#62778f" text-anchor="middle">en el marcador</text>
+  </g>
+</svg>

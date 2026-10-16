@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100" width="80" height="100">
+  <defs>
+    <linearGradient id="energyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee"/>
+      <stop offset="60%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Terminal positivo superior -->
+  <rect x="30" y="8" width="20" height="10" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="2"/>
+
+  <!-- Cuerpo de la batería / celda energética -->
+  <rect x="15" y="16" width="50" height="74" rx="10" fill="url(#energyGrad)" stroke="#06b6d4" stroke-width="3"/>
+
+  <!-- Indicador luminoso de carga (rayo central) -->
+  <path d="M 43 28 L 27 52 L 39 52 L 35 72 L 53 46 L 41 46 Z" fill="#ffffff" stroke="#e0f2fe" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- Brillos tecnológicos -->
+  <ellipse cx="28" cy="30" rx="4" ry="7" fill="#ffffff" opacity="0.4"/>
+</svg>

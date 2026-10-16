@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 220" width="100%" height="auto" style="max-width: 620px; display: block; margin: 1.5rem auto; background: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(15, 29, 46, 0.06); border: 1px solid #cbd8e6;">
+  <text x="300" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0f1d2e" text-anchor="middle">EL CICLO DEL VIDEOJUEGO (BUCLE "POR SIEMPRE")</text>
+
+  <!-- Paso 1: Entrada de usuario -->
+  <g transform="translate(30, 48)">
+    <rect x="0" y="0" width="115" height="120" rx="8" fill="#f8fafc" stroke="#cbd8e6" stroke-width="1.5"/>
+    <circle cx="57" cy="30" r="16" fill="#0284c7"/>
+    <text x="57" y="36" font-size="16" text-anchor="middle" fill="#ffffff">⌨️</text>
+    <text x="57" y="65" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f1d2e" text-anchor="middle">1. Controles</text>
+    <text x="57" y="85" font-family="-apple-system, sans-serif" font-size="9" fill="#3a4d63" text-anchor="middle">¿Flechas pulsadas?</text>
+    <text x="57" y="102" font-family="ui-monospace, monospace" font-size="8.5" fill="#0284c7" text-anchor="middle">Mover X robot</text>
+  </g>
+
+  <!-- Flecha 1 -> 2 -->
+  <path d="M 150 108 L 175 108" stroke="#06b6d4" stroke-width="2" fill="none"/>
+  <polygon points="175,104 183,108 175,112" fill="#06b6d4"/>
+
+  <!-- Paso 2: Física del juego -->
+  <g transform="translate(185, 48)">
+    <rect x="0" y="0" width="115" height="120" rx="8" fill="#f8fafc" stroke="#cbd8e6" stroke-width="1.5"/>
+    <circle cx="57" cy="30" r="16" fill="#0ea5e9"/>
+    <text x="57" y="36" font-size="16" text-anchor="middle" fill="#ffffff">🍎</text>
+    <text x="57" y="65" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f1d2e" text-anchor="middle">2. Caída libre</text>
+    <text x="57" y="85" font-family="-apple-system, sans-serif" font-size="9" fill="#3a4d63" text-anchor="middle">Gravedad continua</text>
+    <text x="57" y="102" font-family="ui-monospace, monospace" font-size="8.5" fill="#0ea5e9" text-anchor="middle">sumar a y (-5)</text>
+  </g>
+
+  <!-- Flecha 2 -> 3 -->
+  <path d="M 305 108 L 330 108" stroke="#06b6d4" stroke-width="2" fill="none"/>
+  <polygon points="330,104 338,108 330,112" fill="#06b6d4"/>
+
+  <!-- Paso 3: Sensor de colisión -->
+  <g transform="translate(340, 48)">
+    <rect x="0" y="0" width="115" height="120" rx="8" fill="#f8fafc" stroke="#cbd8e6" stroke-width="1.5"/>
+    <circle cx="57" cy="30" r="16" fill="#06b6d4"/>
+    <text x="57" y="36" font-size="16" text-anchor="middle" fill="#ffffff">🎯</text>
+    <text x="57" y="65" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f1d2e" text-anchor="middle">3. Colisión</text>
+    <text x="57" y="85" font-family="-apple-system, sans-serif" font-size="9" fill="#3a4d63" text-anchor="middle">¿Tocando robot?</text>
+    <text x="57" y="102" font-family="ui-monospace, monospace" font-size="8.5" fill="#0891b2" text-anchor="middle">¿O tocó suelo?</text>
+  </g>
+
+  <!-- Flecha 3 -> 4 -->
+  <path d="M 460 108 L 485 108" stroke="#06b6d4" stroke-width="2" fill="none"/>
+  <polygon points="485,104 493,108 485,112" fill="#06b6d4"/>
+
+  <!-- Paso 4: Marcador -->
+  <g transform="translate(495, 48)">
+    <rect x="0" y="0" width="85" height="120" rx="8" fill="#f8fafc" stroke="#cbd8e6" stroke-width="1.5"/>
+    <circle cx="42" cy="30" r="16" fill="#10b981"/>
+    <text x="42" y="36" font-size="16" text-anchor="middle" fill="#ffffff">⭐</text>
+    <text x="42" y="65" font-family="-apple-system, sans-serif" font-size="11" font-weight="700" fill="#0f1d2e" text-anchor="middle">4. Datos</text>
+    <text x="42" y="85" font-family="-apple-system, sans-serif" font-size="9" fill="#3a4d63" text-anchor="middle">+1 Puntos</text>
+    <text x="42" y="102" font-family="ui-monospace, monospace" font-size="8.5" fill="#059669" text-anchor="middle">o -1 Vida</text>
+  </g>
+
+  <!-- Flecha de retorno del ciclo (Loop back) -->
+  <path d="M 537 175 L 537 195 L 87 195 L 87 175" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,3" fill="none"/>
+  <polygon points="83,176 87,168 91,176" fill="#06b6d4"/>
+  <text x="312" y="190" font-family="ui-monospace, monospace" font-size="10" font-weight="700" fill="#0284c7" text-anchor="middle">🔁 Repite en bucle infinito (60 veces por segundo)</text>
+</svg>

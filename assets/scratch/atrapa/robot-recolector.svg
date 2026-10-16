@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 100" width="160" height="100">
+  <!-- Cesta / Bandeja recolectora superior -->
+  <path d="M 15 28 L 35 48 L 125 48 L 145 28 Z" fill="#e0f2fe" stroke="#0284c7" stroke-width="3" stroke-linejoin="round"/>
+  <rect x="25" y="24" width="110" height="6" rx="3" fill="#06b6d4" opacity="0.8"/>
+
+  <!-- Chasis principal del robot -->
+  <rect x="35" y="44" width="90" height="42" rx="12" fill="#ffffff" stroke="#cbd8e6" stroke-width="3"/>
+
+  <!-- Pantalla frontal / visor -->
+  <rect x="45" y="52" width="70" height="24" rx="8" fill="#0f1d2e"/>
+
+  <!-- Ojos LED luminosos cian -->
+  <circle cx="62" cy="64" r="5" fill="#22d3ee"/>
+  <circle cx="62" cy="64" r="2.5" fill="#ffffff"/>
+  <circle cx="98" cy="64" r="5" fill="#22d3ee"/>
+  <circle cx="98" cy="64" r="2.5" fill="#ffffff"/>
+
+  <!-- Sonrisa amable -->
+  <path d="M 74 68 Q 80 73 86 68" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- Ruedas / Orugas de movimiento -->
+  <rect x="40" y="84" width="22" height="10" rx="4" fill="#334155"/>
+  <circle cx="45" cy="89" r="2" fill="#94a3b8"/>
+  <circle cx="57" cy="89" r="2" fill="#94a3b8"/>
+
+  <rect x="98" y="84" width="22" height="10" rx="4" fill="#334155"/>
+  <circle cx="103" cy="89" r="2" fill="#94a3b8"/>
+  <circle cx="115" cy="89" r="2" fill="#94a3b8"/>
+</svg>

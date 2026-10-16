@@ -1199,7 +1199,92 @@ section[style*="eff6ff"] h3 {
 }
 
 /* --------------------------------------------------------------------------
-   16. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+   16. COMPONENTES DE DESCARGA DE MATERIALES Y ASSETS
+   -------------------------------------------------------------------------- */
+.asset-download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.asset-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.asset-card:hover {
+  border-color: var(--cyan-core);
+  box-shadow: var(--shadow-glow);
+  transform: translateY(-2px);
+}
+
+.asset-preview {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-subtle);
+  border: 1px solid var(--border-tech);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+  padding: 0.4rem;
+  font-size: 2rem;
+}
+
+.asset-preview img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.asset-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.asset-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-bottom: 0.75rem;
+  flex-grow: 1;
+}
+
+.asset-tag {
+  font-size: 0.68rem;
+  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-weight: 700;
+  color: var(--blue-deep);
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.65rem;
+  display: inline-block;
+}
+
+.btn-download-asset {
+  width: 100%;
+  font-size: 0.8rem;
+  padding: 0.45rem 0.75rem;
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   17. ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

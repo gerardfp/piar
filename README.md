@@ -18,25 +18,29 @@ Portal web educativo moderno, estático y sin dependencias para el seguimiento d
 │   └── simulator.css                    # Estilos del simulador interactivo
 ├── js/
 │   ├── main.js                          # Control de acordeones, navegación y quiz
-│   └── colchoneta-sim.js                # Motor del simulador interactivo en Canvas
+│   ├── colchoneta-sim.js                # Motor del simulador de Proyecto 1 (Canvas)
+│   └── atrapa-sim.js                    # Motor del videojuego jugable de Proyecto 2 (Canvas)
 ├── assets/
 │   ├── img/
 │   │   ├── scratch-coords.svg           # Diagrama del plano cartesiano en Scratch
-│   │   └── jump-physics.svg             # Esquema físico del salto y parábola
+│   │   ├── jump-physics.svg             # Esquema físico del salto y parábola
+│   │   ├── scratch-variables.svg        # Diagrama de variables y memoria
+│   │   └── game-loop.svg                # Diagrama del ciclo de videojuego
 │   └── scratch/colchoneta/
 │       ├── cat1.svg / cat2.svg          # Disfraces del gato de Scratch
 │       ├── trampoline.png               # Gráfico de la cama elástica
 │       └── pop.wav / meow.wav           # Efectos de audio
 └── temas/
-    ├── programacion/
-    │   ├── index.html                   # Índice del Bloque 1: Programación
-    │   └── scratch/
-    │       ├── index.html               # Índice del Tema 1: Scratch Creativo
-    │       └── colchoneta.html          # TUTORIAL: Proyecto 1 "Acrobacias en la Cama Elástica"
-    ├── ia/
-    │   └── index.html                   # Bloque 2: Inteligencia Artificial
-    └── robotica/
-        └── index.html                   # Bloque 3: Robótica y Computación Física
+│       ├── programacion/
+│       │   ├── index.html               # Índice del Bloque 1: Programación
+│       │   └── scratch/
+│       │       ├── index.html           # Índice del Tema 1: Scratch Creativo
+│       │       ├── colchoneta.html      # TUTORIAL: Proyecto 1 "Acrobacias en la Cama Elástica"
+│       │       └── atrapa-objetos.html  # TUTORIAL: Proyecto 2 "Robot Recolector (Atrapa Objetos)"
+│       ├── ia/
+│       │   └── index.html               # Bloque 2: Inteligencia Artificial
+│       └── robotica/
+│           └── index.html               # Bloque 3: Robótica y Computación Física
 ```
 
 ---
@@ -71,3 +75,20 @@ Tutorial interactivo paso a paso basado en el archivo `activitat colchoneta.sb3`
 - **Pistas y Solución Oculta:** Acordeones desplegables con explicaciones y renderizado visual hiperrealista de los bloques de Scratch.
 - **Desafíos Pro de Ampliación:** Sonido al rebotar, disfraces dinámicos y control con teclado.
 - **Test de Autocomprobación:** Preguntas interactivas con retroalimentación inmediata.
+
+---
+
+## 🤖 Proyecto 2: Robot Recolector (Atrapa Objetos con Marcador)
+
+Tutorial interactivo de iniciación al desarrollo de videojuegos en Scratch:
+- **Simulador Interactivo Jugable:** Videojuego integrado 100% jugable en el navegador con teclado (flechas ⬅️ y ➡️) o botones táctiles, detección de colisiones, sonido de sintetizador Web Audio, y HUD de telemetría en tiempo real.
+- **Conceptos Clave Desglosados:**
+  1. El ciclo principal del videojuego: bucle `por siempre` (Game Loop continuo).
+  2. Control interactivo por teclado (`si <¿tecla presionada?> entonces`).
+  3. Gravedad y caída continua (`sumar a y (-5)`).
+  4. Azar y aleatoriedad: operador `número aleatorio entre (-200) y (200)` para columnas impredecibles.
+  5. Variables en memoria: gestión de `Puntos` y `Vidas` (inicialización vs incremento relativo).
+  6. Sensores de colisión (`<¿tocando [Robot]?>` y detección de límite de suelo `posición y < -160`).
+- **Misiones Guiadas:** 5 fases de construcción paso a paso en Scratch.
+- **Desafíos Pro:** Dificultad progresiva con variable de velocidad, objeto trampa (bomba) y modo contrarreloj.
+- **Test de Autocomprobación:** 4 preguntas interactivas con evaluación pedagógica inmediata.
