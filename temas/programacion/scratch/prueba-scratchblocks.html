@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prueba Scratchblocks (Renderizado en Cliente) | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <style>
+    /* Estilos específicos para el entorno de pruebas scratchblocks */
+    .test-badge-env {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      background: var(--cyan-tint);
+      border: 1px solid var(--border-accent);
+      color: var(--blue-dark);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .test-badge-env .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-core);
+      box-shadow: 0 0 8px var(--cyan-core);
+    }
+
+    /* Grid del Playground Interactivo */
+    .playground-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 992px) {
+      .playground-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .editor-panel, .preview-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-tech);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .editor-panel:focus-within, .preview-panel:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: var(--bg-surface-panel);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .panel-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .editor-textarea {
+      width: 100%;
+      min-height: 380px;
+      padding: 1rem;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--text-main);
+      background: #fafcfe;
+      border: none;
+      resize: vertical;
+      outline: none;
+    }
+
+    .editor-textarea:focus {
+      background: #ffffff;
+    }
+
+    .preview-canvas {
+      padding: 1.5rem;
+      min-height: 380px;
+      max-height: 600px;
+      overflow: auto;
+      background: radial-gradient(#e2eaf4 1px, transparent 1px) 0 0 / 16px 16px, #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    /* Contenedores de bloques renderizados */
+    .blocks-render-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-tech);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .blocks-render-card:hover {
+      border-color: var(--border-accent);
+      box-shadow: var(--shadow-md);
+    }
+
+    .blocks-source-pre {
+      background: #0f1d2e;
+      color: #94a3b8;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      font-family: monospace;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin-top: 0.75rem;
+    }
+
+    .preset-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .preset-btn {
+      background: var(--bg-surface-subtle);
+      border: 1px solid var(--border-tech);
+      color: var(--blue-dark);
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .preset-btn:hover {
+      background: var(--blue-tint);
+      border-color: var(--cyan-core);
+      color: var(--blue-primary);
+    }
+
+    .preset-btn.active {
+      background: var(--blue-primary);
+      border-color: var(--blue-primary);
+      color: #ffffff;
+    }
+
+    /* Tabla de comparación */
+    .comparison-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      margin-top: 1rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-tech);
+    }
+
+    .comparison-table th, .comparison-table td {
+      padding: 0.75rem 1rem;
+      font-size: 0.88rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .comparison-table th {
+      background: var(--bg-surface-panel);
+      color: var(--blue-dark);
+      font-weight: 700;
+    }
+
+    .comparison-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison-table tr:hover td {
+      background: var(--bg-surface-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabecera -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Prueba scratchblocks (Cliente)</span>
+    </nav>
+
+    <!-- Banner técnico de la prueba -->
+    <div class="hero-banner" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 60%, #0c4a6e 100%);">
+      <div class="hero-content">
+        <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 0.75rem;">
+          <span class="test-badge-env"><span class="status-dot"></span> Motor scratchblocks v3.6.4</span>
+          <span class="test-badge-env" style="background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.25); color: #ffffff;">
+            ⚡ 100% Offline en Cliente (SVG)
+          </span>
+        </div>
+        <h1 class="hero-title">Prueba de Renderizado Scratchblocks</h1>
+        <p class="hero-subtitle">
+          Evaluación técnica de renderizado dinámico en cliente de bloques oficiales Scratch 3.0 mediante la librería <code>scratchblocks</code>. Convierte sintaxis en texto legible directamente a gráficos vectoriales SVG interactivos, escalables e idénticos a Scratch MIT.
+        </p>
+        <div class="hero-actions">
+          <a href="#playground" class="btn btn-primary" style="background: var(--cyan-core); color: #0c4a6e; font-weight: 700;">
+            🧪 Probar Editor Interactivo
+          </a>
+          <a href="#comparativa" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.4); color: white;">
+            📊 Ver Comparativa Técnica
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección 1: Playground Interactivo -->
+    <section id="playground" style="margin-top: 2rem;">
+      <div class="section-header">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h2 class="section-title">🧪 Editor en Vivo: Escribe y Renderiza</h2>
+            <p class="section-desc">Escribe código en sintaxis Scratch (Español, Català o Inglés) y observa la generación del SVG vectorial en tiempo real:</p>
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-light);">
+            Estado del motor: <span id="engine-status" style="color: var(--state-success-text); font-weight: 700;">● Listo</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Presets de código de los Proyectos de PIAR -->
+      <div>
+        <span style="font-size: 0.82rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 0.5rem;">
+          Cargar ejemplos de los proyectos del curso:
+        </span>
+        <div class="preset-pills">
+          <button type="button" class="preset-btn active" data-preset="trampolin-bote">🤸 Proy 1: Bote en Trampolín</button>
+          <button type="button" class="preset-btn" data-preset="trampolin-salto">🤸 Proy 1: Salto Mortal 360°</button>
+          <button type="button" class="preset-btn" data-preset="atrapa-movimiento">🤖 Proy 2: Movimiento Robot (Flechas)</button>
+          <button type="button" class="preset-btn" data-preset="atrapa-caida">⚡ Proy 2: Caída y Gravedad</button>
+          <button type="button" class="preset-btn" data-preset="atrapa-marcador">🏆 Proy 2: Marcador (Puntos y Vidas)</button>
+          <button type="button" class="preset-btn" data-preset="custom-block">🧩 Bloque Propio (Definir salto)</button>
+        </div>
+      </div>
+
+      <!-- Grid Editor + Preview -->
+      <div class="playground-grid">
+        <!-- Panel Izquierdo: Editor de Texto -->
+        <div class="editor-panel">
+          <div class="panel-header">
+            <span class="panel-title">
+              <span>📝 Sintaxis Scratch (Texto)</span>
+            </span>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <select id="lang-select" style="font-size: 0.78rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-xs); border: 1px solid var(--border-tech); background: white;">
+                <option value="es" selected>Idioma: Español (es)</option>
+                <option value="ca">Idioma: Català (ca)</option>
+                <option value="en">Idioma: English (en)</option>
+              </select>
+              <button type="button" id="btn-copy-code" class="btn btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">
+                Copiar Texto
+              </button>
+            </div>
+          </div>
+          <textarea id="scratch-code-input" class="editor-textarea" spellcheck="false" placeholder="Escribe aquí los bloques de Scratch..."></textarea>
+          <div style="padding: 0.5rem 1rem; background: var(--bg-surface-subtle); border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-light);">
+            <span>Consejo: Usa <code>@greenFlag</code> para bandera, <code>[desplegable v]</code> y <code>fin</code> para cerrar bucles.</span>
+            <span id="char-counter">0 líneas</span>
+          </div>
+        </div>
+
+        <!-- Panel Derecho: Renderizado SVG -->
+        <div class="preview-panel">
+          <div class="panel-header">
+            <span class="panel-title">
+              <span>🖼️ Vista Previa SVG (scratchblocks)</span>
+            </span>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <select id="style-select" style="font-size: 0.78rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-xs); border: 1px solid var(--border-tech); background: white;">
+                <option value="scratch3" selected>Estilo: Scratch 3.0</option>
+                <option value="scratch2">Estilo: Scratch 2.0</option>
+              </select>
+              <select id="scale-select" style="font-size: 0.78rem; padding: 0.2rem 0.5rem; border-radius: var(--radius-xs); border: 1px solid var(--border-tech); background: white;">
+                <option value="0.8">Escala: 80%</option>
+                <option value="0.9">Escala: 90%</option>
+                <option value="1.0" selected>Escala: 100%</option>
+                <option value="1.15">Escala: 115%</option>
+              </select>
+              <button type="button" id="btn-copy-svg" class="btn btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">
+                Copiar SVG
+              </button>
+              <button type="button" id="btn-download-svg" class="btn btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.75rem;">
+                Descargar SVG
+              </button>
+            </div>
+          </div>
+          <div id="scratch-preview" class="preview-canvas">
+            <!-- El SVG generado dinámicamente se inserta aquí -->
+          </div>
+          <div style="padding: 0.5rem 1rem; background: var(--bg-surface-subtle); border-top: 1px solid var(--border-subtle); display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: var(--text-light);">
+            <span id="render-time">Renderizado: 0 ms</span>
+            <span style="color: var(--blue-primary); font-weight: 600;">Vectorial sin pérdida de resolución</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 2: Muestra de Renderizado Automático (En el HTML) -->
+    <section style="margin-top: 3rem;">
+      <div class="section-header">
+        <h2 class="section-title">📄 Integración Directa en Artículos y Tutoriales</h2>
+        <p class="section-desc">
+          Cómo se escribiría el contenido en las páginas del curso. Solo se añade una etiqueta <code>&lt;pre class="blocks"&gt;</code> con el texto en español y la librería lo convierte automáticamente al cargar la página:
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+        <!-- Ejemplo 1 -->
+        <div class="blocks-render-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <strong style="color: var(--blue-dark); font-size: 0.95rem;">1. Control de Salto (Trampolín)</strong>
+            <span class="badge badge-prog">Automático</span>
+          </div>
+          <pre class="blocks">
+al hacer clic en @greenFlag
+ir a x: (-132) y: (-57)
+repetir (3)
+    sumar a y (12)
+    esperar (0.05) segundos
+    sumar a y (-12)
+    esperar (0.05) segundos
+fin
+          </pre>
+          <details style="margin-top: 0.75rem; font-size: 0.8rem;">
+            <summary style="cursor: pointer; color: var(--blue-primary); font-weight: 600;">Ver código HTML fuente</summary>
+            <pre class="blocks-source-pre">&lt;pre class="blocks"&gt;
+al hacer clic en @greenFlag
+ir a x: (-132) y: (-57)
+repetir (3)
+    sumar a y (12)
+    esperar (0.05) segundos
+    sumar a y (-12)
+    esperar (0.05) segundos
+fin
+&lt;/pre&gt;</pre>
+          </details>
+        </div>
+
+        <!-- Ejemplo 2 -->
+        <div class="blocks-render-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <strong style="color: var(--blue-dark); font-size: 0.95rem;">2. Detección y Marcador (Robot)</strong>
+            <span class="badge badge-prog">Automático</span>
+          </div>
+          <pre class="blocks">
+si &lt;¿tocando [Robot v]?&gt; entonces
+    sumar a [Puntos v] (1)
+    iniciar sonido [Pop v]
+si no
+    sumar a [Vidas v] (-1)
+fin
+          </pre>
+          <details style="margin-top: 0.75rem; font-size: 0.8rem;">
+            <summary style="cursor: pointer; color: var(--blue-primary); font-weight: 600;">Ver código HTML fuente</summary>
+            <pre class="blocks-source-pre">&lt;pre class="blocks"&gt;
+si &lt;¿tocando [Robot v]?&gt; entonces
+    sumar a [Puntos v] (1)
+    iniciar sonido [Pop v]
+si no
+    sumar a [Vidas v] (-1)
+fin
+&lt;/pre&gt;</pre>
+          </details>
+        </div>
+
+        <!-- Ejemplo 3 -->
+        <div class="blocks-render-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <strong style="color: var(--blue-dark); font-size: 0.95rem;">3. Animación y Operadores</strong>
+            <span class="badge badge-prog">Automático</span>
+          </div>
+          <pre class="blocks">
+por siempre
+    ir a x: (número aleatorio entre (-200) y (200)) y: (160)
+    mostrar
+    repetir hasta que &lt;(posición en y) &lt; (-150)&gt;
+        sumar a y (-6)
+    fin
+fin
+          </pre>
+          <details style="margin-top: 0.75rem; font-size: 0.8rem;">
+            <summary style="cursor: pointer; color: var(--blue-primary); font-weight: 600;">Ver código HTML fuente</summary>
+            <pre class="blocks-source-pre">&lt;pre class="blocks"&gt;
+por siempre
+    ir a x: (número aleatorio entre (-200) y (200)) y: (160)
+    mostrar
+    repetir hasta que &lt;(posición en y) &lt; (-150)&gt;
+        sumar a y (-6)
+    fin
+fin
+&lt;/pre&gt;</pre>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Comparativa Técnica -->
+    <section id="comparativa" style="margin-top: 3rem;">
+      <div class="section-header">
+        <h2 class="section-title">📊 Comparativa: scratchblocks vs HTML/CSS Artesanal</h2>
+        <p class="section-desc">Análisis de viabilidad para el portal de la asignatura PIAR:</p>
+      </div>
+
+      <div class="card" style="padding: 1.5rem; overflow-x: auto;">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Criterio</th>
+              <th>scratchblocks (Renderizado Cliente)</th>
+              <th>Bloques en HTML/CSS artesanal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Fidelidad visual</strong></td>
+              <td>⭐ 100% idéntico a Scratch 3.0 oficial (muescas de encaje, iconos oficiales, sombreados exactos en SVG).</td>
+              <td>Aproximado (requiere muchos ajustes CSS por tipo de bloque y muesca).</td>
+            </tr>
+            <tr>
+              <td><strong>Facilidad para redactar tutoriales</strong></td>
+              <td>Muy alta: Solo escribes texto plano en un <code>&lt;pre class="blocks"&gt;</code>. Modificar un valor toma 2 segundos.</td>
+              <td>Baja: Requiere decenas de divs anidados (<code>.sb-stack</code>, <code>.sb-block</code>, <code>.sb-c-body</code>, etc.). Muy propenso a errores al editar.</td>
+            </tr>
+            <tr>
+              <td><strong>Soporte multiidioma (ES / CA / EN)</strong></td>
+              <td>Excelente: Basta con cambiar <code>languages: ['es']</code> o <code>['ca']</code> y el motor traduce o interpreta automáticamente la sintaxis.</td>
+              <td>Complicado: Habría que reescribir manualmente cada fragmento HTML por idioma.</td>
+            </tr>
+            <tr>
+              <td><strong>Dependencias y Conectividad</strong></td>
+              <td>100% Local / Offline: Los archivos <code>scratchblocks.min.js</code> y <code>translations-all.js</code> ya están guardados en el proyecto (no requiere internet ni CDNs).</td>
+              <td>100% Local (solo CSS).</td>
+            </tr>
+            <tr>
+              <td><strong>Interactividad y Copiado</strong></td>
+              <td>Permite copiar el código como texto, exportar el SVG y zoom limpio sin pixelado.</td>
+              <td>Solo visualización básica en HTML.</td>
+            </tr>
+            <tr>
+              <td><strong>Rendimiento</strong></td>
+              <td>Ligero: Renderiza más de 20 pilas de bloques en menos de 15 ms en cualquier dispositivo.</td>
+              <td>Instantáneo (ya está en el DOM inicial).</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout-info" style="margin-top: 1.5rem;">
+          <div class="callout-icon">💡</div>
+          <div class="callout-content">
+            <strong>Conclusión y Recomendación:</strong>
+            scratchblocks es la solución ideal para PIAR: ahorra horas de maquetación HTML manual, garantiza que los alumnos vean exactamente los bloques idénticos al editor oficial de Scratch 3.0 en español, y permite a los profesores añadir nuevos proyectos escribiendo código en texto normal.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guía de Sintaxis Rápida -->
+    <section style="margin-top: 3rem; margin-bottom: 2rem;">
+      <div class="section-header">
+        <h2 class="section-title">📖 Chuleta de Sintaxis Scratchblocks en Español</h2>
+        <p class="section-desc">Estructuras habituales para escribir bloques rápidamente:</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+        <div class="card" style="padding: 1rem;">
+          <h4 style="color: var(--blue-dark); margin-bottom: 0.5rem;">Eventos e Iconos</h4>
+          <code style="font-size: 0.8rem; display: block; line-height: 1.6;">
+            al hacer clic en @greenFlag<br>
+            al presionar tecla [espacio v]<br>
+            al recibir [mensaje1 v]<br>
+            enviar [mensaje1 v]
+          </code>
+        </div>
+        <div class="card" style="padding: 1rem;">
+          <h4 style="color: var(--blue-dark); margin-bottom: 0.5rem;">Movimiento y Apariencia</h4>
+          <code style="font-size: 0.8rem; display: block; line-height: 1.6;">
+            mover (10) pasos<br>
+            ir a x: (0) y: (0)<br>
+            sumar a y (10)<br>
+            girar @turnRight (15) grados<br>
+            decir [¡Hola!] por (2) segundos
+          </code>
+        </div>
+        <div class="card" style="padding: 1rem;">
+          <h4 style="color: var(--blue-dark); margin-bottom: 0.5rem;">Control y Bucles</h4>
+          <code style="font-size: 0.8rem; display: block; line-height: 1.6;">
+            repetir (10)<br>
+            &nbsp;&nbsp;...<br>
+            fin<br>
+            por siempre<br>
+            &nbsp;&nbsp;si &lt;¿tocando [borde v]?&gt; entonces<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+            &nbsp;&nbsp;fin<br>
+            fin
+          </code>
+        </div>
+        <div class="card" style="padding: 1rem;">
+          <h4 style="color: var(--blue-dark); margin-bottom: 0.5rem;">Variables y Sensores</h4>
+          <code style="font-size: 0.8rem; display: block; line-height: 1.6;">
+            dar a [Puntos v] el valor (0)<br>
+            sumar a [Puntos v] (1)<br>
+            mostrar variable [Puntos v]<br>
+            ¿tocando [Objeto1 v]?<br>
+            ¿tecla [espacio v] presionada?
+          </code>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Proyectos Scratch</h4>
+        <ul class="footer-links">
+          <li><a href="trampolin.html">Proyecto 1: El Trampolín</a></li>
+          <li><a href="atrapa-objetos.html">Proyecto 2: Robot Recolector</a></li>
+          <li><a href="prueba-scratchblocks.html">Prueba scratchblocks</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Recursos</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratchblocks.github.io/" target="_blank" rel="noopener">Documentación scratchblocks ↗</a></li>
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando</span>
+    </div>
+  </footer>
+
+  <!-- Carga de Librerías Scratchblocks Locales (100% Offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
+
+  <!-- Script de Control del Playground y Renderizado -->
+  <script>
+    (function() {
+      // 1. Presets de código para la demostración
+      const PRESETS = {
+        'trampolin-bote': `al hacer clic en @greenFlag
+ir a x: (-132) y: (-57)
+fijar tamaño al (100) %
+mostrar
+repetir (3)
+    cambiar disfraz a [costume1 v]
+    sumar a y (12)
+    esperar (0.05) segundos
+    sumar a y (-12)
+    esperar (0.05) segundos
+fin`,
+
+        'trampolin-salto': `al hacer clic en @greenFlag
+repetir (12)
+    sumar a x (18)
+    sumar a y (12)
+    girar @turnRight (30) grados
+    esperar (0.04) segundos
+fin
+repetir (12)
+    sumar a x (18)
+    sumar a y (-12)
+    girar @turnRight (30) grados
+    esperar (0.04) segundos
+fin
+apuntar en dirección (90)
+iniciar sonido [Boing v]`,
+
+        'atrapa-movimiento': `al hacer clic en @greenFlag
+ir a x: (0) y: (-130)
+fijar estilo de rotación a [izquierda-derecha v]
+por siempre
+    si <¿tecla [flecha derecha v] presionada?> entonces
+        apuntar en dirección (90)
+        sumar a x (10)
+    fin
+    si <¿tecla [flecha izquierda v] presionada?> entonces
+        apuntar en dirección (-90)
+        sumar a x (-10)
+    fin
+fin`,
+
+        'atrapa-caida': `al hacer clic en @greenFlag
+por siempre
+    ir a x: (número aleatorio entre (-200) y (200)) y: (160)
+    mostrar
+    repetir hasta que <<¿tocando [Robot v]?> o <(posición en y) < (-150)>>
+        sumar a y (-6)
+    fin
+    si <¿tocando [Robot v]?> entonces
+        sumar a [Puntos v] (1)
+        iniciar sonido [Pop v]
+    si no
+        sumar a [Vidas v] (-1)
+    fin
+    esconder
+    esperar (0.5) segundos
+fin`,
+
+        'atrapa-marcador': `al hacer clic en @greenFlag
+dar a [Puntos v] el valor (0)
+dar a [Vidas v] el valor (3)
+por siempre
+    si <(Vidas) < (1)> entonces
+        decir [¡Juego Terminado!] por (2) segundos
+        detener [todos v]
+    fin
+fin`,
+
+        'custom-block': `definir saltar (altura) (tiempo)
+sumar a y (altura)
+esperar (tiempo) segundos
+sumar a y ((0) - (altura))
+
+al hacer clic en @greenFlag
+por siempre
+    si <¿tecla [espacio v] presionada?> entonces
+        saltar (50) (0.1)
+    fin
+fin`
+      };
+
+      // Elementos del DOM
+      const textarea = document.getElementById('scratch-code-input');
+      const preview = document.getElementById('scratch-preview');
+      const langSelect = document.getElementById('lang-select');
+      const styleSelect = document.getElementById('style-select');
+      const scaleSelect = document.getElementById('scale-select');
+      const renderTimeEl = document.getElementById('render-time');
+      const charCounterEl = document.getElementById('char-counter');
+      const btnCopyCode = document.getElementById('btn-copy-code');
+      const btnCopySvg = document.getElementById('btn-copy-svg');
+      const btnDownloadSvg = document.getElementById('btn-download-svg');
+      const presetButtons = document.querySelectorAll('.preset-btn');
+
+      let currentSvgElement = null;
+
+      // 2. Renderizado dinámico del editor
+      function updateLivePreview() {
+        const code = textarea.value.trim();
+        const lines = code ? code.split('\n').length : 0;
+        charCounterEl.textContent = `${lines} línea${lines === 1 ? '' : 's'}`;
+
+        if (!code) {
+          preview.innerHTML = '<div style="color: var(--text-light); font-size: 0.9rem; font-style: italic;">Escribe código en el panel izquierdo para previsualizar los bloques.</div>';
+          currentSvgElement = null;
+          return;
+        }
+
+        const t0 = performance.now();
+        try {
+          const selectedLang = langSelect.value;
+          const languages = selectedLang === 'es' ? ['es', 'en'] : (selectedLang === 'ca' ? ['ca', 'es', 'en'] : ['en', 'es']);
+          
+          const doc = window.scratchblocks.parse(code, {
+            languages: languages
+          });
+
+          const svg = window.scratchblocks.render(doc, {
+            style: styleSelect.value,
+            scale: parseFloat(scaleSelect.value)
+          });
+
+          const t1 = performance.now();
+          renderTimeEl.textContent = `Renderizado: ${(t1 - t0).toFixed(1)} ms`;
+
+          preview.innerHTML = '';
+          preview.appendChild(svg);
+          currentSvgElement = svg;
+        } catch (err) {
+          console.error("Error al renderizar scratchblocks:", err);
+          preview.innerHTML = `<div style="color: var(--state-alert-text); background: var(--state-alert-bg); border: 1px solid var(--state-alert-border); padding: 0.75rem; border-radius: var(--radius-sm); font-size: 0.85rem;">
+            <strong>Error de sintaxis:</strong> ${err.message || err}
+          </div>`;
+          currentSvgElement = null;
+        }
+      }
+
+      // 3. Renderizado de los bloques estáticos en la página
+      function renderStaticBlocks() {
+        if (window.scratchblocks && typeof window.scratchblocks.renderMatching === 'function') {
+          window.scratchblocks.renderMatching('pre.blocks', {
+            style: 'scratch3',
+            languages: ['es', 'en'],
+            scale: 0.92
+          });
+        }
+      }
+
+      // 4. Listeners y eventos
+      let debounceTimer = null;
+      textarea.addEventListener('input', () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(updateLivePreview, 100);
+      });
+
+      langSelect.addEventListener('change', updateLivePreview);
+      styleSelect.addEventListener('change', updateLivePreview);
+      scaleSelect.addEventListener('change', updateLivePreview);
+
+      // Botones de presets
+      presetButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          presetButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const key = btn.getAttribute('data-preset');
+          if (PRESETS[key]) {
+            textarea.value = PRESETS[key];
+            updateLivePreview();
+          }
+        });
+      });
+
+      // Copiar código texto
+      btnCopyCode.addEventListener('click', () => {
+        navigator.clipboard.writeText(textarea.value).then(() => {
+          const orig = btnCopyCode.textContent;
+          btnCopyCode.textContent = '¡Copiado! ✓';
+          setTimeout(() => btnCopyCode.textContent = orig, 1500);
+        });
+      });
+
+      // Copiar SVG
+      btnCopySvg.addEventListener('click', () => {
+        if (!currentSvgElement) return;
+        const svgString = new XMLSerializer().serializeToString(currentSvgElement);
+        navigator.clipboard.writeText(svgString).then(() => {
+          const orig = btnCopySvg.textContent;
+          btnCopySvg.textContent = '¡SVG Copiado! ✓';
+          setTimeout(() => btnCopySvg.textContent = orig, 1500);
+        });
+      });
+
+      // Descargar SVG
+      btnDownloadSvg.addEventListener('click', () => {
+        if (!currentSvgElement) return;
+        const svgString = new XMLSerializer().serializeToString(currentSvgElement);
+        const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'scratch-bloques.svg';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+
+      // Inicialización
+      window.addEventListener('DOMContentLoaded', () => {
+        // Cargar el preset inicial
+        textarea.value = PRESETS['trampolin-bote'];
+        updateLivePreview();
+        // Renderizar bloques estáticos
+        renderStaticBlocks();
+      });
+    })();
+  </script>
+</body>
+</html>

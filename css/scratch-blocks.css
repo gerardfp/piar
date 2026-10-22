@@ -1,19 +1,48 @@
 /* ==========================================================================
-   PIAR - Scratch Blocks CSS Renderer
+   PIAR - Scratch Blocks Renderer (scratchblocks SVG + fallback)
    Estética de laboratorio tecnológico futurista: limpio, preciso y legible
    ========================================================================== */
 
+/* Bloques vectoriales oficiales (scratchblocks) */
+pre.blocks {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+svg.scratchblocks {
+  display: block;
+  vertical-align: middle;
+  filter: drop-shadow(0 2px 5px rgba(15, 29, 46, 0.08));
+}
+
+code.blocks svg.scratchblocks {
+  display: inline-block;
+  vertical-align: -0.28em;
+  filter: none;
+}
+
 /* Contenedor de código Scratch */
 .scratch-code {
-  background: #f8fafc;
-  border: 1px solid #dbe3ee;
+  background: var(--bg-surface-panel, #f8fafc);
+  border: 1px solid var(--border-tech, #cbd8e6);
   border-radius: var(--radius-md, 10px);
-  padding: 1rem 1.25rem;
-  margin: 1rem 0;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
   overflow-x: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   user-select: none;
-  box-shadow: inset 0 1px 3px rgba(15, 29, 46, 0.04), 0 0 0 1px rgba(6, 182, 212, 0.08);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(15, 29, 46, 0.04));
+  transition: var(--transition, all 0.18s ease);
+}
+
+.scratch-code:hover {
+  border-color: var(--border-accent, rgba(6, 182, 212, 0.45));
+  box-shadow: var(--shadow-md, 0 3px 8px -1px rgba(15, 29, 46, 0.05));
 }
 
 .scratch-stack {

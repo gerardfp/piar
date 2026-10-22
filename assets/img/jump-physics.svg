@@ -11,7 +11,7 @@
   <line x1="310" y1="220" x2="600" y2="220" stroke="#16a34a" stroke-width="3"/>
 
   <!-- 1. SALTO VERTICAL -->
-  <!-- Colchoneta 1 -->
+  <!-- Trampolín 1 -->
   <rect x="90" y="215" width="100" height="12" rx="3" fill="#3b82f6"/>
   <rect x="95" y="210" width="90" height="6" rx="2" fill="#0284c7"/>
 
@@ -29,10 +29,10 @@
   <rect x="50" y="235" width="180" height="32" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
   <text x="140" y="255" font-family="monospace" font-size="11" fill="#334155" text-anchor="middle">X no cambia (constante)</text>
 
-  <!-- 2. SALTO PARABÓLICO ENTRE COLCHONETAS -->
-  <!-- Colchoneta A -->
+  <!-- 2. SALTO PARABÓLICO ENTRE TRAMPOLINES -->
+  <!-- Trampolín A -->
   <rect x="330" y="215" width="70" height="12" rx="3" fill="#3b82f6"/>
-  <!-- Colchoneta B -->
+  <!-- Trampolín B -->
   <rect x="510" y="215" width="70" height="12" rx="3" fill="#3b82f6"/>
 
   <!-- Curva parabólica -->

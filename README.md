@@ -11,14 +11,13 @@ Portal web educativo moderno, estático y sin dependencias para el seguimiento d
 /home/gerard/piar/
 ├── index.html                           # Portada y visión general de PIAR
 ├── README.md                            # Guía del profesor y documentación
-├── activitat colchoneta.sb3             # Archivo Scratch de referencia del alumno
 ├── css/
 │   ├── style.css                        # Estilos globales y responsive
 │   ├── scratch-blocks.css               # Renderizador visual CSS de bloques Scratch 3.0
 │   └── simulator.css                    # Estilos del simulador interactivo
 ├── js/
 │   ├── main.js                          # Control de acordeones, navegación y quiz
-│   ├── colchoneta-sim.js                # Motor del simulador de Proyecto 1 (Canvas)
+│   ├── trampolin-sim.js                 # Motor del simulador de Proyecto 1 (Canvas)
 │   └── atrapa-sim.js                    # Motor del videojuego jugable de Proyecto 2 (Canvas)
 ├── assets/
 │   ├── img/
@@ -26,16 +25,16 @@ Portal web educativo moderno, estático y sin dependencias para el seguimiento d
 │   │   ├── jump-physics.svg             # Esquema físico del salto y parábola
 │   │   ├── scratch-variables.svg        # Diagrama de variables y memoria
 │   │   └── game-loop.svg                # Diagrama del ciclo de videojuego
-│   └── scratch/colchoneta/
+│   └── scratch/trampolin/
 │       ├── cat1.svg / cat2.svg          # Disfraces del gato de Scratch
-│       ├── trampoline.png               # Gráfico de la cama elástica
+│       ├── trampoline.png               # Gráfico del trampolín
 │       └── pop.wav / meow.wav           # Efectos de audio
 └── temas/
 │       ├── programacion/
 │       │   ├── index.html               # Índice del Bloque 1: Programación
 │       │   └── scratch/
 │       │       ├── index.html           # Índice del Tema 1: Scratch Creativo
-│       │       ├── colchoneta.html      # TUTORIAL: Proyecto 1 "Acrobacias en la Cama Elástica"
+│       │       ├── trampolin.html       # TUTORIAL: Proyecto 1 "Acrobacias en el Trampolín"
 │       │       └── atrapa-objetos.html  # TUTORIAL: Proyecto 2 "Robot Recolector (Atrapa Objetos)"
 │       ├── ia/
 │       │   └── index.html               # Bloque 2: Inteligencia Artificial
@@ -61,9 +60,9 @@ Y abre en tu navegador `http://localhost:8000`.
 
 ---
 
-## 🤸 Proyecto 1: Acrobacias en la Cama Elástica
+## 🤸 Proyecto 1: Acrobacias en el Trampolín
 
-Tutorial interactivo paso a paso basado en el archivo `activitat colchoneta.sb3`:
+Tutorial interactivo paso a paso:
 - **Simulador Interactivo:** Permite ver la animación completa, ejecutar paso a paso, pausar, alternar el rastro de la parábola, activar el eje de coordenadas X/Y y escuchar el efecto de rebote.
 - **Conceptos Clave Desglosados:**
   1. Sistema de coordenadas de Scratch (480x360 px, centro en 0,0) y la regla de oro de la inicialización con Bandera Verde.

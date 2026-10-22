@@ -1,10 +1,10 @@
 /**
- * PIAR - Simulador Interactivo "Acrobacias en la Cama Elástica" (Scratch 3.0)
- * Reproduce paso a paso el proyecto de Scratch activitat colchoneta.sb3
+ * PIAR - Simulador Interactivo "Acrobacias en el Trampolín" (Scratch 3.0)
+ * Reproduce paso a paso el proyecto de Scratch
  */
 
 (function () {
-  const canvas = document.getElementById('colchonetaCanvas');
+  const canvas = document.getElementById('trampolinCanvas');
   if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
@@ -33,18 +33,18 @@
   const trampolineImg = new Image();
   // Usar ruta relativa adecuada según la ubicación del HTML
   const basePath = canvas.dataset.basepath || '../../';
-  trampolineImg.src = basePath + 'assets/scratch/colchoneta/trampoline.png';
+  trampolineImg.src = basePath + 'assets/scratch/trampolin/trampoline.png';
 
   const cat1Img = new Image();
-  cat1Img.src = basePath + 'assets/scratch/colchoneta/cat1.svg';
+  cat1Img.src = basePath + 'assets/scratch/trampolin/cat1.svg';
 
   const cat2Img = new Image();
-  cat2Img.src = basePath + 'assets/scratch/colchoneta/cat2.svg';
+  cat2Img.src = basePath + 'assets/scratch/trampolin/cat2.svg';
 
   // Sonidos opcionales
   let audioPop = null;
   try {
-    audioPop = new Audio(basePath + 'assets/scratch/colchoneta/pop.wav');
+    audioPop = new Audio(basePath + 'assets/scratch/trampolin/pop.wav');
   } catch (e) {
     console.warn('Audio no disponible', e);
   }
@@ -91,7 +91,7 @@
       block: 'block-init'
     });
 
-    // 2. Colchoneta 1: Repetir 3 veces bote vertical
+    // 2. Trampolín 1: Repetir 3 veces bote vertical
     for (let r = 1; r <= 3; r++) {
       // Subir 10 veces +10 en Y
       for (let i = 0; i < 10; i++) {
@@ -100,7 +100,7 @@
           dy: 10,
           sound: false,
           costume: 1,
-          desc: `Colchoneta 1 (Bote ${r}/3): Impulso hacia arriba (+Y)`,
+          desc: `Trampolín 1 (Bote ${r}/3): Impulso hacia arriba (+Y)`,
           block: 'block-bounce-up-1'
         });
       }
@@ -111,13 +111,13 @@
           dy: -10,
           sound: i === 9, // Pop al tocar fondo
           costume: 2,
-          desc: `Colchoneta 1 (Bote ${r}/3): Descenso hacia la lona (-Y)`,
+          desc: `Trampolín 1 (Bote ${r}/3): Descenso hacia la lona (-Y)`,
           block: 'block-bounce-down-1'
         });
       }
     }
 
-    // 3. Salto acrobático parabólico a la Colchoneta 2 (Derecha)
+    // 3. Salto acrobático parabólico al Trampolín 2 (Derecha)
     // Subida con giro hacia adelante (+X, +Y, giro horario)
     for (let i = 0; i < 10; i++) {
       steps.push({
@@ -127,7 +127,7 @@
         ddir: 24, // Dos giros de 12° en el sb3 = 24°
         sound: false,
         costume: 1,
-        desc: `Salto parabólico a colchoneta 2: Elevación y giro (+X, +Y)`,
+        desc: `Salto parabólico a trampolín 2: Elevación y giro (+X, +Y)`,
         block: 'block-jump-curve-up'
       });
     }
@@ -140,23 +140,23 @@
         ddir: 12,
         sound: i === 9,
         costume: 2,
-        desc: `Salto parabólico a colchoneta 2: Aterrizaje (+X, -Y)`,
+        desc: `Salto parabólico a trampolín 2: Aterrizaje (+X, -Y)`,
         block: 'block-jump-curve-down'
       });
     }
 
-    // Estabilización en Colchoneta 2
+    // Estabilización en Trampolín 2
     steps.push({
       action: 'init',
       x: 118,
       y: -57,
       dir: 90,
       costume: 1,
-      desc: 'Aterrizaje en Colchoneta 2: estabilizar x: 118, y: -57, dir: 90°',
+      desc: 'Aterrizaje en Trampolín 2: estabilizar x: 118, y: -57, dir: 90°',
       block: 'block-land-2'
     });
 
-    // 4. Colchoneta 2: Repetir 3 veces bote vertical
+    // 4. Trampolín 2: Repetir 3 veces bote vertical
     for (let r = 1; r <= 3; r++) {
       for (let i = 0; i < 10; i++) {
         steps.push({
@@ -164,7 +164,7 @@
           dy: 10,
           sound: false,
           costume: 1,
-          desc: `Colchoneta 2 (Bote ${r}/3): Impulso hacia arriba (+Y)`,
+          desc: `Trampolín 2 (Bote ${r}/3): Impulso hacia arriba (+Y)`,
           block: 'block-bounce-up-2'
         });
       }
@@ -174,13 +174,13 @@
           dy: -10,
           sound: i === 9,
           costume: 2,
-          desc: `Colchoneta 2 (Bote ${r}/3): Descenso hacia la lona (-Y)`,
+          desc: `Trampolín 2 (Bote ${r}/3): Descenso hacia la lona (-Y)`,
           block: 'block-bounce-down-2'
         });
       }
     }
 
-    // 5. Salto acrobático parabólico de regreso a Colchoneta 1 (Izquierda)
+    // 5. Salto acrobático parabólico de regreso a Trampolín 1 (Izquierda)
     for (let i = 0; i < 10; i++) {
       steps.push({
         action: 'acrobatics',
@@ -189,7 +189,7 @@
         ddir: -24, // Giro antihorario para regresar
         sound: false,
         costume: 1,
-        desc: `Salto de regreso a colchoneta 1: Elevación invertida (-X, +Y)`,
+        desc: `Salto de regreso a trampolín 1: Elevación invertida (-X, +Y)`,
         block: 'block-return-curve-up'
       });
     }
@@ -201,7 +201,7 @@
         ddir: -12,
         sound: i === 9,
         costume: 2,
-        desc: `Salto de regreso a colchoneta 1: Aterrizaje final (-X, -Y)`,
+        desc: `Salto de regreso a trampolín 1: Aterrizaje final (-X, -Y)`,
         block: 'block-return-curve-down'
       });
     }
@@ -385,7 +385,7 @@
       ctx.fillStyle = '#065f46';
       ctx.font = 'bold 11px system-ui, sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(`Colchoneta ${idx + 1} (x: ${t.x})`, pos.x, pos.y + 40);
+      ctx.fillText(`Trampolín ${idx + 1} (x: ${t.x})`, pos.x, pos.y + 40);
     });
 
     // Dibujar trayectoria / parábola

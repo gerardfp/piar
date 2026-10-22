@@ -191,18 +191,11 @@
             <img src="../../../assets/img/game-loop.svg" alt="Diagrama del bucle infinito en videojuegos" style="max-width: 600px; margin: 1.5rem auto;">
 
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb sb-hat sb-events">
-                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                </div>
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">por siempre</div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb sb-motion" style="opacity: 0.85;">// Aquí colocamos las instrucciones que no deben detenerse</div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+al hacer clic en @greenFlag
+por siempre // Aquí colocamos las instrucciones continuas
+fin
+              </pre>
             </div>
           </div>
 
@@ -216,27 +209,14 @@
               Para mover al robot de forma suave a izquierda y derecha, combinamos un bloque condicional <span class="sb sb-inline sb-control">si &lt;...&gt; entonces</span> con el sensor azul claro <span class="sb sb-inline sb-sensing">¿tecla [flecha] presionada?</span>.
             </p>
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">
-                    si <span class="sb sb-inline sb-sensing">¿tecla <span class="sb-dropdown">flecha derecha</span> presionada?</span> entonces
-                  </div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb sb-motion">sumar a x <span class="sb-input-number">10</span></div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">
-                    si <span class="sb sb-inline sb-sensing">¿tecla <span class="sb-dropdown">flecha izquierda</span> presionada?</span> entonces
-                  </div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb sb-motion">sumar a x <span class="sb-input-number">-10</span></div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+si &lt;¿tecla [flecha derecha v] presionada?&gt; entonces
+    sumar a x (10)
+fin
+si &lt;¿tecla [flecha izquierda v] presionada?&gt; entonces
+    sumar a x (-10)
+fin
+              </pre>
             </div>
 
             <div class="callout callout-tip">
@@ -261,11 +241,9 @@
               Recordando que el escenario mide de -240 a +240 en el eje X, al elegir un número al azar entre -200 y 200 nos aseguramos de que el objeto aparezca en cualquier columna sin salirse por los bordes laterales.
             </p>
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb sb-motion">
-                  ir a x: <span class="sb sb-inline sb-operators">número aleatorio entre <span class="sb-input-number">-200</span> y <span class="sb-input-number">200</span></span> y: <span class="sb-input-number">170</span>
-                </div>
-              </div>
+              <pre class="blocks">
+ir a x: (número aleatorio entre (-200) y (200)) y: (170)
+              </pre>
             </div>
           </div>
 
@@ -338,36 +316,18 @@
               Selecciona el objeto <strong>Robot</strong>. Fija su altura inicial en el suelo (por ejemplo <code>y: -140</code>) y coloca el bucle continuo que escucha las flechas:
             </p>
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb sb-hat sb-events">
-                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                </div>
-                <div class="sb sb-motion">ir a x: <span class="sb-input-number">0</span> y: <span class="sb-input-number">-140</span></div>
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">por siempre</div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb-c-block">
-                      <div class="sb sb-control sb-c-header">
-                        si <span class="sb sb-inline sb-sensing">¿tecla <span class="sb-dropdown">flecha derecha</span> presionada?</span> entonces
-                      </div>
-                      <div class="sb-c-body sb-control-border">
-                        <div class="sb sb-motion">sumar a x <span class="sb-input-number">10</span></div>
-                      </div>
-                      <div class="sb-c-footer sb-control-footer"></div>
-                    </div>
-                    <div class="sb-c-block">
-                      <div class="sb sb-control sb-c-header">
-                        si <span class="sb sb-inline sb-sensing">¿tecla <span class="sb-dropdown">flecha izquierda</span> presionada?</span> entonces
-                      </div>
-                      <div class="sb-c-body sb-control-border">
-                        <div class="sb sb-motion">sumar a x <span class="sb-input-number">-10</span></div>
-                      </div>
-                      <div class="sb-c-footer sb-control-footer"></div>
-                    </div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+al hacer clic en @greenFlag
+ir a x: (0) y: (-140)
+por siempre
+    si &lt;¿tecla [flecha derecha v] presionada?&gt; entonces
+        sumar a x (10)
+    fin
+    si &lt;¿tecla [flecha izquierda v] presionada?&gt; entonces
+        sumar a x (-10)
+    fin
+fin
+              </pre>
             </div>
           </div>
 
@@ -381,21 +341,13 @@
               Selecciona el objeto <strong>Energia</strong>. Al empezar, debe colocarse arriba del todo en una coordenada X al azar y caer constantemente restando a su coordenada Y:
             </p>
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb sb-hat sb-events">
-                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                </div>
-                <div class="sb sb-motion">
-                  ir a x: <span class="sb sb-inline sb-operators">número aleatorio entre <span class="sb-input-number">-200</span> y <span class="sb-input-number">200</span></span> y: <span class="sb-input-number">170</span>
-                </div>
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">por siempre</div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb sb-motion">sumar a y <span class="sb-input-number">-5</span></div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+al hacer clic en @greenFlag
+ir a x: (número aleatorio entre (-200) y (200)) y: (170)
+por siempre
+    sumar a y (-5)
+fin
+              </pre>
             </div>
           </div>
 
@@ -465,69 +417,29 @@
                 Este es el script completo que se coloca dentro del objeto <strong>Energia</strong> (o manzana):
               </p>
               <div class="scratch-code">
-                <div class="scratch-stack">
-                  <div class="sb sb-hat sb-events">
-                    <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                  </div>
-                  <!-- Inicializar variables -->
-                  <div class="sb sb-variables">dar a <span class="sb-dropdown">Puntos</span> el valor <span class="sb-input-number">0</span></div>
-                  <div class="sb sb-variables">dar a <span class="sb-dropdown">Vidas</span> el valor <span class="sb-input-number">3</span></div>
-                  <!-- Posición inicial arriba -->
-                  <div class="sb sb-motion">
-                    ir a x: <span class="sb sb-inline sb-operators">número aleatorio entre <span class="sb-input-number">-200</span> y <span class="sb-input-number">200</span></span> y: <span class="sb-input-number">170</span>
-                  </div>
-
-                  <!-- Game Loop -->
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">por siempre</div>
-                    <div class="sb-c-body sb-control-border">
-                      <!-- Caída -->
-                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">-5</span></div>
-
-                      <!-- Detección de acierto -->
-                      <div class="sb-c-block">
-                        <div class="sb sb-control sb-c-header">
-                          si <span class="sb sb-inline sb-sensing">¿tocando <span class="sb-dropdown">Robot</span>?</span> entonces
-                        </div>
-                        <div class="sb-c-body sb-control-border">
-                          <div class="sb sb-sound">iniciar sonido <span class="sb-dropdown">Collect</span></div>
-                          <div class="sb sb-variables">sumar a <span class="sb-dropdown">Puntos</span> <span class="sb-input-number">1</span></div>
-                          <div class="sb sb-motion">
-                            ir a x: <span class="sb sb-inline sb-operators">número aleatorio entre <span class="sb-input-number">-200</span> y <span class="sb-input-number">200</span></span> y: <span class="sb-input-number">170</span>
-                          </div>
-                        </div>
-                        <div class="sb-c-footer sb-control-footer"></div>
-                      </div>
-
-                      <!-- Detección de suelo / fallo -->
-                      <div class="sb-c-block">
-                        <div class="sb sb-control sb-c-header">
-                          si <span class="sb sb-inline sb-operators">&lt;<span class="sb sb-inline sb-motion">posición en y</span> &lt; <span class="sb-input-number">-160</span>&gt;</span> entonces
-                        </div>
-                        <div class="sb-c-body sb-control-border">
-                          <div class="sb sb-sound">iniciar sonido <span class="sb-dropdown">Low Boing</span></div>
-                          <div class="sb sb-variables">sumar a <span class="sb-dropdown">Vidas</span> <span class="sb-input-number">-1</span></div>
-                          <div class="sb sb-motion">
-                            ir a x: <span class="sb sb-inline sb-operators">número aleatorio entre <span class="sb-input-number">-200</span> y <span class="sb-input-number">200</span></span> y: <span class="sb-input-number">170</span>
-                          </div>
-                          <!-- Comprobar derrota -->
-                          <div class="sb-c-block">
-                            <div class="sb sb-control sb-c-header">
-                              si <span class="sb sb-inline sb-operators">&lt;<span class="sb sb-inline sb-variables">Vidas</span> = <span class="sb-input-number">0</span>&gt;</span> entonces
-                            </div>
-                            <div class="sb-c-body sb-control-border">
-                              <div class="sb sb-looks">decir <span class="sb-input-text">¡Fin de la partida!</span> por <span class="sb-input-number">2</span> segundos</div>
-                              <div class="sb sb-control">detener <span class="sb-dropdown">todos</span></div>
-                            </div>
-                            <div class="sb-c-footer sb-control-footer"></div>
-                          </div>
-                        </div>
-                        <div class="sb-c-footer sb-control-footer"></div>
-                      </div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-                </div>
+                <pre class="blocks">
+al hacer clic en @greenFlag
+dar a [Puntos v] el valor (0)
+dar a [Vidas v] el valor (3)
+ir a x: (número aleatorio entre (-200) y (200)) y: (170)
+por siempre
+    sumar a y (-5)
+    si &lt;¿tocando [Robot v]?&gt; entonces
+        iniciar sonido [Collect v]
+        sumar a [Puntos v] (1)
+        ir a x: (número aleatorio entre (-200) y (200)) y: (170)
+    fin
+    si &lt;(posición en y) &lt; (-160)&gt; entonces
+        iniciar sonido [Low Boing v]
+        sumar a [Vidas v] (-1)
+        ir a x: (número aleatorio entre (-200) y (200)) y: (170)
+        si &lt;(Vidas) = (0)&gt; entonces
+            decir [¡Fin de la partida!] por (2) segundos
+            detener [todos v]
+        fin
+    fin
+fin
+                </pre>
               </div>
             </div>
           </div>
@@ -761,6 +673,9 @@
     </div>
   </footer>
 
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
   <script src="../../../js/main.js"></script>
   <script src="../../../js/atrapa-sim.js"></script>
 </body>

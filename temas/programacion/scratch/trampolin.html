@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tutorial: Acrobacias en la Cama Elástica | PIAR</title>
+  <title>Tutorial: Acrobacias en el Trampolín | PIAR</title>
   <link rel="stylesheet" href="../../../css/style.css">
   <link rel="stylesheet" href="../../../css/scratch-blocks.css">
   <link rel="stylesheet" href="../../../css/simulator.css">
@@ -35,7 +35,7 @@
       <span class="breadcrumb-separator">/</span>
       <a href="index.html">Scratch</a>
       <span class="breadcrumb-separator">/</span>
-      <span class="breadcrumb-current">Proyecto 1: Acrobacias en la Cama Elástica</span>
+      <span class="breadcrumb-current">Proyecto 1: Acrobacias en el Trampolín</span>
     </nav>
 
     <div class="tutorial-layout">
@@ -67,9 +67,9 @@
             <span class="card-badge-top badge-prog" style="position: static;">Nivel: Iniciación</span>
             <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 600;">⏱️ 2 a 3 sesiones de clase</span>
           </div>
-          <h1 class="tutorial-title">Proyecto 1: Acrobacias en la Cama Elástica</h1>
+          <h1 class="tutorial-title">Proyecto 1: Acrobacias en el Trampolín</h1>
           <p class="tutorial-lead">
-            Aprende los fundamentos de Scratch: coordenadas cartesianas, bucles, animación cuadro a cuadro y rotación espacial para programar un gato gimnasta que bota y hace volteretas entre dos camas elásticas.
+            Aprende los fundamentos de Scratch: coordenadas cartesianas, bucles, animación cuadro a cuadro y rotación espacial para programar un gato gimnasta que bota y hace volteretas entre dos trampolines.
           </p>
         </header>
 
@@ -87,10 +87,10 @@
             <div class="callout-content">
               <p><strong>Secuencia de la acrobacia:</strong></p>
               <ol>
-                <li>Comienza en reposo sobre la <strong>Colchoneta 1</strong> (izquierda).</li>
+                <li>Comienza en reposo sobre el <strong>Trampolín 1</strong> (izquierda).</li>
                 <li>Da <strong>3 botes verticales</strong> para ganar impulso.</li>
-                <li>Hace un <strong>salto mortal con voltereta de 360°</strong> hacia la <strong>Colchoneta 2</strong> (derecha).</li>
-                <li>Aterriza, da <strong>3 botes verticales</strong> en la segunda cama elástica.</li>
+                <li>Hace un <strong>salto mortal con voltereta de 360°</strong> hacia el <strong>Trampolín 2</strong> (derecha).</li>
+                <li>Aterriza, da <strong>3 botes verticales</strong> en el segundo trampolín.</li>
                 <li>Realiza un <strong>salto acrobático de vuelta</strong> aterrizando de nuevo en la posición inicial.</li>
               </ol>
             </div>
@@ -132,7 +132,7 @@
 
             <div class="simulator-main">
               <div class="canvas-wrapper">
-                <canvas id="colchonetaCanvas" width="640" height="480" data-basepath="../../../"></canvas>
+                <canvas id="trampolinCanvas" width="640" height="480" data-basepath="../../../"></canvas>
               </div>
               <div class="telemetry-bar">
                 <div class="telemetry-item">
@@ -153,7 +153,7 @@
               </div>
             </div>
           </div>
-          <img src="../../../assets/img/cama.png" width=200 />
+          <img src="../../../assets/img/trampolin.png" width="200" alt="Trampolín" />
         </section>
 
         <!-- SECCIÓN 2: CONCEPTOS BÁSICOS -->
@@ -191,17 +191,11 @@
             </div>
 
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb sb-hat sb-events">
-                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                </div>
-                <div class="sb sb-motion">
-                  ir a x: <span class="sb-input-number">-132</span> y: <span class="sb-input-number">-57</span>
-                </div>
-                <div class="sb sb-motion">
-                  apuntar en dirección <span class="sb-input-number">90</span>
-                </div>
-              </div>
+              <pre class="blocks">
+al hacer clic en @greenFlag
+ir a x: (-132) y: (-57)
+apuntar en dirección (90)
+              </pre>
             </div>
           </div>
 
@@ -221,39 +215,16 @@
             <img src="../../../assets/img/jump-physics.svg" alt="Física del salto vertical y salto en parábola" style="max-width: 600px; margin: 1.5rem auto;">
 
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <!-- Subida -->
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">
-                    repetir <span class="sb-input-number">10</span>
-                  </div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb sb-motion">
-                      sumar a y <span class="sb-input-number">10</span>
-                    </div>
-                    <div class="sb sb-control">
-                      esperar <span class="sb-input-number">0.05</span> segundos
-                    </div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-
-                <!-- Bajada -->
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">
-                    repetir <span class="sb-input-number">10</span>
-                  </div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb sb-motion">
-                      sumar a y <span class="sb-input-number">-10</span>
-                    </div>
-                    <div class="sb sb-control">
-                      esperar <span class="sb-input-number">0.05</span> segundos
-                    </div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+repetir (10)
+    sumar a y (10)
+    esperar (0.05) segundos
+fin
+repetir (10)
+    sumar a y (-10)
+    esperar (0.05) segundos
+fin
+              </pre>
             </div>
 
             <div class="callout callout-tip">
@@ -279,38 +250,18 @@
             </p>
 
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">
-                    repetir <span class="sb-input-number">3</span>
-                  </div>
-                  <div class="sb-c-body sb-control-border">
-                    <!-- Bucle de subida -->
-                    <div class="sb-c-block">
-                      <div class="sb sb-control sb-c-header">
-                        repetir <span class="sb-input-number">10</span>
-                      </div>
-                      <div class="sb-c-body sb-control-border">
-                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
-                        <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                      </div>
-                      <div class="sb-c-footer sb-control-footer"></div>
-                    </div>
-                    <!-- Bucle de bajada -->
-                    <div class="sb-c-block">
-                      <div class="sb sb-control sb-c-header">
-                        repetir <span class="sb-input-number">10</span>
-                      </div>
-                      <div class="sb-c-body sb-control-border">
-                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
-                        <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                      </div>
-                      <div class="sb-c-footer sb-control-footer"></div>
-                    </div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+repetir (3)
+    repetir (10)
+        sumar a y (10)
+        esperar (0.05) segundos
+    fin
+    repetir (10)
+        sumar a y (-10)
+        esperar (0.05) segundos
+    fin
+fin
+              </pre>
             </div>
           </div>
 
@@ -321,7 +272,7 @@
               <h3 class="step-title">El Salto Parabólico y la Voltereta de 360°</h3>
             </div>
             <p class="step-explanation">
-              Para saltar de una colchoneta a la otra, el personaje debe desplazarse en horizontal al mismo tiempo que sube y baja. Eso genera una <strong>curva parabólica</strong>:
+              Para saltar de un trampolín al otro, el personaje debe desplazarse en horizontal al mismo tiempo que sube y baja. Eso genera una <strong>curva parabólica</strong>:
             </p>
             <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
               <li>En la subida: sumamos a <code>y</code> un valor positivo (+10) y a <code>x</code> un valor positivo (+12.5).</li>
@@ -359,7 +310,7 @@
             </div>
             <p class="step-explanation">
               1. En la esquina inferior derecha de Scratch, añade un fondo a tu gusto (por ejemplo <em>Blue Sky</em> o un gimnasio).<br>
-              2. Busca en la biblioteca de objetos el objeto <strong>"Trampoline"</strong> (cama elástica).<br>
+              2. Busca en la biblioteca de objetos el objeto <strong>"Trampoline"</strong> (trampolín).<br>
               3. Duplica el trampolín para tener dos: <strong>Trampoline</strong> y <strong>Trampoline2</strong>.<br>
               4. Coloca el primer trampolín en <code>x: -150, y: -153</code> y el segundo en <code>x: 109, y: -152</code>.<br>
               5. Selecciona el <strong>Objeto1</strong> (el gato) para empezar a programar su código.
@@ -373,20 +324,14 @@
               <h3 class="step-title">Misión 2: El Despegue y la Posición de Salida</h3>
             </div>
             <p class="step-explanation">
-              Comienza con el bloque de evento y fija las coordenadas iniciales del gato justo encima de la primera cama elástica.
+              Comienza con el bloque de evento y fija las coordenadas iniciales del gato justo encima del primer trampolín.
             </p>
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb sb-hat sb-events">
-                  <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                </div>
-                <div class="sb sb-motion" id="block-init">
-                  ir a x: <span class="sb-input-number">-132</span> y: <span class="sb-input-number">-57</span>
-                </div>
-                <div class="sb sb-motion">
-                  apuntar en dirección <span class="sb-input-number">90</span>
-                </div>
-              </div>
+              <pre class="blocks">
+al hacer clic en @greenFlag
+ir a x: (-132) y: (-57)
+apuntar en dirección (90)
+              </pre>
             </div>
           </div>
 
@@ -394,36 +339,24 @@
           <div class="step-card">
             <div class="step-card-header">
               <div class="step-number">3</div>
-              <h3 class="step-title">Misión 3: El Triple Rebote en la Primera Colchoneta</h3>
+              <h3 class="step-title">Misión 3: El Triple Rebote en el Primer Trampolín</h3>
             </div>
             <p class="step-explanation">
               Une debajo el bucle anidado que hace que el gato suba 100 píxeles y baje 100 píxeles, repitiendo la acción 3 veces seguidas.
             </p>
             <div class="scratch-code">
-              <div class="scratch-stack">
-                <div class="sb-c-block">
-                  <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">3</span></div>
-                  <div class="sb-c-body sb-control-border">
-                    <div class="sb-c-block" id="block-bounce-up-1">
-                      <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                      <div class="sb-c-body sb-control-border">
-                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
-                        <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                      </div>
-                      <div class="sb-c-footer sb-control-footer"></div>
-                    </div>
-                    <div class="sb-c-block" id="block-bounce-down-1">
-                      <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                      <div class="sb-c-body sb-control-border">
-                        <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
-                        <div class="sb-control sb">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                      </div>
-                      <div class="sb-c-footer sb-control-footer"></div>
-                    </div>
-                  </div>
-                  <div class="sb-c-footer sb-control-footer"></div>
-                </div>
-              </div>
+              <pre class="blocks">
+repetir (3)
+    repetir (10)
+        sumar a y (10)
+        esperar (0.05) segundos
+    fin
+    repetir (10)
+        sumar a y (-10)
+        esperar (0.05) segundos
+    fin
+fin
+              </pre>
             </div>
           </div>
 
@@ -431,7 +364,7 @@
           <div class="step-card">
             <div class="step-card-header">
               <div class="step-number">4</div>
-              <h3 class="step-title">Misión 4: El Gran Salto Mortal hacia la Segunda Colchoneta</h3>
+              <h3 class="step-title">Misión 4: El Gran Salto Mortal hacia el Segundo Trampolín</h3>
             </div>
             <p class="step-explanation">
               Ahora añade los dos bucles que forman la parábola hacia la derecha:
@@ -448,12 +381,12 @@
           <div class="step-card">
             <div class="step-card-header">
               <div class="step-number">5</div>
-              <h3 class="step-title">Misión 5: Rebotes en la Cama 2 y Regreso</h3>
+              <h3 class="step-title">Misión 5: Rebotes en el Trampolín 2 y Regreso</h3>
             </div>
             <p class="step-explanation">
               Por último:
               <br>
-              1. Vuelve a repetir 3 botes verticales sobre la segunda colchoneta.
+              1. Vuelve a repetir 3 botes verticales sobre el segundo trampolín.
               <br>
               2. Programa el salto de regreso: <strong>¿Qué valores deben cambiar?</strong>
               <br>
@@ -483,11 +416,11 @@
 
           <div class="accordion">
             <div class="accordion-header">
-              <span>💡 Pista 2: ¿Cómo calculo la distancia entre las dos colchonetas?</span>
+              <span>💡 Pista 2: ¿Cómo calculo la distancia entre los dos trampolines?</span>
               <span class="accordion-icon">▼</span>
             </div>
             <div class="accordion-content">
-              <p>La colchoneta 1 está en X = -132 y la colchoneta 2 en X = 118. La distancia total que debe recorrer el gato es:</p>
+              <p>El trampolín 1 está en X = -132 y el trampolín 2 en X = 118. La distancia total que debe recorrer el gato es:</p>
               <p><code>118 - (-132) = 250 píxeles</code>.</p>
               <p>Si el salto dura 20 pasos (10 subiendo + 10 bajando), en cada paso debe avanzar:</p>
               <p><code>250 píxeles ÷ 20 pasos = 12.5 píxeles</code> por cada repetición.</p>
@@ -504,115 +437,60 @@
                 Aquí tienes la estructura completa del script que va dentro de <strong>Objeto1</strong>:
               </p>
               <div class="scratch-code">
-                <div class="scratch-stack">
-                  <!-- Inicio -->
-                  <div class="sb sb-hat sb-events">
-                    <span class="sb-icon-flag"></span> al hacer clic en <span style="font-weight: normal; margin-left: 2px;">bandera verde</span>
-                  </div>
-                  <div class="sb sb-motion">ir a x: <span class="sb-input-number">-132</span> y: <span class="sb-input-number">-57</span></div>
-                  <div class="sb sb-motion">apuntar en dirección <span class="sb-input-number">90</span></div>
-
-                  <!-- 3 botes en colchoneta 1 -->
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">3</span></div>
-                    <div class="sb-c-body sb-control-border">
-                      <div class="sb-c-block">
-                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                        <div class="sb-c-body sb-control-border">
-                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
-                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                        </div>
-                        <div class="sb-c-footer sb-control-footer"></div>
-                      </div>
-                      <div class="sb-c-block">
-                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                        <div class="sb-c-body sb-control-border">
-                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
-                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                        </div>
-                        <div class="sb-c-footer sb-control-footer"></div>
-                      </div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-
-                  <!-- Salto acrobático hacia colchoneta 2 -->
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                    <div class="sb-c-body sb-control-border">
-                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
-                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">12</span> grados</div>
-                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">12</span> grados</div>
-                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">12.5</span></div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                    <div class="sb-c-body sb-control-border">
-                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
-                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">12.5</span></div>
-                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">12</span> grados</div>
-                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-
-                  <!-- Ajuste en colchoneta 2 -->
-                  <div class="sb sb-control">esperar <span class="sb-input-number">0.02</span> segundos</div>
-                  <div class="sb sb-motion">ir a x: <span class="sb-input-number">118</span> y: <span class="sb-input-number">-57</span></div>
-                  <div class="sb sb-motion">apuntar en dirección <span class="sb-input-number">90</span></div>
-
-                  <!-- 3 botes en colchoneta 2 -->
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">3</span></div>
-                    <div class="sb-c-body sb-control-border">
-                      <div class="sb-c-block">
-                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                        <div class="sb-c-body sb-control-border">
-                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
-                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                        </div>
-                        <div class="sb-c-footer sb-control-footer"></div>
-                      </div>
-                      <div class="sb-c-block">
-                        <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                        <div class="sb-c-body sb-control-border">
-                          <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
-                          <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                        </div>
-                        <div class="sb-c-footer sb-control-footer"></div>
-                      </div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-
-                  <!-- Salto de regreso hacia colchoneta 1 -->
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                    <div class="sb-c-body sb-control-border">
-                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">10</span></div>
-                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">-12</span> grados</div>
-                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">-12</span> grados</div>
-                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">-12.5</span></div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-
-                  <div class="sb-c-block">
-                    <div class="sb sb-control sb-c-header">repetir <span class="sb-input-number">10</span></div>
-                    <div class="sb-c-body sb-control-border">
-                      <div class="sb sb-motion">sumar a y <span class="sb-input-number">-10</span></div>
-                      <div class="sb sb-motion">sumar a x <span class="sb-input-number">-12.5</span></div>
-                      <div class="sb sb-motion"><span class="sb-icon-turn-cw"></span> girar <span class="sb-input-number">-12</span> grados</div>
-                      <div class="sb sb-control">esperar <span class="sb-input-number">0.05</span> segundos</div>
-                    </div>
-                    <div class="sb-c-footer sb-control-footer"></div>
-                  </div>
-                </div>
+                <pre class="blocks">
+al hacer clic en @greenFlag
+ir a x: (-132) y: (-57)
+apuntar en dirección (90)
+repetir (3)
+    repetir (10)
+        sumar a y (10)
+        esperar (0.05) segundos
+    fin
+    repetir (10)
+        sumar a y (-10)
+        esperar (0.05) segundos
+    fin
+fin
+repetir (10)
+    sumar a y (10)
+    girar @turnRight (12) grados
+    esperar (0.05) segundos
+    girar @turnRight (12) grados
+    sumar a x (12.5)
+fin
+repetir (10)
+    sumar a y (-10)
+    sumar a x (12.5)
+    girar @turnRight (12) grados
+    esperar (0.05) segundos
+fin
+esperar (0.02) segundos
+ir a x: (118) y: (-57)
+apuntar en dirección (90)
+repetir (3)
+    repetir (10)
+        sumar a y (10)
+        esperar (0.05) segundos
+    fin
+    repetir (10)
+        sumar a y (-10)
+        esperar (0.05) segundos
+    fin
+fin
+repetir (10)
+    sumar a y (10)
+    girar @turnLeft (12) grados
+    esperar (0.05) segundos
+    girar @turnLeft (12) grados
+    sumar a x (-12.5)
+fin
+repetir (10)
+    sumar a y (-10)
+    sumar a x (-12.5)
+    girar @turnLeft (12) grados
+    esperar (0.05) segundos
+fin
+                </pre>
               </div>
             </div>
           </div>
@@ -651,7 +529,7 @@
               <div class="card-icon ai">🎮</div>
               <h3 class="card-title">Control con Teclado</h3>
               <p class="card-text">
-                Haz que el gato rebote continuamente sobre la cama elástica hasta que el jugador presione la tecla <code>ESPACIO</code>, momento en el que ejecutará el salto acrobático.
+                Haz que el gato rebote continuamente sobre el trampolín hasta que el jugador presione la tecla <code>ESPACIO</code>, momento en el que ejecutará el salto acrobático.
               </p>
             </div>
           </div>
@@ -703,7 +581,7 @@
 
             <!-- Pregunta 3 -->
             <div class="quiz-question">
-              <h4 class="quiz-question-title">3. Si queremos que el gato avance hacia la colchoneta de la izquierda, ¿qué cambio debemos hacer en X?</h4>
+              <h4 class="quiz-question-title">3. Si queremos que el gato avance hacia el trampolín de la izquierda, ¿qué cambio debemos hacer en X?</h4>
               <div class="quiz-options">
                 <button class="quiz-option" data-correct="true" data-explanation="¡Correcto! En Scratch, desplazarse a la izquierda significa restar o sumar valores negativos al eje X.">
                   A) Sumar un valor negativo a X (por ejemplo, sumar a x -12.5)
@@ -733,12 +611,12 @@
             <!-- Asset 1: Trampolín -->
             <div class="asset-card">
               <div class="asset-preview">
-                <img src="../../../assets/scratch/colchoneta/trampoline.png" alt="Cama Elástica">
+                <img src="../../../assets/scratch/trampolin/trampoline.png" alt="Trampolín">
               </div>
               <span class="asset-tag">PNG · Fondo Transparente</span>
-              <h4 class="asset-name">Cama Elástica</h4>
+              <h4 class="asset-name">Trampolín</h4>
               <p class="asset-desc">Objeto principal del escenario donde rebota el personaje.</p>
-              <a href="../../../assets/scratch/colchoneta/trampoline.png" download="trampoline.png" class="btn btn-outline btn-download-asset">
+              <a href="../../../assets/scratch/trampolin/trampoline.png" download="trampoline.png" class="btn btn-outline btn-download-asset">
                 📥 Descargar PNG
               </a>
             </div>
@@ -746,12 +624,12 @@
             <!-- Asset 2: Disfraz 1 del Gato -->
             <div class="asset-card">
               <div class="asset-preview">
-                <img src="../../../assets/scratch/colchoneta/cat1.svg" alt="Gato Disfraz 1">
+                <img src="../../../assets/scratch/trampolin/cat1.svg" alt="Gato Disfraz 1">
               </div>
               <span class="asset-tag">Vector SVG</span>
               <h4 class="asset-name">Gato (Disfraz 1)</h4>
               <p class="asset-desc">Disfraz en posición erguida para el impulso y despegue.</p>
-              <a href="../../../assets/scratch/colchoneta/cat1.svg" download="gato-disfraz1.svg" class="btn btn-outline btn-download-asset">
+              <a href="../../../assets/scratch/trampolin/cat1.svg" download="gato-disfraz1.svg" class="btn btn-outline btn-download-asset">
                 📥 Descargar SVG
               </a>
             </div>
@@ -759,12 +637,12 @@
             <!-- Asset 3: Disfraz 2 del Gato -->
             <div class="asset-card">
               <div class="asset-preview">
-                <img src="../../../assets/scratch/colchoneta/cat2.svg" alt="Gato Disfraz 2">
+                <img src="../../../assets/scratch/trampolin/cat2.svg" alt="Gato Disfraz 2">
               </div>
               <span class="asset-tag">Vector SVG</span>
               <h4 class="asset-name">Gato (Disfraz 2)</h4>
               <p class="asset-desc">Disfraz con extremidades en movimiento para el vuelo.</p>
-              <a href="../../../assets/scratch/colchoneta/cat2.svg" download="gato-disfraz2.svg" class="btn btn-outline btn-download-asset">
+              <a href="../../../assets/scratch/trampolin/cat2.svg" download="gato-disfraz2.svg" class="btn btn-outline btn-download-asset">
                 📥 Descargar SVG
               </a>
             </div>
@@ -777,7 +655,7 @@
               <span class="asset-tag">Audio WAV</span>
               <h4 class="asset-name">Sonido "Pop"</h4>
               <p class="asset-desc">Efecto sonoro para el rebote al hacer contacto con la lona.</p>
-              <a href="../../../assets/scratch/colchoneta/pop.wav" download="pop.wav" class="btn btn-outline btn-download-asset">
+              <a href="../../../assets/scratch/trampolin/pop.wav" download="pop.wav" class="btn btn-outline btn-download-asset">
                 📥 Descargar WAV
               </a>
             </div>
@@ -790,7 +668,7 @@
               <span class="asset-tag">Audio WAV</span>
               <h4 class="asset-name">Sonido "Miau"</h4>
               <p class="asset-desc">Sonido característico para la celebración o acrobacia.</p>
-              <a href="../../../assets/scratch/colchoneta/meow.wav" download="meow.wav" class="btn btn-outline btn-download-asset">
+              <a href="../../../assets/scratch/trampolin/meow.wav" download="meow.wav" class="btn btn-outline btn-download-asset">
                 📥 Descargar WAV
               </a>
             </div>
@@ -829,7 +707,10 @@
     </div>
   </footer>
 
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
   <script src="../../../js/main.js"></script>
-  <script src="../../../js/colchoneta-sim.js"></script>
+  <script src="../../../js/trampolin-sim.js"></script>
 </body>
 </html>

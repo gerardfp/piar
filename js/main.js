@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const parent = header.closest('.accordion');
       if (parent) {
         parent.classList.toggle('open');
+        if (parent.classList.contains('open')) {
+          renderScratchBlocks(parent);
+        }
       }
     });
   });
@@ -62,4 +65,49 @@ document.addEventListener('DOMContentLoaded', () => {
       observer.observe(sec);
     });
   }
+
+  // 4. Renderizado automático de bloques Scratch (scratchblocks)
+  function renderScratchBlocks(scope) {
+    if (!window.scratchblocks) return;
+
+    const options = {
+      style: 'scratch3',
+      languages: ['es', 'en'],
+      scale: 0.95
+    };
+
+    const root = scope || document;
+
+    // Renderizar bloques de código (<pre class="blocks">)
+    const pres = root.querySelectorAll('pre.blocks:not(.scratchblocks-rendered)');
+    pres.forEach(el => {
+      try {
+        const text = window.scratchblocks.read(el, options);
+        const doc = window.scratchblocks.parse(text, options);
+        const svg = window.scratchblocks.render(doc, options);
+        window.scratchblocks.replace(el, svg, doc, options);
+        el.classList.add('scratchblocks-rendered');
+      } catch (err) {
+        console.error('Error al renderizar bloque Scratch:', err);
+      }
+    });
+
+    // Renderizar bloques en línea (<code class="blocks">)
+    const inlineOptions = Object.assign({}, options, { inline: true, scale: 0.85 });
+    const codes = root.querySelectorAll('code.blocks:not(.scratchblocks-rendered)');
+    codes.forEach(el => {
+      try {
+        const text = window.scratchblocks.read(el, inlineOptions);
+        const doc = window.scratchblocks.parse(text, inlineOptions);
+        const svg = window.scratchblocks.render(doc, inlineOptions);
+        window.scratchblocks.replace(el, svg, doc, inlineOptions);
+        el.classList.add('scratchblocks-rendered');
+      } catch (err) {
+        console.error('Error al renderizar bloque Scratch inline:', err);
+      }
+    });
+  }
+
+  // Ejecutar renderizado al cargar la página
+  renderScratchBlocks();
 });
