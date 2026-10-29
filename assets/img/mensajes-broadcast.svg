@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 250" width="600" height="250">
+  <rect x="0.75" y="0.75" width="598.5" height="248.5" rx="12" fill="#ffffff" stroke="#cbd8e6" stroke-width="1.5"/>
+  <text x="300" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#0f1d2e" text-anchor="middle">DIFUSIÓN DE MENSAJES: UN EMISOR, MUCHOS RECEPTORES</text>
+  <!-- Emisor -->
+  <g transform="translate(22, 78)">
+    <rect x="0" y="0" width="150" height="96" rx="10" fill="#fffbeb" stroke="#f59e0b" stroke-width="1.5"/>
+    <g transform="translate(8,6) scale(0.95)">  <!-- Varita mágica -->
+  <line x1="35" y1="33" x2="44" y2="23" stroke="#92400e" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M44 18.5 L45.4 21.6 L48 22 L46 24.2 L46.6 27 L44 25.6 L41.4 27 L42 24.2 L40 22 L42.6 21.6 Z" fill="#fde047" stroke="#ca8a04" stroke-width="0.8"/>
+  <!-- Túnica -->
+  <path d="M15 27 L33 27 L38 45 L10 45 Z" fill="#2563eb" stroke="#1e3a8a" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="19" cy="38" r="1.4" fill="#facc15"/>
+  <circle cx="29" cy="35" r="1.2" fill="#facc15"/>
+  <circle cx="26" cy="41" r="1.1" fill="#facc15"/>
+  <!-- Cara y barba -->
+  <circle cx="24" cy="23" r="7" fill="#fde2c4" stroke="#e7b98f" stroke-width="1"/>
+  <path d="M17.5 24.5 Q24 39 30.5 24.5 Q24 28 17.5 24.5 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8"/>
+  <circle cx="21.4" cy="21.8" r="1.25" fill="#1e293b"/>
+  <circle cx="26.6" cy="21.8" r="1.25" fill="#1e293b"/>
+  <!-- Sombrero -->
+  <path d="M12.5 18 L24 1.5 L35.5 18 Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="1.6" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="18" rx="13" ry="3" fill="#1e40af" stroke="#1e3a8a" stroke-width="1.2"/>
+  <path d="M24 7.5 L25.1 10 L27.8 10.2 L25.7 11.9 L26.4 14.5 L24 13.1 L21.6 14.5 L22.3 11.9 L20.2 10.2 L22.9 10 Z" fill="#facc15"/>
+</g>
+    <text x="58" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="700" fill="#78350f">Mago</text>
+    <text x="58" y="40" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#92400e">toca la meta</text>
+    <rect x="10" y="58" width="130" height="24" rx="5" fill="#ffbf00" stroke="#cc9900"/>
+    <text x="75" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-weight="700" fill="#ffffff" text-anchor="middle">enviar [nivel superado]</text>
+  </g>
+  <path d="M176,126 L226,126" stroke="#d97706" stroke-width="2" fill="none"/><polygon points="226,126 218.8,129.5 218.8,122.5" fill="#d97706"/>
+  <!-- Mensaje -->
+  <g transform="translate(232, 96)">
+    <rect x="0" y="0" width="76" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="1.5"/>
+    <path d="M10 14 L66 14 L66 46 L10 46 Z" fill="#ffffff" stroke="#d97706" stroke-width="1.5"/>
+    <path d="M10 14 L38 34 L66 14" fill="none" stroke="#d97706" stroke-width="1.5"/>
+    <text x="38" y="74" font-family="ui-monospace, monospace" font-size="9" font-weight="700" fill="#b45309" text-anchor="middle">«nivel superado»</text>
+  </g>
+  <path d="M312,112 L368,72" stroke="#d97706" stroke-width="2" fill="none"/><polygon points="368,72 364.2,79.0 360.1,73.4" fill="#d97706"/>
+  <path d="M312,140 L368,168" stroke="#d97706" stroke-width="2" fill="none"/><polygon points="368,168 360.0,167.9 363.1,161.7" fill="#d97706"/>
+  <g transform="translate(372,44)"><rect x="0" y="0" width="208" height="58" rx="8" fill="#f8fafc" stroke="#cbd8e6" stroke-width="1.5"/><rect x="0" y="0" width="5" height="58" rx="2" fill="#ffbf00"/><text x="14" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#0f1d2e">🎭 Escenario</text><text x="14" y="36" font-family="ui-monospace, monospace" font-size="9" fill="#3a4d63">al recibir [nivel superado]</text><text x="14" y="50" font-family="ui-monospace, monospace" font-size="9" fill="#3a4d63">→ sonido + siguiente fondo</text></g>
+  <g transform="translate(372,142)"><rect x="0" y="0" width="208" height="58" rx="8" fill="#f8fafc" stroke="#cbd8e6" stroke-width="1.5"/><rect x="0" y="0" width="5" height="58" rx="2" fill="#ffbf00"/><text x="14" y="19" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" fill="#0f1d2e">🧙 Mago</text><text x="14" y="36" font-family="ui-monospace, monospace" font-size="9" fill="#3a4d63">al recibir [nivel superado]</text><text x="14" y="50" font-family="ui-monospace, monospace" font-size="9" fill="#3a4d63">→ decir ¡Abracadabra!</text></g>
+  <path d="M476,104 L476,138" stroke="#9966ff" stroke-width="2" fill="none" stroke-dasharray="4,3"/><polygon points="476,138 472.5,130.8 479.5,130.8" fill="#9966ff"/>
+  <text x="468" y="125" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="8.5" fill="#6d28d9" text-anchor="end">el fondo cambia ➜ los fantasmas reaccionan</text>
+  <text x="300" y="232" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10.5" fill="#62778f" text-anchor="middle">El emisor no sabe quién escucha: todos los scripts «al recibir» de ese mensaje arrancan a la vez.</text>
+</svg>

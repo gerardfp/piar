@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360">
+  <!-- Nivel 3: La Torre del Hechicero | Paredes #7c3aed · Meta #22c55e -->
+  <rect x="0" y="0" width="480" height="360" fill="#1e1b4b"/>
+  <g>
+    <circle cx="435.2" cy="52.4" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="424.0" cy="175.6" r="1.0" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="159.8" cy="261.4" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="98.4" cy="178.5" r="1.6" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="46.9" cy="123.7" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="132.9" cy="54.1" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="468.6" cy="210.5" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="323.6" cy="131.5" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="347.6" cy="63.9" r="1.0" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="118.6" cy="349.2" r="1.0" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="183.6" cy="66.3" r="1.6" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="119.4" cy="214.1" r="1.6" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="115.0" cy="123.7" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="205.6" cy="318.8" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="13.0" cy="298.7" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="105.9" cy="174.4" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="424.3" cy="234.9" r="1.6" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="242.0" cy="323.4" r="1.6" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="167.4" cy="111.3" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="443.5" cy="216.8" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="202.8" cy="50.8" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="232.9" cy="308.8" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="257.2" cy="123.5" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="439.8" cy="50.5" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="339.3" cy="48.3" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="139.7" cy="168.1" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="283.6" cy="57.6" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="133.4" cy="71.0" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="154.9" cy="66.8" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="279.9" cy="341.5" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="13.6" cy="283.0" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="225.6" cy="123.9" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="111.4" cy="317.8" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="420.9" cy="79.4" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="364.2" cy="212.6" r="1.6" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="277.8" cy="87.5" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="264.0" cy="86.1" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="74.2" cy="318.0" r="1.6" fill="#e0e7ff" opacity="0.35"/>
+  </g>
+  <g fill="#7c3aed" shape-rendering="crispEdges">
+    <rect x="0" y="0" width="40" height="40"/>
+    <rect x="40" y="0" width="40" height="40"/>
+    <rect x="80" y="0" width="20" height="40"/>
+    <rect x="100" y="0" width="40" height="40"/>
+    <rect x="140" y="0" width="20" height="40"/>
+    <rect x="160" y="0" width="40" height="40"/>
+    <rect x="200" y="0" width="20" height="40"/>
+    <rect x="220" y="0" width="40" height="40"/>
+    <rect x="260" y="0" width="20" height="40"/>
+    <rect x="280" y="0" width="40" height="40"/>
+    <rect x="320" y="0" width="20" height="40"/>
+    <rect x="340" y="0" width="40" height="40"/>
+    <rect x="380" y="0" width="20" height="40"/>
+    <rect x="400" y="0" width="40" height="40"/>
+    <rect x="440" y="0" width="40" height="40"/>
+    <rect x="0" y="40" width="40" height="40"/>
+    <rect x="440" y="40" width="40" height="40"/>
+    <rect x="0" y="80" width="40" height="20"/>
+    <rect x="40" y="80" width="40" height="20"/>
+    <rect x="80" y="80" width="20" height="20"/>
+    <rect x="100" y="80" width="40" height="20"/>
+    <rect x="140" y="80" width="20" height="20"/>
+    <rect x="200" y="80" width="20" height="20"/>
+    <rect x="260" y="80" width="20" height="20"/>
+    <rect x="280" y="80" width="40" height="20"/>
+    <rect x="320" y="80" width="20" height="20"/>
+    <rect x="340" y="80" width="40" height="20"/>
+    <rect x="380" y="80" width="20" height="20"/>
+    <rect x="440" y="80" width="40" height="20"/>
+    <rect x="0" y="100" width="40" height="40"/>
+    <rect x="140" y="100" width="20" height="40"/>
+    <rect x="200" y="100" width="20" height="40"/>
+    <rect x="380" y="100" width="20" height="40"/>
+    <rect x="440" y="100" width="40" height="40"/>
+    <rect x="0" y="140" width="40" height="20"/>
+    <rect x="80" y="140" width="20" height="20"/>
+    <rect x="140" y="140" width="20" height="20"/>
+    <rect x="200" y="140" width="20" height="20"/>
+    <rect x="220" y="140" width="40" height="20"/>
+    <rect x="260" y="140" width="20" height="20"/>
+    <rect x="280" y="140" width="40" height="20"/>
+    <rect x="320" y="140" width="20" height="20"/>
+    <rect x="380" y="140" width="20" height="20"/>
+    <rect x="440" y="140" width="40" height="20"/>
+    <rect x="0" y="160" width="40" height="40"/>
+    <rect x="80" y="160" width="20" height="40"/>
+    <rect x="380" y="160" width="20" height="40"/>
+    <rect x="440" y="160" width="40" height="40"/>
+    <rect x="0" y="200" width="40" height="20"/>
+    <rect x="80" y="200" width="20" height="20"/>
+    <rect x="100" y="200" width="40" height="20"/>
+    <rect x="140" y="200" width="20" height="20"/>
+    <rect x="160" y="200" width="40" height="20"/>
+    <rect x="200" y="200" width="20" height="20"/>
+    <rect x="220" y="200" width="40" height="20"/>
+    <rect x="260" y="200" width="20" height="20"/>
+    <rect x="280" y="200" width="40" height="20"/>
+    <rect x="320" y="200" width="20" height="20"/>
+    <rect x="380" y="200" width="20" height="20"/>
+    <rect x="440" y="200" width="40" height="20"/>
+    <rect x="0" y="220" width="40" height="40"/>
+    <rect x="200" y="220" width="20" height="40"/>
+    <rect x="320" y="220" width="20" height="40"/>
+    <rect x="380" y="220" width="20" height="40"/>
+    <rect x="440" y="220" width="40" height="40"/>
+    <rect x="0" y="260" width="40" height="20"/>
+    <rect x="40" y="260" width="40" height="20"/>
+    <rect x="80" y="260" width="20" height="20"/>
+    <rect x="100" y="260" width="40" height="20"/>
+    <rect x="140" y="260" width="20" height="20"/>
+    <rect x="200" y="260" width="20" height="20"/>
+    <rect x="260" y="260" width="20" height="20"/>
+    <rect x="320" y="260" width="20" height="20"/>
+    <rect x="380" y="260" width="20" height="20"/>
+    <rect x="440" y="260" width="40" height="20"/>
+    <rect x="0" y="280" width="40" height="40"/>
+    <rect x="260" y="280" width="20" height="40"/>
+    <rect x="380" y="280" width="20" height="40"/>
+    <rect x="440" y="280" width="40" height="40"/>
+    <rect x="0" y="320" width="40" height="40"/>
+    <rect x="40" y="320" width="40" height="40"/>
+    <rect x="80" y="320" width="20" height="40"/>
+    <rect x="100" y="320" width="40" height="40"/>
+    <rect x="140" y="320" width="20" height="40"/>
+    <rect x="160" y="320" width="40" height="40"/>
+    <rect x="200" y="320" width="20" height="40"/>
+    <rect x="220" y="320" width="40" height="40"/>
+    <rect x="260" y="320" width="20" height="40"/>
+    <rect x="280" y="320" width="40" height="40"/>
+    <rect x="320" y="320" width="20" height="40"/>
+    <rect x="340" y="320" width="40" height="40"/>
+    <rect x="380" y="320" width="20" height="40"/>
+    <rect x="400" y="320" width="40" height="40"/>
+    <rect x="440" y="320" width="40" height="40"/>
+  </g>
+  <rect x="40" y="280" width="40" height="40" fill="#22c55e"/>
+  <path d="M60.0,289.0 L62.7,296.3 L70.5,296.6 L64.4,301.4 L66.5,308.9 L60.0,304.6 L53.5,308.9 L55.6,301.4 L49.5,296.6 L57.3,296.3 Z" fill="#fef9c3"/>
+  <text x="240" y="26" font-family="Sans Serif, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#ede9fe" text-anchor="middle">Nivel 3 · La Torre del Hechicero</text>
+</svg>

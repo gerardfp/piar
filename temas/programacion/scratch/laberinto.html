@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial: El Laberinto Mágico | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/scratch-blocks.css">
+  <link rel="stylesheet" href="../../../css/simulator.css">
+</head>
+<body>
+
+  <!-- Cabecera y Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan (Breadcrumb) -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Proyecto 3: El Laberinto Mágico</span>
+    </nav>
+
+    <div class="tutorial-layout">
+      <!-- Índice lateral de navegación rápida -->
+      <aside class="tutorial-sidebar">
+        <h3 class="sidebar-title">En este tutorial</h3>
+        <ul class="toc-list">
+          <li><a href="#el-reto" class="toc-link">1. El Reto y Simulador</a></li>
+          <li><a href="#conceptos-clave" class="toc-link">2. Conceptos Básicos</a></li>
+          <li><a href="#misiones-guiadas" class="toc-link">3. Misiones Paso a Paso</a></li>
+          <li><a href="#codigo-referencia" class="toc-link">4. Pistas y Código</a></li>
+          <li><a href="#desafios-pro" class="toc-link">5. Desafíos Pro</a></li>
+          <li><a href="#autoevaluacion" class="toc-link">6. Test de Comprensión</a></li>
+          <li><a href="#materiales" class="toc-link">7. Materiales para Descargar</a></li>
+        </ul>
+
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-subtle);">
+          <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch" style="width: 100%; text-align: center; font-size: 0.85rem;">
+            Abrir Scratch Web ↗
+          </a>
+        </div>
+      </aside>
+
+      <!-- Contenido Principal del Tutorial -->
+      <article class="tutorial-content">
+        <header class="tutorial-header">
+          <div class="tutorial-badge-row">
+            <span class="card-badge-top badge-scratch" style="position: static;">Tema 1: Scratch</span>
+            <span class="card-badge-top badge-ai" style="position: static;">Nivel: Intermedio-Avanzado</span>
+            <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 600;">⏱️ 3 a 4 sesiones de clase</span>
+          </div>
+          <h1 class="tutorial-title">Proyecto 3: El Laberinto Mágico</h1>
+          <p class="tutorial-lead">
+            Diseña un juego de exploración con varios niveles: guía a un mago por laberintos encantados sin tocar las paredes, esquiva a los fantasmas y alcanza el portal mágico. Aprenderás a usar <strong>sensores de color</strong>, a <strong>cambiar de nivel mediante fondos</strong> y a coordinar objetos con la <strong>difusión de mensajes</strong>.
+          </p>
+        </header>
+
+        <!-- SECCIÓN 1: EL RETO Y SIMULADOR -->
+        <section id="el-reto">
+          <div class="section-header">
+            <h2 class="section-title">🎯 1. El Objetivo del Juego</h2>
+            <p class="section-desc">
+              Prueba el juego terminado. Pulsa la <strong>Bandera Verde</strong> y usa las <strong>flechas del teclado</strong> ⬆️⬇️⬅️➡️ (o la cruceta de pantalla) para llevar al mago hasta la estrella verde:
+            </p>
+          </div>
+
+          <div class="callout callout-info">
+            <div class="callout-icon">💡</div>
+            <div class="callout-content">
+              <p><strong>Reglas del juego:</strong></p>
+              <ol>
+                <li>El <strong>Mago</strong> sale siempre desde la esquina superior izquierda <code>(x: -180, y: 120)</code>.</li>
+                <li>Si toca una <strong>pared morada</strong>, el sensor de color lo detecta y vuelve a la salida.</li>
+                <li>Si llega al <strong>portal verde</strong>, envía el mensaje <em>«nivel superado»</em> y el escenario cambia al <strong>siguiente fondo</strong> (nivel).</li>
+                <li>Desde el Nivel 2 aparecen <strong>fantasmas</strong> que patrullan los pasillos: si te tocan, pierdes <strong>1 vida</strong>.</li>
+                <li>Supera los <strong>3 niveles</strong> para llegar al fondo de <strong>Victoria</strong>. Con 0 vidas, ¡fin del juego!</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- SIMULADOR INTERACTIVO INTEGRADO -->
+          <div class="simulator-box">
+            <div class="simulator-header">
+              <div class="scratch-toolbar">
+                <button id="btnSimPlay" class="btn-flag" title="Iniciar juego (Bandera Verde)" aria-label="Bandera verde">
+                  <svg viewBox="0 0 24 24"><path d="M4 2v20l17-10L4 2z"/></svg>
+                </button>
+                <button id="btnSimStop" class="btn-stop" title="Detener juego" aria-label="Detener">
+                  <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+                <button id="btnSimPause" class="btn-sim-action">⏸️ Pausa</button>
+                <button id="btnSimReset" class="btn-sim-action">🔄 Reiniciar</button>
+              </div>
+
+              <!-- Cruceta táctil -->
+              <div class="dpad" aria-label="Controles de dirección">
+                <button id="btnUp" class="btn-sim-action" aria-label="Arriba">⬆️</button>
+                <button id="btnLeft" class="btn-sim-action" aria-label="Izquierda">⬅️</button>
+                <button id="btnDown" class="btn-sim-action" aria-label="Abajo">⬇️</button>
+                <button id="btnRight" class="btn-sim-action" aria-label="Derecha">➡️</button>
+              </div>
+
+              <div class="simulator-toggles" style="flex-wrap: wrap;">
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="chkSensors" checked> Sensores de color
+                </label>
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="chkGrid"> Ejes X/Y
+                </label>
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="chkSound" checked> Sonidos
+                </label>
+                <label class="sim-toggle-label" style="gap: 0.25rem;">
+                  Velocidad:
+                  <input type="range" id="speedRange" min="0.5" max="1.5" step="0.25" value="1" style="width: 55px;">
+                </label>
+              </div>
+            </div>
+
+            <div class="simulator-header" style="border-top: 1px solid var(--border-subtle); padding-top: 0.5rem; padding-bottom: 0.5rem;">
+              <div class="simulator-toggles" style="flex-wrap: wrap;">
+                <label class="sim-toggle-label" for="selWallMode">
+                  🧱 Al tocar la pared:
+                  <select id="selWallMode" class="sim-select">
+                    <option value="salida" selected>Volver a la salida</option>
+                    <option value="rebote">Rebotar (modo fácil)</option>
+                  </select>
+                </label>
+                <label class="sim-toggle-label" for="selFondo">
+                  🎨 cambiar fondo a:
+                  <select id="selFondo" class="sim-select">
+                    <option value="0">Nivel 1</option>
+                    <option value="1">Nivel 2</option>
+                    <option value="2">Nivel 3</option>
+                    <option value="3">Victoria</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <div class="simulator-main">
+              <div class="canvas-wrapper laberinto-wrapper">
+                <canvas id="laberintoCanvas" width="640" height="480" aria-label="Simulador del juego del laberinto mágico"></canvas>
+              </div>
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Nivel:</span>
+                  <span class="telemetry-value" id="telNivel" style="color: #c4b5fd;">1</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Vidas:</span>
+                  <span class="telemetry-value" id="telVidas" style="color: #f43f5e;">❤❤❤</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">x:</span>
+                  <span class="telemetry-value" id="telX">-180</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">y:</span>
+                  <span class="telemetry-value" id="telY">120</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Sensor:</span>
+                  <span class="telemetry-value sensor-value" id="telSensor">Suelo</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Cronómetro:</span>
+                  <span class="telemetry-value" id="telTiempo" style="color: #fde68a;">00:00</span>
+                </div>
+                <div class="telemetry-item" style="flex-grow: 1; justify-content: flex-end;">
+                  <span class="telemetry-status" id="telStatus">Pulsa la Bandera Verde para empezar</span>
+                </div>
+              </div>
+              <div class="message-console">
+                <div class="message-console-title">
+                  <span>📡 Consola de mensajes y eventos</span>
+                  <span>Lo más reciente arriba</span>
+                </div>
+                <ul class="message-log" id="messageLog" aria-live="polite"></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout callout-tip">
+            <div class="callout-icon">🔬</div>
+            <div class="callout-content">
+              <strong>Observa los sensores:</strong> los puntitos alrededor del mago son los píxeles que el simulador examina en cada instante. Se vuelven <span style="color: #e11d48; font-weight: 700;">rojos</span> al pisar el morado de la pared y <span style="color: #16a34a; font-weight: 700;">verdes</span> sobre la meta. ¡Es exactamente lo que hace Scratch con el bloque <span class="sb sb-inline sb-sensing">¿tocando el color ■?</span>! Usa el selector <em>«cambiar fondo a»</em> para saltar directamente a cualquier nivel.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 2: CONCEPTOS BÁSICOS -->
+        <section id="conceptos-clave" style="margin-top: 3rem;">
+          <div class="section-header">
+            <h2 class="section-title">🧠 2. Las Herramientas del Programador (Conceptos Clave)</h2>
+            <p class="section-desc">
+              En este proyecto descubrirás tres ideas nuevas que usan los videojuegos de verdad: sentir colores, organizar el juego en niveles y hacer que los objetos se comuniquen entre ellos.
+            </p>
+          </div>
+
+          <!-- Concepto A: Movimiento en 4 direcciones -->
+          <div class="step-card" id="concepto-direcciones">
+            <div class="step-card-header">
+              <div class="step-number">A</div>
+              <h3 class="step-title">Moverse en 4 Direcciones: «Apuntar» + «Mover»</h3>
+            </div>
+            <p class="step-explanation">
+              En el Proyecto 2 el robot solo se movía en horizontal con <span class="sb sb-inline sb-motion">sumar a x (10)</span>. En un laberinto necesitamos ir arriba, abajo, izquierda y derecha. La forma más elegante es <strong>girar al personaje hacia donde quiere ir y luego avanzar</strong>:
+            </p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
+              <li><span class="sb sb-inline sb-motion">apuntar en dirección (0)</span> → arriba ⬆️ &nbsp;·&nbsp; <span class="sb sb-inline sb-motion">(180)</span> → abajo ⬇️</li>
+              <li><span class="sb sb-inline sb-motion">apuntar en dirección (90)</span> → derecha ➡️ &nbsp;·&nbsp; <span class="sb sb-inline sb-motion">(-90)</span> → izquierda ⬅️</li>
+            </ul>
+            <div class="scratch-code">
+              <pre class="blocks">
+si &lt;¿tecla [flecha arriba v] presionada?&gt; entonces
+    apuntar en dirección (0)
+    mover (4) pasos
+fin
+              </pre>
+            </div>
+            <div class="callout callout-warning">
+              <div class="callout-icon">⚠️</div>
+              <div class="callout-content">
+                <strong>¡Cuidado con el mago cabeza abajo!</strong> Si apuntas en dirección 180, Scratch gira el disfraz y el mago camina boca abajo. Para evitarlo, al empezar usa <span class="sb sb-inline sb-motion">fijar estilo de rotación a [no rotar]</span>: el mago cambia de dirección pero su dibujo se queda recto.
+              </div>
+            </div>
+          </div>
+
+          <!-- Concepto B: Sensor de color -->
+          <div class="step-card" id="concepto-sensor-color">
+            <div class="step-card-header">
+              <div class="step-number">B</div>
+              <h3 class="step-title">El Sensor de Color: ¿Estoy Tocando la Pared?</h3>
+            </div>
+            <p class="step-explanation">
+              Las paredes del laberinto no son objetos: están <strong>dibujadas en el fondo</strong>. Entonces, ¿cómo sabe el mago que ha chocado? Con el bloque sensor <span class="sb sb-inline sb-sensing">¿tocando el color ■?</span>, que devuelve <strong>verdadero</strong> si algún píxel del disfraz está encima de ese color.
+            </p>
+
+            <img src="../../../assets/img/sensor-color.svg" alt="Diagrama del sensor de color: sin contacto da falso, con píxeles superpuestos da verdadero" style="max-width: 600px; margin: 1.5rem auto;">
+
+            <div class="scratch-code">
+              <pre class="blocks">
+si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+    iniciar sonido [golpe v]
+    ir a x: (-180) y: (120)
+fin
+              </pre>
+            </div>
+
+            <div class="callout callout-tip">
+              <div class="callout-icon">🎨</div>
+              <div class="callout-content">
+                <strong>El truco del cuentagotas:</strong> haz clic en el cuadradito de color del bloque y pulsa el icono del <em>cuentagotas</em> (abajo del todo). Después haz clic sobre una pared del escenario: Scratch copia el color <strong>exacto</strong>. Si eliges un morado «parecido» a ojo, el sensor no funcionará.
+              </div>
+            </div>
+            <p class="step-explanation">
+              Con la misma idea podemos tener un segundo color especial: el <strong style="color: #16a34a;">verde de la meta</strong> (<code>#22c55e</code>). Un solo sensor, distintos colores, distintas reacciones. Por eso es muy importante que <strong>ninguna decoración</strong> del fondo use el color de las paredes o de la meta.
+            </p>
+          </div>
+
+          <!-- Concepto C: Fondos como niveles -->
+          <div class="step-card" id="concepto-fondos">
+            <div class="step-card-header">
+              <div class="step-number">C</div>
+              <h3 class="step-title">Cambio de Niveles Mediante Fondos</h3>
+            </div>
+            <p class="step-explanation">
+              El <strong>Escenario</strong> puede tener muchos fondos, igual que un objeto tiene varios disfraces. Si dibujamos un laberinto distinto en cada fondo, ¡cada fondo se convierte en un nivel! Los fondos se ordenan en una lista: <em>Nivel 1, Nivel 2, Nivel 3, Victoria</em>.
+            </p>
+
+            <img src="../../../assets/img/fondos-niveles.svg" alt="Cuatro fondos ordenados: Nivel 1, Nivel 2, Nivel 3 y Victoria, conectados por flechas de siguiente fondo" style="max-width: 600px; margin: 1.5rem auto;">
+
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem; color: var(--text-muted);">
+              <li><span class="sb sb-inline sb-looks">cambiar fondo a [Nivel 1]</span>: salta a un fondo concreto (perfecto para la Bandera Verde).</li>
+              <li><span class="sb sb-inline sb-looks">siguiente fondo</span>: avanza al fondo que viene después en la lista (pasar de nivel).</li>
+              <li><span class="sb sb-inline sb-events">cuando el fondo cambie a [Nivel 2]</span>: evento que avisa a <strong>cualquier objeto</strong> de que empieza ese nivel.</li>
+            </ul>
+            <div class="scratch-code">
+              <pre class="blocks">
+cuando el fondo cambie a [Nivel 2 v]
+ir a x: (0) y: (0)
+mostrar
+              </pre>
+            </div>
+          </div>
+
+          <!-- Concepto D: Difusión de mensajes -->
+          <div class="step-card" id="concepto-mensajes">
+            <div class="step-card-header">
+              <div class="step-number">D</div>
+              <h3 class="step-title">Difusión de Mensajes: Objetos que se Hablan</h3>
+            </div>
+            <p class="step-explanation">
+              El mago es quien descubre que ha llegado a la meta, pero quien debe cambiar el fondo es el Escenario. ¿Cómo se lo dice? ¡Con un <strong>mensaje</strong>! Funciona como un megáfono: un objeto grita <span class="sb sb-inline sb-events">enviar [nivel superado]</span> y <strong>todos</strong> los scripts que empiezan con <span class="sb sb-inline sb-events">al recibir [nivel superado]</span> se ponen en marcha a la vez.
+            </p>
+
+            <img src="../../../assets/img/mensajes-broadcast.svg" alt="Diagrama de difusión: el mago envía nivel superado y lo reciben el Escenario y el propio mago" style="max-width: 600px; margin: 1.5rem auto;">
+
+            <div class="scratch-code">
+              <pre class="blocks">
+// Script del Mago (emisor)
+si &lt;¿tocando el color [#22c55e]?&gt; entonces
+    ir a x: (-180) y: (120)
+    enviar [nivel superado v]
+fin
+
+// Script del Escenario (receptor)
+al recibir [nivel superado v]
+iniciar sonido [hechizo v]
+siguiente fondo
+              </pre>
+            </div>
+            <div class="callout callout-info">
+              <div class="callout-icon">📡</div>
+              <div class="callout-content">
+                <strong>¿Por qué no lo hace todo el mago?</strong> Cada objeto se ocupa de lo suyo: el mago de moverse, el Escenario de los niveles y los fantasmas de patrullar. Los mensajes permiten <strong>dividir un problema grande en partes pequeñas</strong> que cooperan. Esto se llama <em>programación orientada a eventos</em> y la usan todas las apps y webs modernas.
+              </div>
+            </div>
+          </div>
+
+          <!-- Concepto E: Patrulla autónoma -->
+          <div class="step-card" id="concepto-patrulla">
+            <div class="step-card-header">
+              <div class="step-number">E</div>
+              <h3 class="step-title">Trampas Autónomas: Fantasmas que Patrullan</h3>
+            </div>
+            <p class="step-explanation">
+              Un fantasma es un enemigo que se mueve <strong>solo</strong>: avanza siempre en línea recta y, cuando su propio sensor de color detecta la pared, retrocede y da media vuelta. ¡El sensor de color sirve también para los personajes controlados por el ordenador!
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+por siempre
+    mover (2) pasos
+    si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+        mover (-2) pasos
+        girar @turnRight (180) grados
+    fin
+fin
+              </pre>
+            </div>
+            <p class="step-explanation">
+              Con <span class="sb sb-inline sb-motion">fijar estilo de rotación a [izquierda-derecha]</span> el fantasma mira hacia donde va sin ponerse nunca boca abajo.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 3: MISIONES PASO A PASO -->
+        <section id="misiones-guiadas" style="margin-top: 3rem;">
+          <div class="section-header">
+            <h2 class="section-title">🛠️ 3. Misiones Guiadas para Construir tu Laberinto</h2>
+            <p class="section-desc">
+              Abre <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener"><strong>scratch.mit.edu</strong></a>. Puedes empezar desde cero o cargar la <a href="#materiales"><strong>plantilla del proyecto</strong></a> (<em>Archivo → Cargar desde tu ordenador</em>), que ya trae los fondos y los personajes. Después completa estas 6 misiones:
+            </p>
+          </div>
+
+          <!-- Misión 1 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">1</div>
+              <h3 class="step-title">Misión 1: Dibuja los Fondos del Laberinto</h3>
+            </div>
+            <p class="step-explanation">
+              1. Selecciona el <strong>Escenario</strong> (abajo a la derecha) y entra en la pestaña <strong>Fondos</strong>.<br>
+              2. Con la herramienta <strong>Rectángulo</strong> pinta el suelo de azul oscuro y, encima, las paredes de un único color <strong style="color: #7c3aed;">morado</strong>. Deja pasillos anchos (al menos 40 px) para que quepa el mago.<br>
+              3. Dibuja un cuadrado <strong style="color: #16a34a;">verde</strong> donde esté la meta.<br>
+              4. Renombra el fondo como <code>Nivel 1</code>. Haz clic derecho → <em>duplicar</em> para crear <code>Nivel 2</code> y <code>Nivel 3</code> y modifica sus paredes para que sean más difíciles.<br>
+              5. Crea un último fondo llamado <code>Victoria</code> con un mensaje de celebración.
+            </p>
+            <div class="callout callout-tip">
+              <div class="callout-icon">💡</div>
+              <div class="callout-content">
+                <strong>¿Poco tiempo?</strong> Descarga los fondos ya preparados (<code>nivel-1.svg</code>, <code>nivel-2.svg</code>, <code>nivel-3.svg</code>, <code>victoria.svg</code>) en la sección de materiales y súbelos con <em>Elige un fondo → Subir fondo</em>. Respeta el orden de la lista: ¡el orden de los fondos es el orden de los niveles!
+              </div>
+            </div>
+          </div>
+
+          <!-- Misión 2 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">2</div>
+              <h3 class="step-title">Misión 2: El Mago y sus 4 Direcciones</h3>
+            </div>
+            <p class="step-explanation">
+              Añade el objeto <strong>Mago</strong> (o cualquier personaje pequeño, ajustando su tamaño hasta que quepa en los pasillos). Haz que empiece en la salida y se mueva con las cuatro flechas:
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+al hacer clic en @greenFlag
+fijar estilo de rotación a [no rotar v]
+ir a x: (-180) y: (120)
+por siempre
+    si &lt;¿tecla [flecha arriba v] presionada?&gt; entonces
+        apuntar en dirección (0)
+        mover (4) pasos
+    fin
+    si &lt;¿tecla [flecha abajo v] presionada?&gt; entonces
+        apuntar en dirección (180)
+        mover (4) pasos
+    fin
+    si &lt;¿tecla [flecha izquierda v] presionada?&gt; entonces
+        apuntar en dirección (-90)
+        mover (4) pasos
+    fin
+    si &lt;¿tecla [flecha derecha v] presionada?&gt; entonces
+        apuntar en dirección (90)
+        mover (4) pasos
+    fin
+fin
+              </pre>
+            </div>
+          </div>
+
+          <!-- Misión 3 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">3</div>
+              <h3 class="step-title">Misión 3: Paredes Mágicas con el Sensor de Color</h3>
+            </div>
+            <p class="step-explanation">
+              Dentro del mismo <span class="sb sb-inline sb-control">por siempre</span>, debajo de las flechas, añade la comprobación de la pared. Usa el <strong>cuentagotas</strong> para elegir el morado exacto. Si quieres, añade el sonido <code>golpe</code> desde la pestaña <strong>Sonidos</strong>.
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+    iniciar sonido [golpe v]
+    ir a x: (-180) y: (120)
+fin
+              </pre>
+            </div>
+            <p class="step-explanation">
+              <strong>✅ Comprueba:</strong> al rozar una pared, el mago debe volver a la salida. Si se cuela a través de las paredes, revisa que el color del bloque coincida exactamente con el del fondo.
+            </p>
+          </div>
+
+          <!-- Misión 4 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">4</div>
+              <h3 class="step-title">Misión 4: La Meta, el Mensaje y el Cambio de Nivel</h3>
+            </div>
+            <p class="step-explanation">
+              1. En <strong>Eventos</strong>, abre el desplegable de <span class="sb sb-inline sb-events">enviar [mensaje1]</span> → <em>Nuevo mensaje</em> y llámalo <code>nivel superado</code>.<br>
+              2. En el <strong>Mago</strong>, dentro del bucle, añade el sensor de la meta verde (primero vuelve a la salida, luego envía el mensaje).<br>
+              3. En el <strong>Escenario</strong>, crea los dos scripts que controlan los niveles:
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+// Mago (dentro del por siempre)
+si &lt;¿tocando el color [#22c55e]?&gt; entonces
+    ir a x: (-180) y: (120)
+    enviar [nivel superado v]
+fin
+
+// Escenario
+al hacer clic en @greenFlag
+cambiar fondo a [Nivel 1 v]
+
+al recibir [nivel superado v]
+iniciar sonido [hechizo v]
+siguiente fondo
+              </pre>
+            </div>
+          </div>
+
+          <!-- Misión 5 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">5</div>
+              <h3 class="step-title">Misión 5: Fantasmas Guardianes y Vidas</h3>
+            </div>
+            <p class="step-explanation">
+              1. Añade el objeto <strong>Fantasma</strong>. Programa su patrulla con la Bandera Verde (empieza escondido) y hazlo aparecer solo cuando el fondo cambie a <code>Nivel 2</code>:<br>
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+al hacer clic en @greenFlag
+fijar estilo de rotación a [izquierda-derecha v]
+esconder
+por siempre
+    mover (2) pasos
+    si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+        mover (-2) pasos
+        girar @turnRight (180) grados
+    fin
+fin
+
+cuando el fondo cambie a [Nivel 2 v]
+ir a x: (0) y: (0)
+apuntar en dirección (90)
+mostrar
+              </pre>
+            </div>
+            <p class="step-explanation">
+              2. Crea la variable <code>Vidas</code> (para todos los objetos). En el Escenario, añade <span class="sb sb-inline sb-variables">dar a [Vidas] el valor (3)</span> tras <em>cambiar fondo a Nivel 1</em>.<br>
+              3. En el bucle del <strong>Mago</strong>, comprueba si toca al fantasma:
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+si &lt;¿tocando [Fantasma v]?&gt; entonces
+    sumar a [Vidas v] (-1)
+    ir a x: (-180) y: (120)
+    si &lt;(Vidas) = (0)&gt; entonces
+        decir [¡Oh, no! Fin del juego] durante (2) segundos
+        detener [todos v]
+    fin
+fin
+              </pre>
+            </div>
+          </div>
+
+          <!-- Misión 6 -->
+          <div class="step-card">
+            <div class="step-card-header">
+              <div class="step-number">6</div>
+              <h3 class="step-title">Misión 6: El Nivel 3 y la Victoria Final</h3>
+            </div>
+            <p class="step-explanation">
+              1. Duplica el Fantasma (clic derecho → <em>duplicar</em>) para tener <code>Fantasma2</code>. Hazlo aparecer en el <code>Nivel 3</code> en otro pasillo (por ejemplo, <code>x: -180, y: 0</code>, apuntando en dirección <code>180</code> para que patrulle en vertical).<br>
+              2. Haz que <strong>todos los fantasmas se escondan</strong> cuando el fondo cambie a <code>Victoria</code>.<br>
+              3. En el Mago, celebra la victoria y detén el juego:
+            </p>
+            <div class="scratch-code">
+              <pre class="blocks">
+cuando el fondo cambie a [Victoria v]
+ir a x: (0) y: (-110)
+decir [¡Lo he conseguido!] durante (2) segundos
+detener [todos v]
+              </pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 4: PISTAS Y CÓDIGO COMPLETO -->
+        <section id="codigo-referencia" style="margin-top: 3rem;">
+          <div class="section-header">
+            <h2 class="section-title">🔍 4. Pistas y Código de Referencia</h2>
+            <p class="section-desc">
+              ¿Algo no funciona como esperabas? Estos son los problemas más habituales en los juegos de laberinto y cómo resolverlos:
+            </p>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 1: El mago atraviesa las paredes como un fantasma</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Casi siempre es un problema de <strong>color</strong>: el color del bloque <span class="sb sb-inline sb-sensing">¿tocando el color ■?</span> no es <em>exactamente</em> el de la pared. Vuelve a elegirlo con el <strong>cuentagotas</strong> haciendo clic justo encima de una pared. Si dibujaste las paredes con degradados o bordes de otro color, repinta con un color sólido.</p>
+              <p style="margin-top: 0.6rem;">Otra causa: <strong>pasos demasiado grandes</strong>. Con <span class="sb sb-inline sb-motion">mover (20) pasos</span> el mago puede «saltar» por encima de una pared fina. Usa pasos pequeños (3 a 5) y paredes de al menos 15-20 px.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 2: ¡Me parece muy difícil volver siempre a la salida!</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Existe un modo más amable: en lugar de volver a la salida, el mago <strong>rebota</strong> y retrocede los mismos pasos que acaba de avanzar. Como el mago sigue apuntando en la última dirección, basta con moverlo «hacia atrás»:</p>
+              <div class="scratch-code">
+                <pre class="blocks">
+si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+    mover (-4) pasos
+fin
+                </pre>
+              </div>
+              <p>Pruébalo en el simulador con el selector <em>«Al tocar la pared: Rebotar»</em>. Un buen diseño de videojuego podría usar el rebote en el Nivel 1 y el modo estricto en los niveles difíciles.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 3: Al tocar la meta, ¡me salto dos niveles de golpe!</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Si primero haces <span class="sb sb-inline sb-events">enviar [nivel superado]</span> y después mueves al mago, durante un instante el mago <strong>sigue encima de la meta verde</strong>. En la siguiente vuelta del bucle vuelve a detectar el verde… ¡y envía el mensaje otra vez!</p>
+              <p style="margin-top: 0.6rem;">Solución: <strong>primero</strong> <span class="sb sb-inline sb-motion">ir a x: (-180) y: (120)</span> y <strong>después</strong> enviar el mensaje. ¡El orden de los bloques importa!</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 4: El fantasma tiembla pegado a la pared o anda boca abajo</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p><strong>Tiembla:</strong> si solo gira 180° sin retroceder, el fantasma se queda con un trocito dentro de la pared, el sensor sigue dando <em>verdadero</em> y vuelve a girar sin parar. Añade <span class="sb sb-inline sb-motion">mover (-2) pasos</span> <strong>antes</strong> de girar para sacarlo de la pared.</p>
+              <p style="margin-top: 0.6rem;"><strong>Boca abajo:</strong> usa <span class="sb sb-inline sb-motion">fijar estilo de rotación a [izquierda-derecha]</span> al principio de su script.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>💡 Pista 5: Al volver a pulsar la Bandera Verde, el fantasma aparece en el Nivel 1</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p>Los objetos recuerdan si estaban visibles o escondidos al detener el juego. Por eso el script de Bandera Verde del fantasma debe empezar con <span class="sb sb-inline sb-looks">esconder</span>. Así, cada partida empieza limpia y el fantasma solo aparece cuando el fondo cambie a su nivel. Es la <strong>regla de oro de la inicialización</strong> que ya vimos en el Proyecto 1.</p>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>🔓 Código completo del Escenario (Desplegar solución)</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="scratch-code">
+                <pre class="blocks">
+al hacer clic en @greenFlag
+cambiar fondo a [Nivel 1 v]
+dar a [Vidas v] el valor (3)
+reiniciar cronómetro
+
+al recibir [nivel superado v]
+iniciar sonido [hechizo v]
+siguiente fondo
+                </pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>🔓 Código completo del Mago (Desplegar solución)</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <div class="scratch-code">
+                <pre class="blocks">
+al hacer clic en @greenFlag
+fijar estilo de rotación a [no rotar v]
+ir a x: (-180) y: (120)
+mostrar
+por siempre
+    si &lt;¿tecla [flecha arriba v] presionada?&gt; entonces
+        apuntar en dirección (0)
+        mover (4) pasos
+    fin
+    si &lt;¿tecla [flecha abajo v] presionada?&gt; entonces
+        apuntar en dirección (180)
+        mover (4) pasos
+    fin
+    si &lt;¿tecla [flecha izquierda v] presionada?&gt; entonces
+        apuntar en dirección (-90)
+        mover (4) pasos
+    fin
+    si &lt;¿tecla [flecha derecha v] presionada?&gt; entonces
+        apuntar en dirección (90)
+        mover (4) pasos
+    fin
+    si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+        iniciar sonido [golpe v]
+        ir a x: (-180) y: (120)
+    fin
+    si &lt;¿tocando el color [#22c55e]?&gt; entonces
+        ir a x: (-180) y: (120)
+        enviar [nivel superado v]
+    fin
+    si &lt;&lt;¿tocando [Fantasma v]?&gt; o &lt;¿tocando [Fantasma2 v]?&gt;&gt; entonces
+        iniciar sonido [fantasma v]
+        sumar a [Vidas v] (-1)
+        ir a x: (-180) y: (120)
+        si &lt;(Vidas) = (0)&gt; entonces
+            decir [¡Oh, no! Fin del juego] durante (2) segundos
+            detener [todos v]
+        fin
+    fin
+fin
+
+al recibir [nivel superado v]
+decir [¡Abracadabra!] durante (1) segundos
+
+cuando el fondo cambie a [Victoria v]
+ir a x: (0) y: (-110)
+decir [¡Lo he conseguido!] durante (2) segundos
+detener [todos v]
+                </pre>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion">
+            <div class="accordion-header">
+              <span>🔓 Código completo de los Fantasmas (Desplegar solución)</span>
+              <span class="accordion-icon">▼</span>
+            </div>
+            <div class="accordion-content">
+              <p style="margin-bottom: 0.85rem; color: var(--text-muted);">
+                <strong>Fantasma</strong> (patrulla horizontal en los niveles 2 y 3):
+              </p>
+              <div class="scratch-code">
+                <pre class="blocks">
+al hacer clic en @greenFlag
+fijar estilo de rotación a [izquierda-derecha v]
+esconder
+por siempre
+    mover (2) pasos
+    si &lt;¿tocando el color [#7c3aed]?&gt; entonces
+        mover (-2) pasos
+        girar @turnRight (180) grados
+    fin
+fin
+
+cuando el fondo cambie a [Nivel 2 v]
+ir a x: (0) y: (0)
+apuntar en dirección (90)
+mostrar
+
+cuando el fondo cambie a [Nivel 3 v]
+ir a x: (0) y: (0)
+apuntar en dirección (-90)
+mostrar
+
+cuando el fondo cambie a [Victoria v]
+esconder
+                </pre>
+              </div>
+              <p style="margin: 0.85rem 0; color: var(--text-muted);">
+                <strong>Fantasma2</strong> (patrulla vertical solo en el nivel 3): el mismo script de Bandera Verde con <span class="sb sb-inline sb-motion">mover (1.5) pasos</span>, y además:
+              </p>
+              <div class="scratch-code">
+                <pre class="blocks">
+cuando el fondo cambie a [Nivel 3 v]
+ir a x: (-180) y: (0)
+apuntar en dirección (180)
+mostrar
+
+cuando el fondo cambie a [Victoria v]
+esconder
+                </pre>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 5: DESAFÍOS PRO -->
+        <section id="desafios-pro" style="margin-top: 3rem;">
+          <div class="section-header">
+            <h2 class="section-title">🚀 5. Desafíos Pro (Ampliación)</h2>
+            <p class="section-desc">
+              ¿Tu laberinto ya funciona? Conviértelo en una aventura completa con estas mejoras:
+            </p>
+          </div>
+
+          <div class="cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+            <div class="card">
+              <span class="card-badge-top badge-prog">Nivel 1</span>
+              <div class="card-icon prog">⏱️</div>
+              <h3 class="card-title">Récord de Tiempo</h3>
+              <p class="card-text">
+                Usa <code>reiniciar cronómetro</code> al empezar. Cuando el fondo cambie a <em>Victoria</em>, haz que el mago diga su tiempo con <code>unir [Tiempo: ] (cronómetro)</code>. ¿Y si guardas el mejor tiempo en una variable <code>Récord</code>?
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-badge-top badge-scratch">Nivel 2</span>
+              <div class="card-icon" style="background: #fff1f2; color: #e11d48;">🔥</div>
+              <h3 class="card-title">Charcos de Lava</h3>
+              <p class="card-text">
+                Pinta en el Nivel 3 zonas de un <strong>tercer color</strong> (rojo). Con un nuevo sensor <code>¿tocando el color rojo?</code>, la lava te quita una vida. ¡Un color nuevo, una regla nueva!
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-badge-top badge-ai">Nivel 3</span>
+              <div class="card-icon ai">🗝️</div>
+              <h3 class="card-title">Llave y Puerta Mágica</h3>
+              <p class="card-text">
+                Añade un objeto <code>Llave</code> y otro <code>Puerta</code> que bloquee la meta. Al tocar la llave, envía el mensaje <code>abrir puerta</code>: la puerta lo recibe y se esconde. Tendrás que pensar qué hacer si el mago toca la puerta cerrada.
+              </p>
+            </div>
+
+            <div class="card">
+              <span class="card-badge-top badge-robotics">Nivel 4</span>
+              <div class="card-icon" style="background: #ecfdf5; color: #059669;">🏰</div>
+              <h3 class="card-title">Diseña tu Propio Nivel</h3>
+              <p class="card-text">
+                Crea un fondo <code>Nivel 4</code> antes de <em>Victoria</em>. Como usamos <code>siguiente fondo</code>, ¡no tendrás que cambiar ni un bloque del Escenario! Intercambia tu nivel con el de un compañero.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN 6: TEST DE AUTOEVALUACIÓN -->
+        <section id="autoevaluacion" style="margin-top: 3rem;">
+          <div class="section-header">
+            <h2 class="section-title">📝 6. Test de Autocomprobación</h2>
+            <p class="section-desc">
+              Responde a estas preguntas para comprobar que dominas los nuevos conceptos:
+            </p>
+          </div>
+
+          <div class="quiz-container">
+            <!-- Pregunta 1 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">1. Las paredes del laberinto están dibujadas en el fondo. ¿Qué bloque usa el mago para detectarlas?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-explanation="«¿tocando [Pared]?» solo funciona con objetos. Las paredes del fondo no son un objeto, así que no aparecen en ese desplegable.">
+                  A) ¿tocando [Pared]?
+                </button>
+                <button class="quiz-option" data-correct="true" data-explanation="El sensor de color comprueba si algún píxel del disfraz del mago está encima del color morado de las paredes.">
+                  B) ¿tocando el color [morado]?
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="La posición en x solo dice dónde está el mago en horizontal; no sabe qué hay dibujado en el fondo.">
+                  C) posición en x
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">2. Un compañero decora su laberinto con estrellas del mismo morado que las paredes. ¿Qué pasará?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-explanation="Al sensor le da igual la forma del dibujo: solo mira el color de los píxeles.">
+                  A) Nada, porque las estrellas no tienen forma de pared
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="El sensor no distingue capas ni decoraciones: si el color coincide, cuenta como pared.">
+                  B) Las estrellas se volverán transparentes automáticamente
+                </button>
+                <button class="quiz-option" data-correct="true" data-explanation="El sensor de color no sabe qué es una pared y qué es una estrella: si el mago toca ese morado, volverá a la salida. Por eso los colores especiales deben reservarse.">
+                  C) El mago volverá a la salida al tocar una estrella, como si fuera una pared
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">3. ¿Por qué el Escenario usa «siguiente fondo» en lugar de «cambiar fondo a [Nivel 2]» al recibir «nivel superado»?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="true" data-explanation="Con «siguiente fondo» el mismo script sirve para pasar del 1 al 2, del 2 al 3, del 3 a Victoria… ¡y para cualquier nivel nuevo que añadas!">
+                  A) Porque así un solo script sirve para avanzar desde cualquier nivel al siguiente
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="Ambos bloques son igual de rápidos; la diferencia está en que uno es fijo y el otro relativo.">
+                  B) Porque «siguiente fondo» es más rápido
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="«cambiar fondo a» puede usarse en cualquier momento; de hecho lo usamos con la Bandera Verde.">
+                  C) Porque «cambiar fondo a» solo funciona con la Bandera Verde
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">4. Cuando el mago hace «enviar [nivel superado]», ¿quién reacciona?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-explanation="Los mensajes no van dirigidos a un único destinatario: se difunden a todos.">
+                  A) Solo el objeto más cercano al mago
+                </button>
+                <button class="quiz-option" data-correct="true" data-explanation="Es una difusión (broadcast): cualquier objeto o el Escenario que tenga un «al recibir [nivel superado]» ejecuta su script a la vez.">
+                  B) Todos los objetos y el Escenario que tengan un script «al recibir [nivel superado]»
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="El Escenario reacciona si tiene un «al recibir», pero también cualquier objeto que lo tenga (como el propio mago diciendo ¡Abracadabra!).">
+                  C) Solo el Escenario
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="quiz-question">
+              <h4 class="quiz-question-title">5. ¿Qué bloque usarías para que el fantasma aparezca justo cuando empieza el Nivel 2?</h4>
+              <div class="quiz-options">
+                <button class="quiz-option" data-correct="false" data-explanation="Con la Bandera Verde el juego está en el Nivel 1; el fantasma aparecería demasiado pronto.">
+                  A) al hacer clic en la Bandera Verde → mostrar
+                </button>
+                <button class="quiz-option" data-correct="false" data-explanation="Esperar un número fijo de segundos no funciona: cada jugador tarda un tiempo diferente en superar el Nivel 1.">
+                  B) esperar (30) segundos → mostrar
+                </button>
+                <button class="quiz-option" data-correct="true" data-explanation="El evento «cuando el fondo cambie a [Nivel 2]» se dispara exactamente cuando empieza ese nivel, tarde lo que tarde el jugador.">
+                  C) cuando el fondo cambie a [Nivel 2] → mostrar
+                </button>
+              </div>
+              <div class="quiz-feedback"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECCIÓN DE DESCARGA DE MATERIALES / ASSETS -->
+        <section id="materiales" style="margin-top: 3.5rem;">
+          <div class="section-header">
+            <h2 class="section-title">📦 7. Materiales del Proyecto para Descargar</h2>
+            <p class="section-desc">
+              Proyectos de Scratch listos para abrir, fondos de los tres niveles, personajes con fondo transparente y efectos de sonido:
+            </p>
+          </div>
+
+          <div class="asset-download-grid">
+            <!-- Plantilla sb3 -->
+            <div class="asset-card" style="border-color: #c4b5fd;">
+              <div class="asset-preview" style="color: #7c3aed;">🧩</div>
+              <span class="asset-tag">Proyecto Scratch .sb3</span>
+              <h4 class="asset-name">Plantilla del Alumno</h4>
+              <p class="asset-desc">Fondos, mago, fantasmas, sonidos, variable <code>Vidas</code> y mensaje creados. ¡Sin código: a programar!</p>
+              <a href="../../../assets/scratch/laberinto/laberinto-plantilla.sb3" download="laberinto-plantilla.sb3" class="btn btn-outline btn-download-asset">
+                📥 Descargar SB3
+              </a>
+            </div>
+
+            <!-- Solución sb3 -->
+            <div class="asset-card" style="border-color: #86efac;">
+              <div class="asset-preview" style="color: #16a34a;">✅</div>
+              <span class="asset-tag">Proyecto Scratch .sb3</span>
+              <h4 class="asset-name">Solución Completa</h4>
+              <p class="asset-desc">Juego terminado con todos los scripts de este tutorial. Ideal para el profesorado.</p>
+              <a href="../../../assets/scratch/laberinto/laberinto-solucion.sb3" download="laberinto-solucion.sb3" class="btn btn-outline btn-download-asset">
+                📥 Descargar SB3
+              </a>
+            </div>
+
+            <!-- Mago -->
+            <div class="asset-card">
+              <div class="asset-preview">
+                <img src="../../../assets/scratch/laberinto/mago.svg" alt="Mago">
+              </div>
+              <span class="asset-tag">Vector SVG · Transparente</span>
+              <h4 class="asset-name">Mago</h4>
+              <p class="asset-desc">Personaje principal (24 × 24 px), cabe en pasillos de 40 px.</p>
+              <a href="../../../assets/scratch/laberinto/mago.svg" download="mago.svg" class="btn btn-outline btn-download-asset">
+                📥 Descargar SVG
+              </a>
+            </div>
+
+            <!-- Fantasma -->
+            <div class="asset-card">
+              <div class="asset-preview">
+                <img src="../../../assets/scratch/laberinto/fantasma.svg" alt="Fantasma">
+              </div>
+              <span class="asset-tag">Vector SVG · Transparente</span>
+              <h4 class="asset-name">Fantasma</h4>
+              <p class="asset-desc">Trampa móvil que patrulla los pasillos y resta vidas.</p>
+              <a href="../../../assets/scratch/laberinto/fantasma.svg" download="fantasma.svg" class="btn btn-outline btn-download-asset">
+                📥 Descargar SVG
+              </a>
+            </div>
+
+            <!-- Fondos -->
+            <div class="asset-card">
+              <div class="asset-preview" style="width: 96px;">
+                <img src="../../../assets/scratch/laberinto/nivel-1.svg" alt="Fondo Nivel 1">
+              </div>
+              <span class="asset-tag">Fondo SVG · 480 × 360</span>
+              <h4 class="asset-name">Nivel 1: El Bosque Encantado</h4>
+              <p class="asset-desc">Laberinto de iniciación, sin fantasmas.</p>
+              <a href="../../../assets/scratch/laberinto/nivel-1.svg" download="nivel-1.svg" class="btn btn-outline btn-download-asset">
+                📥 Descargar SVG
+              </a>
+            </div>
+
+            <div class="asset-card">
+              <div class="asset-preview" style="width: 96px;">
+                <img src="../../../assets/scratch/laberinto/nivel-2.svg" alt="Fondo Nivel 2">
+              </div>
+              <span class="asset-tag">Fondo SVG · 480 × 360</span>
+              <h4 class="asset-name">Nivel 2: Las Mazmorras</h4>
+              <p class="asset-desc">Pasillo central vigilado por un fantasma.</p>
+              <a href="../../../assets/scratch/laberinto/nivel-2.svg" download="nivel-2.svg" class="btn btn-outline btn-download-asset">
+                📥 Descargar SVG
+              </a>
+            </div>
+
+            <div class="asset-card">
+              <div class="asset-preview" style="width: 96px;">
+                <img src="../../../assets/scratch/laberinto/nivel-3.svg" alt="Fondo Nivel 3">
+              </div>
+              <span class="asset-tag">Fondo SVG · 480 × 360</span>
+              <h4 class="asset-name">Nivel 3: La Torre del Hechicero</h4>
+              <p class="asset-desc">El reto final con dos fantasmas guardianes.</p>
+              <a href="../../../assets/scratch/laberinto/nivel-3.svg" download="nivel-3.svg" class="btn btn-outline btn-download-asset">
+                📥 Descargar SVG
+              </a>
+            </div>
+
+            <div class="asset-card">
+              <div class="asset-preview" style="width: 96px;">
+                <img src="../../../assets/scratch/laberinto/victoria.svg" alt="Fondo Victoria">
+              </div>
+              <span class="asset-tag">Fondo SVG · 480 × 360</span>
+              <h4 class="asset-name">Victoria</h4>
+              <p class="asset-desc">Fondo final de celebración (último de la lista).</p>
+              <a href="../../../assets/scratch/laberinto/victoria.svg" download="victoria.svg" class="btn btn-outline btn-download-asset">
+                📥 Descargar SVG
+              </a>
+            </div>
+
+            <!-- Sonidos -->
+            <div class="asset-card">
+              <div class="asset-preview" style="color: #a855f7;">✨</div>
+              <span class="asset-tag">Audio WAV</span>
+              <h4 class="asset-name">Sonido «Hechizo»</h4>
+              <p class="asset-desc">Arpegio mágico al superar un nivel (Escenario).</p>
+              <a href="../../../assets/scratch/laberinto/hechizo.wav" download="hechizo.wav" class="btn btn-outline btn-download-asset">
+                📥 Descargar WAV
+              </a>
+            </div>
+
+            <div class="asset-card">
+              <div class="asset-preview" style="color: #7c3aed;">🧱</div>
+              <span class="asset-tag">Audio WAV</span>
+              <h4 class="asset-name">Sonido «Golpe»</h4>
+              <p class="asset-desc">Golpe sordo al chocar contra una pared.</p>
+              <a href="../../../assets/scratch/laberinto/golpe.wav" download="golpe.wav" class="btn btn-outline btn-download-asset">
+                📥 Descargar WAV
+              </a>
+            </div>
+
+            <div class="asset-card">
+              <div class="asset-preview" style="color: #6366f1;">👻</div>
+              <span class="asset-tag">Audio WAV</span>
+              <h4 class="asset-name">Sonido «Fantasma»</h4>
+              <p class="asset-desc">Lamento fantasmal cuando te atrapan.</p>
+              <a href="../../../assets/scratch/laberinto/fantasma.wav" download="fantasma.wav" class="btn btn-outline btn-download-asset">
+                📥 Descargar WAV
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica. Materiales didácticos y proyectos prácticos para el alumnado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Temario</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Programación con Scratch</a></li>
+          <li><a href="../../ia/index.html">Inteligencia Artificial</a></li>
+          <li><a href="../../robotica/index.html">Robótica y Sensores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT</a></li>
+          <li><a href="atrapa-objetos.html">Proyecto 2: Robot Recolector</a></li>
+          <li><a href="../../../index.html">Página Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando · Pensamiento Computacional</span>
+    </div>
+  </footer>
+
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="../../../js/laberinto-niveles.js"></script>
+  <script src="../../../js/laberinto-sim.js"></script>
+</body>
+</html>

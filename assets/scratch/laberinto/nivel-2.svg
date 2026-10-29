@@ -1,0 +1,143 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" width="480" height="360">
+  <!-- Nivel 2: Las Mazmorras del Castillo | Paredes #7c3aed · Meta #22c55e -->
+  <rect x="0" y="0" width="480" height="360" fill="#1e1b4b"/>
+  <g>
+    <circle cx="325.9" cy="36.2" r="0.8" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="468.3" cy="158.1" r="0.8" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="219.6" cy="284.0" r="1.6" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="203.8" cy="54.8" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="199.0" cy="195.4" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="336.7" cy="295.1" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="336.8" cy="345.6" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="200.8" cy="7.1" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="337.8" cy="83.2" r="1.2" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="253.0" cy="293.0" r="0.8" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="10.4" cy="335.6" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="111.3" cy="232.6" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="23.9" cy="100.0" r="1.0" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="71.6" cy="97.8" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="216.0" cy="200.0" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="310.1" cy="35.0" r="1.0" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="169.5" cy="38.5" r="1.0" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="276.7" cy="225.1" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="140.2" cy="13.2" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="418.5" cy="52.0" r="0.8" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="82.3" cy="208.1" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="134.9" cy="202.3" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="359.9" cy="145.3" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="95.8" cy="344.3" r="0.8" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="391.7" cy="252.0" r="1.6" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="360.5" cy="102.5" r="0.8" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="321.9" cy="73.3" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="6.2" cy="98.2" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="283.3" cy="160.5" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="172.5" cy="76.2" r="1.2" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="405.2" cy="175.3" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="288.8" cy="201.8" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="379.4" cy="256.3" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="154.3" cy="176.9" r="0.8" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="349.9" cy="335.3" r="0.8" fill="#e0e7ff" opacity="0.5"/>
+    <circle cx="352.8" cy="65.4" r="1.2" fill="#e0e7ff" opacity="0.7"/>
+    <circle cx="442.2" cy="73.6" r="1.0" fill="#e0e7ff" opacity="0.35"/>
+    <circle cx="452.7" cy="298.5" r="1.0" fill="#e0e7ff" opacity="0.7"/>
+  </g>
+  <g fill="#7c3aed" shape-rendering="crispEdges">
+    <rect x="0" y="0" width="40" height="40"/>
+    <rect x="40" y="0" width="40" height="40"/>
+    <rect x="80" y="0" width="20" height="40"/>
+    <rect x="100" y="0" width="40" height="40"/>
+    <rect x="140" y="0" width="20" height="40"/>
+    <rect x="160" y="0" width="40" height="40"/>
+    <rect x="200" y="0" width="20" height="40"/>
+    <rect x="220" y="0" width="40" height="40"/>
+    <rect x="260" y="0" width="20" height="40"/>
+    <rect x="280" y="0" width="40" height="40"/>
+    <rect x="320" y="0" width="20" height="40"/>
+    <rect x="340" y="0" width="40" height="40"/>
+    <rect x="380" y="0" width="20" height="40"/>
+    <rect x="400" y="0" width="40" height="40"/>
+    <rect x="440" y="0" width="40" height="40"/>
+    <rect x="0" y="40" width="40" height="40"/>
+    <rect x="140" y="40" width="20" height="40"/>
+    <rect x="320" y="40" width="20" height="40"/>
+    <rect x="440" y="40" width="40" height="40"/>
+    <rect x="0" y="80" width="40" height="20"/>
+    <rect x="40" y="80" width="40" height="20"/>
+    <rect x="80" y="80" width="20" height="20"/>
+    <rect x="140" y="80" width="20" height="20"/>
+    <rect x="200" y="80" width="20" height="20"/>
+    <rect x="220" y="80" width="40" height="20"/>
+    <rect x="260" y="80" width="20" height="20"/>
+    <rect x="320" y="80" width="20" height="20"/>
+    <rect x="380" y="80" width="20" height="20"/>
+    <rect x="440" y="80" width="40" height="20"/>
+    <rect x="0" y="100" width="40" height="40"/>
+    <rect x="140" y="100" width="20" height="40"/>
+    <rect x="260" y="100" width="20" height="40"/>
+    <rect x="380" y="100" width="20" height="40"/>
+    <rect x="440" y="100" width="40" height="40"/>
+    <rect x="0" y="140" width="40" height="20"/>
+    <rect x="80" y="140" width="20" height="20"/>
+    <rect x="100" y="140" width="40" height="20"/>
+    <rect x="140" y="140" width="20" height="20"/>
+    <rect x="160" y="140" width="40" height="20"/>
+    <rect x="200" y="140" width="20" height="20"/>
+    <rect x="260" y="140" width="20" height="20"/>
+    <rect x="280" y="140" width="40" height="20"/>
+    <rect x="320" y="140" width="20" height="20"/>
+    <rect x="340" y="140" width="40" height="20"/>
+    <rect x="380" y="140" width="20" height="20"/>
+    <rect x="440" y="140" width="40" height="20"/>
+    <rect x="0" y="160" width="40" height="40"/>
+    <rect x="440" y="160" width="40" height="40"/>
+    <rect x="0" y="200" width="40" height="20"/>
+    <rect x="80" y="200" width="20" height="20"/>
+    <rect x="140" y="200" width="20" height="20"/>
+    <rect x="160" y="200" width="40" height="20"/>
+    <rect x="200" y="200" width="20" height="20"/>
+    <rect x="260" y="200" width="20" height="20"/>
+    <rect x="320" y="200" width="20" height="20"/>
+    <rect x="340" y="200" width="40" height="20"/>
+    <rect x="380" y="200" width="20" height="20"/>
+    <rect x="440" y="200" width="40" height="20"/>
+    <rect x="0" y="220" width="40" height="40"/>
+    <rect x="80" y="220" width="20" height="40"/>
+    <rect x="200" y="220" width="20" height="40"/>
+    <rect x="260" y="220" width="20" height="40"/>
+    <rect x="380" y="220" width="20" height="40"/>
+    <rect x="440" y="220" width="40" height="40"/>
+    <rect x="0" y="260" width="40" height="20"/>
+    <rect x="80" y="260" width="20" height="20"/>
+    <rect x="100" y="260" width="40" height="20"/>
+    <rect x="140" y="260" width="20" height="20"/>
+    <rect x="200" y="260" width="20" height="20"/>
+    <rect x="260" y="260" width="20" height="20"/>
+    <rect x="280" y="260" width="40" height="20"/>
+    <rect x="320" y="260" width="20" height="20"/>
+    <rect x="380" y="260" width="20" height="20"/>
+    <rect x="440" y="260" width="40" height="20"/>
+    <rect x="0" y="280" width="40" height="40"/>
+    <rect x="140" y="280" width="20" height="40"/>
+    <rect x="260" y="280" width="20" height="40"/>
+    <rect x="380" y="280" width="20" height="40"/>
+    <rect x="440" y="280" width="40" height="40"/>
+    <rect x="0" y="320" width="40" height="40"/>
+    <rect x="40" y="320" width="40" height="40"/>
+    <rect x="80" y="320" width="20" height="40"/>
+    <rect x="100" y="320" width="40" height="40"/>
+    <rect x="140" y="320" width="20" height="40"/>
+    <rect x="160" y="320" width="40" height="40"/>
+    <rect x="200" y="320" width="20" height="40"/>
+    <rect x="220" y="320" width="40" height="40"/>
+    <rect x="260" y="320" width="20" height="40"/>
+    <rect x="280" y="320" width="40" height="40"/>
+    <rect x="320" y="320" width="20" height="40"/>
+    <rect x="340" y="320" width="40" height="40"/>
+    <rect x="380" y="320" width="20" height="40"/>
+    <rect x="400" y="320" width="40" height="40"/>
+    <rect x="440" y="320" width="40" height="40"/>
+  </g>
+  <rect x="400" y="280" width="40" height="40" fill="#22c55e"/>
+  <path d="M420.0,289.0 L422.7,296.3 L430.5,296.6 L424.4,301.4 L426.5,308.9 L420.0,304.6 L413.5,308.9 L415.6,301.4 L409.5,296.6 L417.3,296.3 Z" fill="#fef9c3"/>
+  <text x="240" y="26" font-family="Sans Serif, Helvetica, Arial, sans-serif" font-size="15" font-weight="bold" fill="#ede9fe" text-anchor="middle">Nivel 2 · Las Mazmorras del Castillo</text>
+</svg>

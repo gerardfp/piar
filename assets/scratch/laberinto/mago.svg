@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="24" height="24">
+  <!-- Varita mágica -->
+  <line x1="35" y1="33" x2="44" y2="23" stroke="#92400e" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M44 18.5 L45.4 21.6 L48 22 L46 24.2 L46.6 27 L44 25.6 L41.4 27 L42 24.2 L40 22 L42.6 21.6 Z" fill="#fde047" stroke="#ca8a04" stroke-width="0.8"/>
+  <!-- Túnica -->
+  <path d="M15 27 L33 27 L38 45 L10 45 Z" fill="#2563eb" stroke="#1e3a8a" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="19" cy="38" r="1.4" fill="#facc15"/>
+  <circle cx="29" cy="35" r="1.2" fill="#facc15"/>
+  <circle cx="26" cy="41" r="1.1" fill="#facc15"/>
+  <!-- Cara y barba -->
+  <circle cx="24" cy="23" r="7" fill="#fde2c4" stroke="#e7b98f" stroke-width="1"/>
+  <path d="M17.5 24.5 Q24 39 30.5 24.5 Q24 28 17.5 24.5 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.8"/>
+  <circle cx="21.4" cy="21.8" r="1.25" fill="#1e293b"/>
+  <circle cx="26.6" cy="21.8" r="1.25" fill="#1e293b"/>
+  <!-- Sombrero -->
+  <path d="M12.5 18 L24 1.5 L35.5 18 Z" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="1.6" stroke-linejoin="round"/>
+  <ellipse cx="24" cy="18" rx="13" ry="3" fill="#1e40af" stroke="#1e3a8a" stroke-width="1.2"/>
+  <path d="M24 7.5 L25.1 10 L27.8 10.2 L25.7 11.9 L26.4 14.5 L24 13.1 L21.6 14.5 L22.3 11.9 L20.2 10.2 L22.9 10 Z" fill="#facc15"/>
+</svg>

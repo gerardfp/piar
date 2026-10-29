@@ -166,7 +166,8 @@
   box-shadow: inset 0 0 20px rgba(12, 24, 37, 0.3);
 }
 
-#trampolinCanvas {
+#trampolinCanvas,
+#laberintoCanvas {
   width: 100%;
   height: 100%;
   display: block;
@@ -250,4 +251,162 @@
   outline: 2px solid var(--cyan-light, #22d3ee) !important;
   box-shadow: 0 0 14px rgba(6, 182, 212, 0.7) !important;
   transition: all 0.15s ease-in-out;
+}
+
+/* ==========================================================================
+   Proyecto 3: El Laberinto Mágico
+   ========================================================================== */
+
+.canvas-wrapper.laberinto-wrapper {
+  background: #1e1b4b;
+}
+
+/* Cruceta de dirección para pantallas táctiles */
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 34px);
+  grid-template-rows: repeat(2, 30px);
+  gap: 3px;
+}
+
+.dpad .btn-sim-action {
+  justify-content: center;
+  padding: 0;
+  font-size: 0.95rem;
+  touch-action: none;
+  user-select: none;
+}
+
+.dpad #btnUp { grid-column: 2; grid-row: 1; }
+.dpad #btnLeft { grid-column: 1; grid-row: 2; }
+.dpad #btnDown { grid-column: 2; grid-row: 2; }
+.dpad #btnRight { grid-column: 3; grid-row: 2; }
+
+.sim-select {
+  font: inherit;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.35rem;
+  border: 1px solid var(--border-tech, #cbd8e6);
+  border-radius: var(--radius-sm, 6px);
+  background: #ffffff;
+  color: var(--text-main, #0f1d2e);
+  cursor: pointer;
+}
+
+.sim-select:focus-visible {
+  outline: 2px solid var(--cyan-core, #06b6d4);
+  outline-offset: 1px;
+}
+
+/* Muestra de color del sensor en la telemetría */
+.telemetry-value.sensor-value {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 86px;
+  justify-content: flex-start;
+}
+
+.sensor-swatch {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* Consola de mensajes (difusión de mensajes en directo) */
+.message-console {
+  background: #0b1020;
+  border-top: 1px solid rgba(167, 139, 250, 0.25);
+  padding: 0.6rem 1rem 0.75rem;
+  color: #e2e8f0;
+}
+
+.message-console-title {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #a78bfa;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.message-console-title span:last-child {
+  color: #64748b;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+
+.message-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-height: 7.5rem;
+  max-height: 11.5rem;
+  overflow-y: auto;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.76rem;
+}
+
+.message-log:empty::before {
+  content: "Aquí aparecerán los mensajes que se envían los objetos (enviar / al recibir)…";
+  color: #64748b;
+  font-style: italic;
+}
+
+.log-entry {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.22rem 0;
+  border-bottom: 1px dashed rgba(148, 163, 184, 0.12);
+  animation: log-in 0.25s ease-out;
+}
+
+.log-entry:first-child {
+  color: #ffffff;
+}
+
+.log-time {
+  color: #64748b;
+  font-size: 0.7rem;
+}
+
+.log-icon {
+  width: 1.2rem;
+  text-align: center;
+}
+
+.log-pill {
+  display: inline-block;
+  padding: 0.08rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Colores oficiales de las categorías de Scratch 3 */
+.pill-events { background: #ffbf00; color: #3b2a00; }
+.pill-looks { background: #9966ff; }
+.pill-sensing { background: #4cbfe6; color: #062a36; }
+.pill-control { background: #ffab19; color: #3b2400; }
+.pill-data { background: #ff8c1a; color: #3b1d00; }
+.pill-motion { background: #4c97ff; }
+
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .log-entry { animation: none; }
 }
