@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto 5: Plataformas | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/scratch-blocks.css">
+  <link rel="stylesheet" href="../../../css/simulator.css">
+  <link rel="stylesheet" href="../../../css/scratch-eleccion.css">
+  <link rel="stylesheet" href="../../../css/scratch-tutorial.css">
+</head>
+<body>
+
+  <!-- Cabecera y Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan (Breadcrumb) -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Proyecto 5: Plataformas</span>
+    </nav>
+
+    <div class="tutorial-layout">
+      <aside class="tutorial-sidebar">
+        <h2 class="sidebar-title">En este tutorial</h2>
+        <ul class="toc-list">
+          <li><a href="#el-reto" class="toc-link">1. El Reto y Simulador</a></li>
+          <li><a href="#conceptos-clave" class="toc-link">2. Conceptos Básicos</a></li>
+          <li><a href="#misiones-guiadas" class="toc-link">3. Misiones Paso a Paso</a></li>
+          <li><a href="#codigo-referencia" class="toc-link">4. Pistas y Código</a></li>
+          <li><a href="#desafios-pro" class="toc-link">5. Desafíos Pro</a></li>
+          <li><a href="#autoevaluacion" class="toc-link">6. Test de Comprensión</a></li>
+          <li><a href="#materiales" class="toc-link">7. Recursos</a></li>
+        </ul>
+        <div class="eleccion-enlace-editor">
+          <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch">Abrir Scratch Web ↗</a>
+        </div>
+      </aside>
+
+      <article class="tutorial-content scratch-tutorial eleccion-tutorial">
+        <header class="tutorial-header">
+          <div class="tutorial-badge-row">
+            <span class="card-badge-top badge-scratch">Tema 1 · Scratch</span>
+          </div>
+          <h1 class="tutorial-title">Proyecto 5: Plataformas</h1>
+          <p class="tutorial-lead">Construye dos niveles cortos con un suelo, bloques y un portal. El personaje camina y salta. Cuando toca el portal, el escenario cambia de nivel.</p>
+        </header>
+
+        <section id="el-reto">
+          <div class="section-header">
+            <h2 class="section-title">🎯 1. El Objetivo del Juego</h2>
+            <p class="section-desc" id="ayuda-juego">Usa ← y → para desplazarte y espacio o ↑ para saltar. También puedes usar los botones del simulador.</p>
+          </div>
+          <div class="callout callout-info">
+            <span class="callout-icon" aria-hidden="true">💡</span>
+            <div class="callout-content">
+              <p><strong>Reglas del juego</strong></p>
+              <ol class="eleccion-lista">
+                <li>Salta sobre los bloques para llegar al portal verde.</li>
+                <li>El suelo y los bloques son sólidos. Solo puedes saltar si estás apoyado.</li>
+                <li>En el segundo nivel, el portal termina la partida.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="simulator-box eleccion-juego" data-scratch-game="plataformas" role="group" tabindex="0"
+               aria-label="Simulador de Plataformas" aria-describedby="ayuda-juego">
+            <div class="simulator-header">
+              <div class="scratch-toolbar">
+                <button type="button" data-start class="btn-flag" title="Iniciar o reiniciar" aria-label="Bandera verde">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l17-10L4 2z"/></svg>
+                </button>
+                <button type="button" data-stop class="btn-stop" title="Detener juego" aria-label="Detener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+              </div>
+              <div class="eleccion-controles" aria-label="Controles del juego">
+                <button type="button" class="btn-sim-action" data-command="left" aria-label="Izquierda">←</button>
+                <button type="button" class="btn-sim-action" data-command="right" aria-label="Derecha">→</button>
+                <button type="button" class="btn-sim-action" data-command="action">Saltar</button>
+              </div>
+            </div>
+            <div class="simulator-main">
+                <div class="eleccion-escenario">
+                  <canvas width="480" height="360" aria-label="Escenario de Plataformas"></canvas>
+                </div>
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Nivel</span>
+                  <span class="telemetry-value" data-score>1 / 2</span>
+                </div>
+                <div class="eleccion-estado" data-status role="status">Pulsa la bandera verde para jugar.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="conceptos-clave">
+          <div class="section-header">
+            <h2 class="section-title">🧠 2. Los Conceptos Clave</h2>
+            <p class="section-desc">La gravedad cambia la velocidad del salto. El suelo y los bloques limitan dónde puede colocarse el personaje. Cuando llegues al portal, usarás un mensaje para pasar de nivel.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">A</span>
+              <h3 class="step-title">Posición y velocidad vertical son dos datos distintos</h3>
+            </div>
+            <p class="step-explanation">En Scratch, X es la posición horizontal e Y es la altura. Al subir, Y aumenta. <code>velocidad_Y</code> indica cuántos píxeles intentas recorrer en una vuelta. Saltar pone la velocidad a 12. La gravedad le resta 1 por vuelta. Si después aplicas el movimiento, empiezas subiendo 11 píxeles, luego 10, luego 9.</p>
+            <figure class="concept-figure">
+              <figcaption>Un salto visto de lado</figcaption>
+              <svg class="concept-diagram" viewBox="0 0 420 175" role="img" aria-labelledby="salto-trayectoria-titulo salto-trayectoria-descripcion">
+                <title id="salto-trayectoria-titulo">Trayectoria de un salto</title>
+                <desc id="salto-trayectoria-descripcion">La altura aumenta al principio. La velocidad se acerca a cero en la cima y se vuelve negativa al caer al suelo.</desc>
+                <path d="M28 149H394M28 149V19" stroke="#809ab0" stroke-width="2" fill="none"/>
+                <path d="M40 149Q207 -33 374 149" stroke="#0f766e" stroke-width="4" fill="none"/>
+                <circle cx="79" cy="112" r="5" fill="#0f766e"/>
+                <circle cx="207" cy="58" r="5" fill="#0f766e"/>
+                <circle cx="335" cy="112" r="5" fill="#0f766e"/>
+                <g fill="#17466b" font-size="16" font-weight="700" text-anchor="middle">
+                  <text x="79" y="96">↑ Sube</text>
+                  <text x="207" y="40">Cima</text>
+                  <text x="335" y="96">↓ Cae</text>
+                  <text x="342" y="170">Tiempo →</text>
+                </g>
+                <text x="28" y="17" fill="#17466b" font-size="15" font-weight="700">Altura (Y)</text>
+              </svg>
+            </figure>
+            <p class="step-explanation">En la cima la velocidad llega a 0 durante una vuelta. Después toma valores negativos y el personaje baja. Al aterrizar, vuelve a 0. El gráfico muestra la altura a lo largo del tiempo, incluso si el personaje salta sin avanzar en X.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">B</span>
+              <h3 class="step-title">Separa el movimiento horizontal del vertical</h3>
+            </div>
+            <p class="step-explanation">Dibuja suelo y bloques con un mismo color y usa el cuentagotas del sensor <strong>¿tocando el color?</strong>. Comprueba el contacto justo después de cada intento. Si avanzas 4 a la derecha y entras en una pared, suma −4 para recuperar tu posición.</p>
+            <figure class="concept-figure">
+              <figcaption>La misma comprobación sirve para dos ejes</figcaption>
+              <table class="concept-table">
+                <thead><tr><th scope="col">Prueba</th><th scope="col">Si toca el sólido</th><th scope="col">Si queda libre</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Mover X +4</th><td>Retrocede X −4.</td><td>Conserva la nueva X.</td></tr>
+                  <tr><th scope="row">Bajar Y −1 para comprobar el piso</th><td>Hay apoyo. Vuelve a la Y anterior.</td><td>No hay apoyo. Vuelve igualmente.</td></tr>
+                  <tr><th scope="row">Bajar Y −1 como movimiento real</th><td>Deshaz ese píxel y pon la velocidad a 0.</td><td>Conserva el píxel recorrido.</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p class="step-explanation">La prueba de apoyo solo pregunta si hay suelo debajo. El movimiento real recorre hasta 12 píxeles por vuelta, de uno en uno. Si detectas un bloque a mitad del recorrido, detienes la caída en el último píxel libre. Así el personaje puede rozar una pared y seguir bajando.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">C</span>
+              <h3 class="step-title">El portal avisa y el escenario cambia de nivel</h3>
+            </div>
+            <p class="step-explanation">El personaje detecta que toca el objeto <code>Portal</code> y envía <code>siguiente_nivel</code>. El escenario recibe el mensaje y decide si carga otro fondo o declara la victoria. Cuando el fondo cambia, el personaje y el portal se recolocan.</p>
+            <figure class="concept-figure">
+              <figcaption>Qué pasa al entrar en el portal</figcaption>
+              <ol class="concept-flow" role="list">
+                <li><strong>Personaje</strong>Detecta el contacto y envía un mensaje.</li>
+                <li><strong>Escenario</strong>Cambia al siguiente fondo según el nivel actual.</li>
+                <li><strong>Objetos</strong>Se colocan en los puntos del nuevo fondo.</li>
+              </ol>
+            </figure>
+            <p class="step-explanation">Aquí las paredes pertenecen al fondo y se detectan por color. El portal es un objeto, por eso puedes comprobarlo por su nombre aunque cambie de color o de forma. Al recolocar el personaje, reinicia su velocidad vertical.</p>
+          </div>
+        </section>
+
+        <section id="misiones-guiadas">
+          <div class="section-header">
+            <h2 class="section-title">🛠️ 3. Misiones Guiadas</h2>
+            <p class="section-desc">Crea un proyecto vacío en el <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener">editor de Scratch</a>. Sigue los pasos en orden y haz la prueba al final de cada misión.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">1</span>
+              <h3 class="step-title">Dibuja el circuito</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Borra el gato.</li>
+              <li>Pinta un personaje de unos 24 × 28 px y céntralo en el editor de disfraces.</li>
+              <li>Selecciona <strong>Escenario → Fondos</strong>. Pinta un suelo desde Y = −135 hasta el borde inferior. Puedes arrastrar temporalmente el personaje hasta esa altura usando el campo Y para localizarla.</li>
+              <li>Con el mismo color del suelo, pinta dos bloques que nazcan del suelo. Haz que cada peldaño suba unos 35–50 px y deja unos 35 px de hueco horizontal entre bloques.</li>
+              <li>Renombra el fondo <code>Nivel 1</code>.</li>
+              <li>Pinta un objeto <code>Portal</code> de un color distinto. Colócalo sobre el último bloque y anota sus coordenadas.</li>
+            </ol>
+            <figure class="concept-figure">
+              <figcaption>Distribución de ejemplo para el primer fondo</figcaption>
+              <svg class="concept-diagram" viewBox="0 0 420 145" role="img" aria-labelledby="circuito-titulo circuito-descripcion">
+                <title id="circuito-titulo">Primer circuito de plataformas</title>
+                <desc id="circuito-descripcion">De izquierda a derecha se ven la salida sobre el suelo, un bloque bajo y un bloque más alto con el portal encima. El suelo y los dos bloques son del mismo color.</desc>
+                <path d="M15 109H405V130H15Z M144 80H227V109H144Z M262 51H405V109H262Z" fill="#356485"/>
+                <rect x="36" y="86" width="20" height="23" rx="4" fill="#177f78"/>
+                <rect x="347" y="24" width="24" height="27" rx="4" fill="#238240"/>
+                <g fill="#17466b" font-size="15" font-weight="700" text-anchor="middle">
+                  <text x="46" y="76">Salida</text>
+                  <text x="185" y="71">Bloque 1</text>
+                  <text x="300" y="42">Bloque 2</text>
+                  <text x="360" y="17">Portal</text>
+                </g>
+                <text x="210" y="124" fill="#fff" font-size="14" text-anchor="middle">Suelo · superficie en Y = −135</text>
+              </svg>
+            </figure>
+            <p class="mission-check"><strong>Comprueba.</strong> El personaje cabe junto al primer bloque y el portal queda encima del último. El fondo y el portal son elementos distintos.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">2</span>
+              <h3 class="step-title">Camina y salta</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>En el personaje, crea <code>velocidad_Y</code>, <code>paso_Y</code>, <code>apoyado</code> y <code>espacio_antes</code>, solo para este objeto.</li>
+              <li>Al pulsar la bandera, ve a X = −205, Y = −118 y pon <code>velocidad_Y</code> y <code>espacio_antes</code> a 0.</li>
+              <li>Añade un <strong>por siempre</strong>. Prueba primero la <a href="#plataformas-horizontal">pieza horizontal</a> a la derecha. Construye su equivalente para la izquierda.</li>
+              <li>A continuación, usa la <a href="#plataformas-apoyo">prueba de apoyo</a>. Si hay suelo, espacio está pulsado y antes no lo estaba, da un impulso de 12.</li>
+              <li>Tras intentar el salto, pon <code>espacio_antes</code> a 0. Cámbialo a 1 si espacio está pulsado.</li>
+              <li>Resta 1 a <code>velocidad_Y</code> para aplicar la gravedad.</li>
+              <li>En <strong>Mis bloques</strong>, crea <code>mover en Y</code> y marca <strong>Ejecutar sin actualizar pantalla</strong>. Debajo de su definición coloca la <a href="#plataformas-paso">preparación del paso</a> y la <a href="#plataformas-contacto">comprobación de contacto</a>.</li>
+              <li>Llama a <code>mover en Y</code> al final del <strong>por siempre</strong>. Prueba el movimiento en un solo fondo antes de añadir el segundo nivel.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> El personaje frena ante la pared, aterriza encima del bloque y no vuelve a despegar si mantienes pulsado espacio.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">3</span>
+              <h3 class="step-title">Conecta dos niveles</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Duplica <code>Nivel 1</code>, llámalo <code>Nivel 2</code> y mueve los bloques. Deja libre el punto de partida.</li>
+              <li>Pinta un fondo <code>Victoria</code>. En el escenario, usa la bandera verde para recuperar el fondo <code>Nivel 1</code>.</li>
+              <li>En el portal, usa la bandera verde para recuperar sus coordenadas del primer nivel. Añade otro programa que lo coloque sobre el último bloque <strong>cuando el fondo cambie a</strong> <code>Nivel 2</code>.</li>
+              <li>En el personaje, añade también <strong>cuando el fondo cambie a</strong> <code>Nivel 2</code>. En ese programa vuelve al inicio y pon <code>velocidad_Y</code> a 0.</li>
+              <li>Al final del bucle del personaje, después de resolver las colisiones, comprueba si toca el portal. Si lo toca, envía <code>siguiente_nivel</code> y espera.</li>
+              <li>En el escenario, crea <strong>al recibir</strong> <code>siguiente_nivel</code>. Si <code>fondo [nombre]</code> es <code>Nivel 1</code>, cambia a <code>Nivel 2</code> y añade una espera breve de 0.05 segundos para que los objetos se coloquen. Si no, cambia a <code>Victoria</code> y detén todos.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Al cruzar el primer portal, el personaje vuelve al inicio del nuevo fondo. Al cruzar el segundo ves la victoria. La bandera devuelve todo al nivel 1.</p>
+          </div>
+        </section>
+
+        <section id="codigo-referencia">
+          <div class="section-header">
+            <h2 class="section-title">🔍 4. Pistas y Código de Referencia</h2>
+            <p class="section-desc">Usa cada fragmento en el objeto y en el momento que indica la misión. Prueba el fragmento y decide qué bloques hacen falta antes o después para que encaje.</p>
+          </div>
+
+          <div class="step-card" id="plataformas-horizontal">
+            <h3 class="step-title">Prueba una dirección y deshaz el choque</h3>
+            <p class="step-explanation">Mueve primero X. Si tras moverte tocas el color sólido, vuelve al punto donde estabas.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+sumar a x (4)
+si &lt;¿tocando el color [#356485]?&gt; entonces
+  sumar a x (-4)
+fin
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Ponla dentro de la condición de flecha derecha. Construye la versión para la izquierda. ¿Qué signos se invierten?</p>
+          </div>
+
+          <div class="step-card" id="plataformas-apoyo">
+            <h3 class="step-title">Mira un píxel hacia abajo</h3>
+            <p class="step-explanation">Esta pequeña prueba te dice si estás apoyado. Coge con el cuentagotas el color del suelo de tu proyecto.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+sumar a y (-1)
+dar a [apoyado v] el valor (0)
+si &lt;¿tocando el color [#356485]?&gt; entonces
+  dar a [apoyado v] el valor (1)
+fin
+sumar a y (1)
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Úsala justo antes del salto. Construye una condición que combine <code>apoyado = 1</code>, espacio pulsado y <code>espacio_antes = 0</code>.</p>
+          </div>
+
+          <div class="step-card" id="plataformas-paso">
+            <h3 class="step-title">Decide el sentido antes de mover</h3>
+            <p class="step-explanation">En el bloque <code>mover en Y</code>, comprueba si la velocidad es menor que −12. Si lo es, fíjala a −12. Luego elige el sentido del paso con el signo de la velocidad.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+dar a [paso_Y v] el valor (1)
+si &lt;(velocidad_Y) &lt; (0)&gt; entonces
+  dar a [paso_Y v] el valor (-1)
+fin
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Para saber cuántas vueltas necesita el movimiento, usa en <strong>repetir</strong> el valor absoluto <code>abs de (velocidad_Y)</code>. El valor absoluto de −4 es 4, pero cada paso será de −1.</p>
+          </div>
+
+          <div class="step-card" id="plataformas-contacto">
+            <h3 class="step-title">Resuelve un píxel de movimiento</h3>
+            <p class="step-explanation">Esta pieza va dentro del <strong>repetir</strong> que has preparado. Deshacer un paso significa sumar su opuesto, tanto al subir como al bajar.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+sumar a y (paso_Y)
+si &lt;¿tocando el color [#356485]?&gt; entonces
+  sumar a y ((0) - (paso_Y))
+  dar a [velocidad_Y v] el valor (0)
+fin
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Rodea la pieza con un <strong>si</strong> que solo la ejecute mientras <code>velocidad_Y</code> sea distinta de 0. ¿Por qué ese filtro importa tras chocar en la primera vuelta?</p>
+          </div>
+        </section>
+
+        <section id="desafios-pro">
+          <div class="section-header">
+            <h2 class="section-title">🚀 5. Desafíos Pro</h2>
+            <p class="section-desc">Cuando funcione el juego básico, elige una ampliación.</p>
+          </div>
+
+          <div class="cards-grid eleccion-desafios">
+            <div class="card">
+              <h3 class="card-title">Monedas</h3>
+              <p class="card-text">Crea una moneda que se esconda al tocar al personaje y sume 1 a <code>Monedas</code>.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Trampolín</h3>
+              <p class="card-text">Dibuja una superficie de otro color que dé un impulso mayor, por ejemplo 18.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Plataforma móvil</h3>
+              <p class="card-text">Usa un objeto que se deslice entre dos puntos y detecta su contacto como superficie adicional.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="autoevaluacion">
+          <div class="section-header">
+            <h2 class="section-title">📝 6. Test de Autocomprobación</h2>
+          </div>
+
+          <div class="quiz-container">
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">1. ¿Qué cambia la gravedad en cada vuelta?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="Al restar 1 a velocidad_Y, el personaje pierde impulso y acaba cayendo.">La coordenada X</button>
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="Al restar 1 a velocidad_Y, el personaje pierde impulso y acaba cayendo.">La velocidad vertical</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">2. ¿Qué hace el personaje si un paso lo mete en un bloque?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="Recupera la última posición libre para quedarse fuera del bloque.">Deshace el paso</button>
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="Recupera la última posición libre para quedarse fuera del bloque.">Aumenta la velocidad</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="materiales">
+          <div class="section-header">
+            <h2 class="section-title">📦 7. Recursos</h2>
+            <p class="section-desc">Dibuja tus propios personajes y objetos y fondos en el editor de Scratch para completar las misiones.</p>
+          </div>
+
+          <div class="asset-download-grid">
+            <div class="asset-card" style="border-color: #86efac;">
+              <div class="asset-preview" style="color: #16a34a;" aria-hidden="true">✅</div>
+              <span class="asset-tag">Proyecto Scratch .sb3</span>
+              <h3 class="asset-name">Proyecto básico</h3>
+              <p class="asset-desc">Versión terminada para comparar con tu proyecto al acabar las misiones.</p>
+              <a href="../../../assets/scratch/plataformas/plataformas-basico.sb3" download="plataformas-basico.sb3" class="btn btn-outline btn-download-asset">
+                📥 Descargar SB3
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica. Materiales didácticos y proyectos prácticos para el alumnado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Temario</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Programación con Scratch</a></li>
+          <li><a href="../../ia/index.html">Inteligencia Artificial</a></li>
+          <li><a href="../../robotica/index.html">Robótica y Sensores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT</a></li>
+          <li><a href="index.html#proyectos">Proyectos de Scratch</a></li>
+          <li><a href="../../../index.html">Página Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando · Pensamiento Computacional</span>
+    </div>
+  </footer>
+
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="../../../js/scratch-eleccion-sim.js"></script>
+</body>
+</html>

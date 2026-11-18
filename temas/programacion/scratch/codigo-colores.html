@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorial: Código de colores | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/scratch-blocks.css">
+  <link rel="stylesheet" href="../../../css/simulator.css">
+  <link rel="stylesheet" href="../../../css/codigo-colores.css">
+  <link rel="stylesheet" href="../../../css/scratch-tutorial.css">
+</head>
+<body>
+
+  <!-- Cabecera y Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan (Breadcrumb) -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Proyecto 4: Código de colores</span>
+    </nav>
+
+    <div class="tutorial-layout">
+      <aside class="tutorial-sidebar">
+        <h2 class="sidebar-title">En este tutorial</h2>
+        <ul class="toc-list">
+          <li><a href="#el-reto" class="toc-link">1. El Reto y Simulador</a></li>
+          <li><a href="#conceptos-clave" class="toc-link">2. Conceptos Básicos</a></li>
+          <li><a href="#misiones-guiadas" class="toc-link">3. Misiones Paso a Paso</a></li>
+          <li><a href="#codigo-referencia" class="toc-link">4. Pistas y Código</a></li>
+          <li><a href="#desafios-pro" class="toc-link">5. Desafíos Pro</a></li>
+          <li><a href="#autoevaluacion" class="toc-link">6. Test de Comprensión</a></li>
+          <li><a href="#materiales" class="toc-link">7. Recursos</a></li>
+        </ul>
+        <div class="codigo-enlace-editor">
+          <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch">Abrir Scratch Web ↗</a>
+        </div>
+      </aside>
+
+      <article class="tutorial-content scratch-tutorial codigo-tutorial">
+        <header class="tutorial-header">
+          <div class="tutorial-badge-row">
+            <span class="card-badge-top badge-scratch">Tema 1 · Scratch</span>
+            <span class="card-badge-top badge-ai">Nivel intermedio-avanzado</span>
+          </div>
+          <h1 class="tutorial-title">Proyecto 4: Código de colores</h1>
+          <p class="tutorial-lead">
+            Construye un juego de memoria con cuatro botones. Observa la secuencia, repítela en el mismo orden y descubre cuántas rondas puedes completar. Aprenderás a guardar datos en <strong>listas</strong>, recorrerlos por posición y coordinar el turno del programa con el del jugador.
+          </p>
+        </header>
+
+        <section id="el-reto">
+          <div class="section-header">
+            <h2 class="section-title">🎯 1. El Objetivo del Juego</h2>
+            <p class="section-desc" id="codigo-ayuda">Pulsa la <strong>bandera verde</strong>. Cuando aparezca «Tu turno», usa los botones del panel o las teclas 1 a 4 con el foco en el simulador.</p>
+          </div>
+
+          <div class="callout callout-info">
+            <div class="callout-icon" aria-hidden="true">💡</div>
+            <div class="callout-content">
+              <p><strong>Reglas del juego</strong></p>
+              <ol class="codigo-lista">
+                <li>La primera ronda empieza con un color elegido al azar.</li>
+                <li>Si repites bien toda la secuencia, sumas una ronda y se añade otro color al final.</li>
+                <li>El primer error termina la partida. Pulsa la bandera verde para volver a empezar.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="simulator-box" id="codigo-juego" role="group" tabindex="0"
+               aria-label="Simulador de Código de colores" aria-describedby="codigo-ayuda">
+            <div class="simulator-header">
+              <div class="scratch-toolbar">
+                <button type="button" id="codigo-iniciar" class="btn-flag" title="Iniciar o reiniciar" aria-label="Bandera verde">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l17-10L4 2z"/></svg>
+                </button>
+                <button type="button" id="codigo-detener" class="btn-stop" title="Detener juego" aria-label="Detener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+              </div>
+              <div class="simulator-toggles">
+                <label class="sim-toggle-label">
+                  <input type="checkbox" id="codigo-sonido" checked> Sonidos
+                </label>
+              </div>
+            </div>
+            <div class="simulator-main">
+              <div class="codigo-escenario">
+                <p class="codigo-estado" id="codigo-estado" role="status">Pulsa la bandera verde para jugar.</p>
+                <div class="codigo-panel">
+                  <button type="button" class="codigo-rojo" data-note data-color="rojo" aria-disabled="true">1 · Rojo</button>
+                  <button type="button" class="codigo-azul" data-note data-color="azul" aria-disabled="true">2 · Azul</button>
+                  <button type="button" class="codigo-verde" data-note data-color="verde" aria-disabled="true">3 · Verde</button>
+                  <button type="button" class="codigo-amarillo" data-note data-color="amarillo" aria-disabled="true">4 · Amarillo</button>
+                </div>
+              </div>
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Rondas completadas</span>
+                  <span class="telemetry-value" id="codigo-rondas">0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="conceptos-clave">
+          <div class="section-header">
+            <h2 class="section-title">🧠 2. Los Conceptos Clave</h2>
+            <p class="section-desc">En Robot Recolector, una variable guardaba los puntos. En este juego, Scratch necesita recordar varios colores en orden y repartir el turno entre el escenario y los botones.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">A</span>
+              <h3 class="step-title">Una lista guarda valores en orden</h3>
+            </div>
+            <p class="step-explanation">Una variable como <code>Rondas</code> guarda un valor. Una lista como <code>Secuencia</code> guarda varios. Cada elemento tiene un <strong>valor</strong> (el color) y una <strong>posición</strong> (el lugar que ocupa). Scratch empieza a contar en 1.</p>
+            <figure class="concept-figure">
+              <figcaption>Secuencia guardada</figcaption>
+              <table class="concept-table">
+                <thead><tr><th scope="col">Posición</th><th scope="col">Color</th><th scope="col">Qué sucede al leerla</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">1</th><td>🔴 rojo</td><td>Scratch enciende el botón rojo.</td></tr>
+                  <tr class="concept-focus"><th scope="row">2</th><td>🔵 azul</td><td>Scratch enciende el botón azul.</td></tr>
+                  <tr><th scope="row">3</th><td>🔴 rojo</td><td>Scratch vuelve a encender el botón rojo.</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p class="step-explanation">Con <code>Posición = 2</code>, el bloque <code>elemento (Posición) de [Secuencia]</code> devuelve <strong>azul</strong>. Aunque <strong>rojo</strong> aparece dos veces, cada aparición tiene su propia posición. Si añades verde, queda en la posición 4 y <code>longitud de [Secuencia]</code> pasa de 3 a 4.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">B</span>
+              <h3 class="step-title">El bucle recorre la lista con una posición</h3>
+            </div>
+            <p class="step-explanation"><code>Posición</code> funciona como un dedo que señala una fila. Al inicio apunta a la primera. En cada vuelta, lee el color de esa fila, espera a que termine el destello y avanza un sitio. La longitud de la lista indica cuántas vueltas hay que hacer.</p>
+            <figure class="concept-figure">
+              <figcaption>Tres vueltas con la misma instrucción</figcaption>
+              <ol class="concept-flow" role="list">
+                <li><strong>Vuelta 1</strong>Lee el rojo. Cambia la posición a 2.</li>
+                <li><strong>Vuelta 2</strong>Lee el azul. Cambia la posición a 3.</li>
+                <li><strong>Vuelta 3</strong>Lee el rojo. Termina el bucle.</li>
+              </ol>
+            </figure>
+            <p class="step-explanation">Al preparar el turno del jugador, vuelve a poner <code>Posición</code> a 1. Ahora cada vuelta compara el clic con la fila señalada. Para avanzar, el jugador debe acertar el color actual.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">C</span>
+              <h3 class="step-title">Los mensajes encienden botones y el turno permite responder</h3>
+            </div>
+            <p class="step-explanation">El escenario lleva la partida. Cada botón escucha el mensaje de su color y sabe cambiar de disfraz. Con <strong>enviar y esperar</strong>, el escenario continúa cuando el botón ha vuelto a <code>reposo</code>. La espera entre mensajes separa dos destellos del mismo color.</p>
+            <figure class="concept-figure">
+              <figcaption>Qué puede hacer el jugador</figcaption>
+              <table class="concept-table">
+                <thead><tr><th scope="col">Estado</th><th scope="col">Turno</th><th scope="col">Pulsación</th><th scope="col">Si hace clic</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Scratch muestra</th><td>0</td><td>Vacía</td><td>El botón ignora el clic.</td></tr>
+                  <tr><th scope="row">El jugador responde</th><td>1</td><td>Vacía</td><td>El botón guarda su color.</td></tr>
+                  <tr><th scope="row">Scratch comprueba</th><td>1</td><td>Ocupada</td><td>El botón deja el color guardado tal cual.</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p class="step-explanation"><code>Pulsación</code> funciona como un buzón para un solo clic. El escenario lo vacía cuando ya ha leído un acierto y espera otro color. Si el clic completa la ronda, deja el buzón ocupado hasta cerrar el turno.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">D</span>
+              <h3 class="step-title">El azar consulta una lista y amplía la otra</h3>
+            </div>
+            <p class="step-explanation"><code>Colores</code> es el catálogo fijo de opciones. Para elegir un color al azar, saca un número entre 1 y la longitud de <code>Colores</code>. Ese número es la posición que debes leer. La partida guarda el color leído al final de <code>Secuencia</code>.</p>
+            <figure class="concept-figure">
+              <figcaption>Ejemplo al preparar una ronda</figcaption>
+              <ol class="concept-flow" role="list">
+                <li><strong>Sorteo</strong>Sale la posición 3.</li>
+                <li><strong>Consulta Colores</strong>El elemento 3 es verde.</li>
+                <li><strong>Amplía Secuencia</strong>Rojo, azul y rojo pasan a rojo, azul, rojo y verde.</li>
+              </ol>
+            </figure>
+            <p class="step-explanation">Vacía <code>Secuencia</code> al comenzar la partida. Al pasar de ronda, solo añade el color elegido. Si sale verde dos veces seguidas, el jugador tiene que pulsarlo dos veces.</p>
+          </div>
+        </section>
+
+        <section id="misiones-guiadas">
+          <div class="section-header">
+            <h2 class="section-title">🛠️ 3. Misiones Guiadas</h2>
+            <p class="section-desc">Crea un proyecto vacío en el <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener">editor de Scratch</a>. Sigue los pasos en orden y haz la prueba al final de cada misión.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">1</span>
+              <h3 class="step-title">Dibuja y prueba el primer botón</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Borra el gato y pulsa <strong>Elige un objeto → Pintar</strong>.</li>
+              <li>Nombra el objeto <code>Rojo</code>. Dibuja un rectángulo rojo y escribe su nombre encima. Llama <code>reposo</code> al disfraz.</li>
+              <li>En <strong>Disfraces</strong>, duplica <code>reposo</code>. Cambia el relleno a un rojo más claro, conserva la posición del dibujo y llama <code>luz</code> a la copia.</li>
+              <li>En el código de <code>Rojo</code>, haz que la bandera verde muestre el disfraz <code>reposo</code>.</li>
+              <li>En <strong>Eventos</strong>, crea el mensaje <code>rojo</code>. Monta el destello con la <a href="#colores-destello">pieza del botón</a>.</li>
+              <li>Desde el escenario, pulsa un bloque <strong>enviar [rojo] y esperar</strong> suelto para probar el botón.</li>
+              <li>Duplica el objeto tres veces. Nombra las copias <code>Azul</code>, <code>Verde</code> y <code>Amarillo</code>. Cambia el color y el texto de ambos disfraces de cada copia.</li>
+              <li>Crea un mensaje distinto para cada copia. Cambia el desplegable del bloque <strong>al recibir</strong> de cada objeto y colócalos en una cuadrícula de 2 × 2. Si quieres sonido, coloca <strong>iniciar sonido</strong> al cambiar a <code>luz</code>.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Al enviar <code>azul</code>, solo parpadea Azul y luego vuelve a reposo.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">2</span>
+              <h3 class="step-title">Muestra una secuencia fija</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Selecciona el escenario. En <strong>Variables → Crear una lista</strong>, crea <code>Secuencia</code> para todos los objetos. Crea la variable <code>Posición</code>.</li>
+              <li>Debajo de la bandera verde, vacía la lista con <strong>eliminar todos de</strong>.</li>
+              <li>Añade tres bloques <strong>añadir</strong>. Escribe <code>rojo</code>, <code>azul</code> y <code>rojo</code>, en ese orden.</li>
+              <li>Pon <code>Posición</code> a 1. Crea un <strong>repetir</strong> con <code>longitud de [Secuencia]</code> en el hueco del número de vueltas.</li>
+              <li>Dentro de ese bucle, conecta la <a href="#colores-mostrar">pieza de lectura y envío</a>. Deja visible la lista para seguir la prueba.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Cada vez que pulsas la bandera ves tres destellos, rojo, azul y rojo, en ese orden.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">3</span>
+              <h3 class="step-title">Prepara el turno y recoge los clics</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Crea <code>Turno</code> y <code>Pulsación</code> para todos los objetos. Pinta tres fondos con texto arriba y llámalos <code>Observa la secuencia</code>, <code>Tu turno</code> y <code>Fin de la partida</code>.</li>
+              <li>Antes de mostrar la secuencia, pon <code>Turno</code> a 0 y cambia al fondo <code>Observa la secuencia</code>.</li>
+              <li>Después del bucle de demostración, pon <code>Posición</code> a 1. Fija <code>Pulsación</code> a un texto vacío borrando el contenido del hueco.</li>
+              <li>Cambia al fondo <code>Tu turno</code> y pon <code>Turno</code> a 1.</li>
+              <li>En cada botón, conecta la <a href="#colores-clic">pieza del clic</a> a <strong>al hacer clic en este objeto</strong>. Escribe el color de ese botón.</li>
+              <li>En el escenario, añade otro <strong>repetir</strong> con la longitud de la lista. Dentro espera a que haya pulsación, muestra el color elegido con <strong>enviar y esperar</strong> y compruébalo con la <a href="#colores-comprobar">pieza de comparación</a>.</li>
+              <li>Tras un acierto, vacía <code>Pulsación</code> solo si <code>Posición</code> es menor que la longitud de la lista. Después suma 1 a <code>Posición</code>. Al salir del bucle, pon <code>Turno</code> a 0.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Un clic durante la demostración se ignora. En tu turno, pulsa rojo y luego verde. La prueba debe terminar al fallar el segundo color.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">4</span>
+              <h3 class="step-title">Cambia la prueba fija por rondas al azar</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Crea la lista <code>Colores</code> para todos. Usa <strong>+</strong> en su monitor para introducir <code>rojo</code>, <code>azul</code>, <code>verde</code> y <code>amarillo</code>, uno por fila.</li>
+              <li>Crea <code>Rondas</code> y déjala visible. Al pulsar la bandera verde, pon <code>Rondas</code> y <code>Turno</code> a 0 y vacía <code>Secuencia</code>.</li>
+              <li>Retira los tres bloques que añadían colores fijos. A continuación de la inicialización, crea un <strong>por siempre</strong> que se encargue de las rondas.</li>
+              <li>Al principio del <strong>por siempre</strong>, deja <code>Turno</code> a 0, cambia a <code>Observa la secuencia</code> y usa la <a href="#colores-azar">pieza de azar</a> para añadir un color. Espera un instante antes de mostrarlo.</li>
+              <li>Coloca dentro del <strong>por siempre</strong> los bloques que ya probaste para mostrar la secuencia, abrir el turno, comprobar los clics y cerrar el turno.</li>
+              <li>Tras cerrar el turno, suma 1 a <code>Rondas</code>. Un fallo debe detener todos los scripts antes de llegar a esa suma.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> La primera ronda pide un color. Al acertarla, el marcador pasa a 1 y la siguiente ronda conserva ese color y añade otro.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">5</span>
+              <h3 class="step-title">Prueba el juego por parejas</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Pide a un compañero que complete una ronda y anote qué colores se encienden en la siguiente.</li>
+              <li>Pídele que pulse durante la demostración, que falle a propósito en su turno y que reinicie.</li>
+              <li>Comprueba con él que el fallo no suma una ronda y que al reiniciar el marcador vuelve a 0.</li>
+              <li>Corrige un problema que encontréis o indica qué bloque evita cada fallo de la prueba.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Al reiniciar durante un destello, vuelve a empezar con un solo color y todos los botones en su estado de reposo antes de la demostración.</p>
+          </div>
+        </section>
+
+        <section id="codigo-referencia">
+          <div class="section-header">
+            <h2 class="section-title">🔍 4. Pistas y Código de Referencia</h2>
+            <p class="section-desc">Usa cada fragmento en el objeto y en el momento que indica la misión. Prueba el fragmento y decide qué bloques hacen falta antes o después para que encaje.</p>
+          </div>
+
+          <div class="step-card" id="colores-destello">
+            <h3 class="step-title">Haz un destello</h3>
+            <p class="step-explanation">Pon esta pieza debajo de <strong>al recibir [rojo]</strong> en el objeto Rojo. La espera determina cuánto se ve el disfraz iluminado.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+cambiar disfraz a [luz v]
+esperar (0.42) segundos
+cambiar disfraz a [reposo v]
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Prueba el rojo antes de duplicarlo. En las copias, ¿qué mensaje debe activar cada botón?</p>
+          </div>
+
+          <div class="step-card" id="colores-mostrar">
+            <h3 class="step-title">Lee una posición y conviértela en mensaje</h3>
+            <p class="step-explanation">El bloque naranja obtiene el texto de la fila. Al encajarlo en <strong>enviar y esperar</strong>, ese texto decide qué botón se enciende.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+enviar (elemento (Posición) de [Secuencia v]) y esperar
+esperar (0.18) segundos
+sumar a [Posición v] (1)
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Pon la pieza dentro del bucle de demostración. Si omites el incremento, ¿qué fila se repetirá en todos los destellos?</p>
+          </div>
+
+          <div class="step-card" id="colores-clic">
+            <h3 class="step-title">Acepta una pulsación solo cuando toca</h3>
+            <p class="step-explanation">El operador verde <strong>y</strong> exige que las dos preguntas sean verdaderas. Deja vacío el recuadro que se compara con <code>Pulsación</code>.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+si &lt;&lt;(Turno) = (1)&gt; y &lt;(Pulsación) = []&gt;&gt; entonces
+  dar a [Pulsación v] el valor [rojo]
+fin
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Completa la pieza para los otros tres botones. En el escenario, usa <strong>esperar hasta que</strong> con un <strong>no</strong> alrededor de <code>Pulsación = []</code>. Así el escenario sigue cuando el buzón tiene un color.</p>
+          </div>
+
+          <div class="step-card" id="colores-comprobar">
+            <h3 class="step-title">Detecta un fallo</h3>
+            <p class="step-explanation">La igualdad indica un acierto. Usa <strong>no</strong> alrededor para detectar un fallo. Coloca la condición después de mostrar el destello del clic.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+&lt;no &lt;(Pulsación) = (elemento (Posición) de [Secuencia v])&gt;&gt;
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Encaja esta condición en un <strong>si</strong>. Decide qué tres acciones cierran el turno, muestran el fondo de fin y detienen el juego. El avance de <code>Posición</code> corresponde al camino de acierto.</p>
+          </div>
+
+          <div class="step-card" id="colores-azar">
+            <h3 class="step-title">Sortea un color y añádelo</h3>
+            <p class="step-explanation">Construye el bloque de dentro hacia fuera. Primero saca una posición. Después usa esa posición para leer <code>Colores</code>.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+añadir (elemento (número aleatorio entre (1) y (longitud de [Colores v])) de [Colores v]) a [Secuencia v]
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Pon este bloque dentro de las rondas. Localiza qué bloque debe quedar fuera del bucle para conservar los colores ganados.</p>
+          </div>
+        </section>
+
+        <section id="desafios-pro">
+          <div class="section-header">
+            <h2 class="section-title">🚀 5. Desafíos Pro</h2>
+            <p class="section-desc">Cuando el juego funcione, elige una mejora y explica cómo la has comprobado.</p>
+          </div>
+          <div class="cards-grid codigo-desafios">
+            <div class="card">
+              <h3 class="card-title">Cambia el ritmo</h3>
+              <p class="card-text">Usa una variable para acortar la pausa a medida que aumentan las rondas. Deja tiempo suficiente para distinguir dos destellos del mismo color.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Crea tu propio bloque</h3>
+              <p class="card-text">En <strong>Mis bloques</strong>, crea <code>mostrar secuencia</code>. Lleva allí el código que recorre la lista y usa tu bloque al inicio de cada ronda.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="autoevaluacion">
+          <div class="section-header">
+            <h2 class="section-title">📝 6. Test de Autocomprobación</h2>
+          </div>
+          <div class="quiz-container">
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">1. Si la secuencia es rojo, azul, rojo, ¿qué devuelve el elemento 2?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="Rojo ocupa las posiciones 1 y 3.">Rojo</button>
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="Scratch empieza a contar en 1. El segundo elemento es azul.">Azul</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">2. ¿Por qué usamos «enviar y esperar» para mostrar la secuencia?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="El escenario espera a que el botón vuelva a reposo antes de continuar.">Para dejar que termine cada destello</button>
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="La lista guarda los colores. El mensaje activa el código del botón.">Para añadir colores a la lista</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">3. ¿Cuándo se vacía la lista Secuencia?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="La ronda nueva necesita conservar todos los colores de la anterior.">Al comenzar cada ronda</button>
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="Al pulsar la bandera empieza una partida nueva. Cada ronda añade un color a la lista que ya existe.">Al comenzar la partida con la bandera</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="materiales">
+          <div class="section-header">
+            <h2 class="section-title">📦 7. Recursos</h2>
+            <p class="section-desc">Dibuja tus propios botones y fondos en el editor de Scratch para completar las misiones.</p>
+          </div>
+
+          <div class="asset-download-grid">
+            <div class="asset-card" style="border-color: #86efac;">
+              <div class="asset-preview" style="color: #16a34a;" aria-hidden="true">✅</div>
+              <span class="asset-tag">Proyecto Scratch .sb3</span>
+              <h3 class="asset-name">Proyecto básico</h3>
+              <p class="asset-desc">Versión terminada para comparar con tu proyecto al acabar las misiones.</p>
+              <a href="../../../assets/scratch/codigo-colores/codigo-colores-solucion.sb3" download="codigo-colores-solucion.sb3" class="btn btn-outline btn-download-asset">
+                📥 Descargar SB3
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica. Materiales didácticos y proyectos prácticos para el alumnado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Temario</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Programación con Scratch</a></li>
+          <li><a href="../../ia/index.html">Inteligencia Artificial</a></li>
+          <li><a href="../../robotica/index.html">Robótica y Sensores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT</a></li>
+          <li><a href="laberinto.html">Proyecto 3: El Laberinto Mágico</a></li>
+          <li><a href="../../../index.html">Página Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando · Pensamiento Computacional</span>
+    </div>
+  </footer>
+
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="../../../js/codigo-colores-sim.js"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto 7: Endless Runner | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/scratch-blocks.css">
+  <link rel="stylesheet" href="../../../css/simulator.css">
+  <link rel="stylesheet" href="../../../css/scratch-eleccion.css">
+  <link rel="stylesheet" href="../../../css/scratch-tutorial.css">
+</head>
+<body>
+
+  <!-- Cabecera y Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan (Breadcrumb) -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Proyecto 7: Endless Runner</span>
+    </nav>
+
+    <div class="tutorial-layout">
+      <aside class="tutorial-sidebar">
+        <h2 class="sidebar-title">En este tutorial</h2>
+        <ul class="toc-list">
+          <li><a href="#el-reto" class="toc-link">1. El Reto y Simulador</a></li>
+          <li><a href="#conceptos-clave" class="toc-link">2. Conceptos Básicos</a></li>
+          <li><a href="#misiones-guiadas" class="toc-link">3. Misiones Paso a Paso</a></li>
+          <li><a href="#codigo-referencia" class="toc-link">4. Pistas y Código</a></li>
+          <li><a href="#desafios-pro" class="toc-link">5. Desafíos Pro</a></li>
+          <li><a href="#autoevaluacion" class="toc-link">6. Test de Comprensión</a></li>
+          <li><a href="#materiales" class="toc-link">7. Recursos</a></li>
+        </ul>
+        <div class="eleccion-enlace-editor">
+          <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch">Abrir Scratch Web ↗</a>
+        </div>
+      </aside>
+
+      <article class="tutorial-content scratch-tutorial eleccion-tutorial">
+        <header class="tutorial-header">
+          <div class="tutorial-badge-row">
+            <span class="card-badge-top badge-scratch">Tema 1 · Scratch</span>
+          </div>
+          <h1 class="tutorial-title">Proyecto 7: Endless Runner</h1>
+          <p class="tutorial-lead">El personaje se queda en la misma X. Los obstáculos vienen hacia él y cada vez avanzan más rápido. Solo tienes que saltar a tiempo.</p>
+        </header>
+
+        <section id="el-reto">
+          <div class="section-header">
+            <h2 class="section-title">🎯 1. El Objetivo del Juego</h2>
+            <p class="section-desc" id="ayuda-juego">Pulsa espacio, ↑ o el botón de salto. La partida acaba con el primer choque.</p>
+          </div>
+          <div class="callout callout-info">
+            <span class="callout-icon" aria-hidden="true">💡</span>
+            <div class="callout-content">
+              <p><strong>Reglas del juego</strong></p>
+              <ol class="eleccion-lista">
+                <li>Salta los obstáculos que llegan desde la derecha.</li>
+                <li>La distancia aumenta mientras sigas corriendo.</li>
+                <li>Cada tramo aumenta la velocidad hasta un límite.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="simulator-box eleccion-juego" data-scratch-game="endless-runner" role="group" tabindex="0"
+               aria-label="Simulador de Endless Runner" aria-describedby="ayuda-juego">
+            <div class="simulator-header">
+              <div class="scratch-toolbar">
+                <button type="button" data-start class="btn-flag" title="Iniciar o reiniciar" aria-label="Bandera verde">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l17-10L4 2z"/></svg>
+                </button>
+                <button type="button" data-stop class="btn-stop" title="Detener juego" aria-label="Detener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+              </div>
+              <div class="eleccion-controles" aria-label="Controles del juego">
+                <button type="button" class="btn-sim-action" data-command="action">Saltar</button>
+              </div>
+            </div>
+            <div class="simulator-main">
+                <div class="eleccion-escenario">
+                  <canvas width="480" height="360" aria-label="Escenario de Endless Runner"></canvas>
+                </div>
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Distancia</span>
+                  <span class="telemetry-value" data-score>0</span>
+                </div>
+                <div class="eleccion-estado" data-status role="status">Pulsa la bandera verde para jugar.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="conceptos-clave">
+          <div class="section-header">
+            <h2 class="section-title">🧠 2. Los Conceptos Clave</h2>
+            <p class="section-desc">El personaje conserva su posición horizontal. El juego parece avanzar porque los obstáculos se acercan, aparecen en momentos distintos y comparten una velocidad que cambia.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">A</span>
+              <h3 class="step-title">El corredor salta en Y y los obstáculos se mueven en X</h3>
+            </div>
+            <p class="step-explanation">En Scratch, restar a X mueve un objeto hacia la izquierda. Si un obstáculo empieza en X = 225 y restas 4 cada vuelta, sus siguientes posiciones son 221 y 217. Mientras tanto, el corredor conserva X = −140.</p>
+            <figure class="concept-figure">
+              <figcaption>Qué coordenadas cambian al avanzar</figcaption>
+              <table class="concept-table">
+                <thead><tr><th scope="col">Objeto</th><th scope="col">Al empezar</th><th scope="col">Dos vueltas después</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Corredor en el suelo</th><td>X = −140, Y = −120</td><td>X = −140, Y = −120</td></tr>
+                  <tr><th scope="row">Obstáculo</th><td>X = 225, Y = −122</td><td>X = 217, Y = −122</td></tr>
+                  <tr><th scope="row">Corredor al saltar</th><td>X = −140, Y = −120</td><td>X = −140, Y sube</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p class="step-explanation">Para saltar, el corredor cambia su velocidad vertical. La gravedad le resta 1 por vuelta y, al aterrizar, el juego fija de nuevo su Y a −120. Como la pista es plana, basta comparar su altura con ese número.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">B</span>
+              <h3 class="step-title">Un tiempo aleatorio separa cada obstáculo del anterior</h3>
+            </div>
+            <p class="step-explanation">El objeto original <code>Obstáculo</code> se queda oculto. En cada vuelta, elige un entero del 9 al 17, lo divide por 10 y espera ese número de segundos. Después crea un clon y vuelve a sortear.</p>
+            <figure class="concept-figure">
+              <figcaption>Un ejemplo con dos pausas distintas</figcaption>
+              <ol class="concept-flow" role="list">
+                <li><strong>Primera espera</strong>Sale 12. Espera 1.2 segundos.</li>
+                <li><strong>Aparece un clon</strong>Empieza a moverse desde la derecha.</li>
+                <li><strong>Segunda espera</strong>Sale 16. A los 1.6 segundos aparece otro clon.</li>
+              </ol>
+            </figure>
+            <p class="step-explanation">La espera mínima reduce el riesgo de que dos obstáculos seguidos dejen demasiado poco tiempo para aterrizar. Prueba primero intervalos fijos para poder repetir la prueba y luego activa el azar.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">C</span>
+              <h3 class="step-title">La distancia marca cuándo se acelera</h3>
+            </div>
+            <p class="step-explanation">El escenario suma un punto a <code>Distancia</code> cada 0.5 segundos. Con el bloque verde <strong>mod</strong> puedes obtener el resto al dividir por 10. El resto es 0 cuando se completa un tramo de diez puntos.</p>
+            <figure class="concept-figure">
+              <figcaption>Ejemplos de la velocidad durante una partida</figcaption>
+              <table class="concept-table">
+                <thead><tr><th scope="col">Distancia</th><th scope="col">Resto al dividir por 10</th><th scope="col">Velocidad</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">0</th><td>0</td><td>4 al arrancar, antes de contar.</td></tr>
+                  <tr><th scope="row">9</th><td>9</td><td>Sigue en 4.</td></tr>
+                  <tr><th scope="row">10</th><td>0</td><td>Sube a 5.</td></tr>
+                  <tr><th scope="row">20</th><td>0</td><td>Sube a 6.</td></tr>
+                  <tr><th scope="row">50 y más</th><td>Vuelve a 0 cada 10 puntos.</td><td>9 como máximo.</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p class="step-explanation"><code>Velocidad</code> está disponible para todos los objetos. Cada clon lee su valor en cada vuelta. Así aceleran tanto los obstáculos que ya se mueven como los siguientes.</p>
+          </div>
+        </section>
+
+        <section id="misiones-guiadas">
+          <div class="section-header">
+            <h2 class="section-title">🛠️ 3. Misiones Guiadas</h2>
+            <p class="section-desc">Crea un proyecto vacío en el <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener">editor de Scratch</a>. Sigue los pasos en orden y haz la prueba al final de cada misión.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">1</span>
+              <h3 class="step-title">Dibuja la pista y programa un salto</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Borra el gato. Pinta un corredor de unos 25 × 30 px y centra el disfraz.</li>
+              <li>En <strong>Escenario → Fondos</strong>, pinta <code>Pista</code> con una línea de suelo alrededor de Y = −135, a la altura de los pies del corredor.</li>
+              <li>En el corredor, crea <code>velocidad_Y</code> solo para este objeto.</li>
+              <li>Al pulsar la bandera, coloca al corredor en X = −140, Y = −120 y pon su velocidad vertical a 0.</li>
+              <li>En un script separado, usa <strong>al presionar tecla espacio</strong>. Si el corredor está en Y = −120, dale una velocidad vertical de 13.</li>
+              <li>En el script de la bandera, añade un <strong>por siempre</strong>. Conecta la <a href="#runner-gravedad">pieza de movimiento y gravedad</a> con la <a href="#runner-suelo">pieza de aterrizaje</a>.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Salta sin avanzar en X. Una segunda pulsación en el aire no cambia el salto y el corredor aterriza siempre a la misma altura.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">2</span>
+              <h3 class="step-title">Haz aparecer obstáculos y detecta choques</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Pinta un objeto <code>Obstáculo</code> de unos 26 px de alto. Crea <code>Velocidad</code> para todos los objetos.</li>
+              <li>En el escenario, pon <code>Velocidad</code> a 4 al pulsar la bandera y envía el mensaje <code>correr</code>.</li>
+              <li>En el obstáculo original, al recibir <code>correr</code>, escóndelo. Añade un <strong>por siempre</strong> que espere 1 segundo y cree un clon.</li>
+              <li>En un script con <strong>al comenzar como clon</strong>, ve a X = 225, Y = −122 y muestra la copia.</li>
+              <li>Añade un <strong>repetir hasta que</strong> X sea menor que −220. En cada vuelta, suma a X el resultado de <code>0 − Velocidad</code>. Si toca al corredor, envía <code>choque</code>. Al salir del bucle por la izquierda, elimina el clon.</li>
+              <li>En el escenario, al recibir <code>choque</code>, detén todos. Prueba el movimiento con intervalos fijos.</li>
+              <li>Sustituye la espera de un segundo por la <a href="#runner-azar">espera aleatoria</a>.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Puedes saltar un obstáculo. Si lo tocas, la partida se detiene. En varias partidas cambia el intervalo entre apariciones.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">3</span>
+              <h3 class="step-title">Une distancia y velocidad</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Crea <code>Distancia</code> para todos los objetos y deja visible su marcador.</li>
+              <li>Revisa el script de bandera del escenario. Recupera <code>Pista</code>, pon <code>Distancia</code> a 0 y <code>Velocidad</code> a 4 antes de enviar <code>correr</code>.</li>
+              <li>Después del mensaje, añade un <strong>por siempre</strong>. Dentro espera 0.5 segundos y suma 1 a <code>Distancia</code>.</li>
+              <li>Justo después, comprueba la <a href="#runner-tramo">condición de tramo</a>. Si se cumple, suma 1 a <code>Velocidad</code>.</li>
+              <li>Pinta un fondo <code>Fin</code>. En <strong>al recibir</strong> <code>choque</code>, cambia a ese fondo antes de detener todos.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> A los 10 puntos, la velocidad pasa de 4 a 5. Al chocar se corta la cuenta y al reiniciar recuperas distancia 0 y velocidad 4.</p>
+          </div>
+        </section>
+
+        <section id="codigo-referencia">
+          <div class="section-header">
+            <h2 class="section-title">🔍 4. Pistas y Código de Referencia</h2>
+            <p class="section-desc">Usa cada fragmento en el objeto y en el momento que indica la misión. Prueba el fragmento y decide qué bloques hacen falta antes o después para que encaje.</p>
+          </div>
+
+          <div class="step-card" id="runner-gravedad">
+            <h3 class="step-title">Primero mueve, después cambia la velocidad</h3>
+            <p class="step-explanation">La primera instrucción aplica la velocidad actual a Y. La segunda prepara la velocidad para la siguiente vuelta.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+sumar a y (velocidad_Y)
+sumar a [velocidad_Y v] (-1)
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Coloca las dos instrucciones dentro del bucle del corredor. Si la velocidad vale 3 en una vuelta, ¿cuánto sumará a Y en la siguiente?</p>
+          </div>
+
+          <div class="step-card" id="runner-suelo">
+            <h3 class="step-title">Frena a la altura de la pista</h3>
+            <p class="step-explanation">Al cortar la caída en Y = −120, el corredor queda sobre el suelo y empieza el próximo salto desde el mismo punto.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+si &lt;(posición en y) &lt; (-120)&gt; entonces
+  dar a y el valor (-120)
+  dar a [velocidad_Y v] el valor (0)
+fin
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Conéctala después de mover. Vuelve al evento de espacio y comprueba qué condición impide despegar en el aire.</p>
+          </div>
+
+          <div class="step-card" id="runner-azar">
+            <h3 class="step-title">Sortea cuánto espera el original</h3>
+            <p class="step-explanation">El bloque de azar da un entero. Divídelo por 10 para convertirlo en décimas de segundo.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+esperar ((número aleatorio entre (9) y (17)) / (10)) segundos
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> ¿Dónde pondrías el bloque que crea la copia para que respete la espera? Pon esta pieza en el original para que cada clon solo tenga que moverse.</p>
+          </div>
+
+          <div class="step-card" id="runner-tramo">
+            <h3 class="step-title">Comprueba si toca acelerar</h3>
+            <p class="step-explanation">El <strong>mod</strong> obtiene el resto. La segunda condición se vuelve falsa al llegar a <code>Velocidad = 9</code>. En ese punto se deja de acelerar.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+&lt;&lt;((Distancia) mod (10)) = (0)&gt; y &lt;(Velocidad) &lt; (9)&gt;&gt;
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Encaja la pieza en un <strong>si</strong> después de sumar un punto a <code>Distancia</code>. Decide qué único bloque pondrás dentro del <strong>si</strong>.</p>
+          </div>
+        </section>
+
+        <section id="desafios-pro">
+          <div class="section-header">
+            <h2 class="section-title">🚀 5. Desafíos Pro</h2>
+            <p class="section-desc">Cuando funcione el juego básico, elige una ampliación.</p>
+          </div>
+
+          <div class="cards-grid eleccion-desafios">
+            <div class="card">
+              <h3 class="card-title">Música y ritmo</h3>
+              <p class="card-text">Añade música o un pulso sonoro. Prueba intervalos que duren dos o tres pulsos manteniendo una separación que se pueda saltar.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Récord de la sesión</h3>
+              <p class="card-text">Usa <code>Récord</code> para conservar la mejor distancia entre partidas de la misma sesión.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Aspectos o récord compartido</h3>
+              <p class="card-text">Deja elegir un disfraz antes de correr. Como ampliación adicional, explora una variable en la nube para guardar solo una puntuación numérica si tu cuenta puede usarla.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="autoevaluacion">
+          <div class="section-header">
+            <h2 class="section-title">📝 6. Test de Autocomprobación</h2>
+          </div>
+
+          <div class="quiz-container">
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">1. ¿Qué cambia en X mientras se corre?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="El corredor conserva su X. Son los obstáculos los que se acercan.">El corredor</button>
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="El corredor conserva su X. Son los obstáculos los que se acercan.">Los obstáculos</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">2. ¿Por qué fijamos un tiempo mínimo entre obstáculos?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="El intervalo sigue siendo aleatorio, pero evita encadenar obstáculos imposibles de saltar.">Para que haya tiempo de aterrizar</button>
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="El intervalo sigue siendo aleatorio, pero evita encadenar obstáculos imposibles de saltar.">Para que todos salgan a la misma distancia</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="materiales">
+          <div class="section-header">
+            <h2 class="section-title">📦 7. Recursos</h2>
+            <p class="section-desc">Dibuja tus propios personajes y objetos y fondos en el editor de Scratch para completar las misiones.</p>
+          </div>
+
+          <div class="asset-download-grid">
+            <div class="asset-card" style="border-color: #86efac;">
+              <div class="asset-preview" style="color: #16a34a;" aria-hidden="true">✅</div>
+              <span class="asset-tag">Proyecto Scratch .sb3</span>
+              <h3 class="asset-name">Proyecto básico</h3>
+              <p class="asset-desc">Versión terminada para comparar con tu proyecto al acabar las misiones.</p>
+              <a href="../../../assets/scratch/endless-runner/endless-runner-basico.sb3" download="endless-runner-basico.sb3" class="btn btn-outline btn-download-asset">
+                📥 Descargar SB3
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica. Materiales didácticos y proyectos prácticos para el alumnado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Temario</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Programación con Scratch</a></li>
+          <li><a href="../../ia/index.html">Inteligencia Artificial</a></li>
+          <li><a href="../../robotica/index.html">Robótica y Sensores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT</a></li>
+          <li><a href="index.html#proyectos">Proyectos de Scratch</a></li>
+          <li><a href="../../../index.html">Página Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando · Pensamiento Computacional</span>
+    </div>
+  </footer>
+
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="../../../js/scratch-eleccion-sim.js"></script>
+</body>
+</html>

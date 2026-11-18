@@ -1,0 +1,128 @@
+.eleccion-tutorial {
+  min-width: 0;
+}
+
+.eleccion-tutorial .tutorial-badge-row {
+  flex-wrap: wrap;
+}
+
+.eleccion-tutorial .card-badge-top {
+  position: static;
+}
+
+.eleccion-enlace-editor {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.eleccion-enlace-editor .btn {
+  width: 100%;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.eleccion-lista {
+  padding-inline-start: 1.35rem;
+}
+
+.eleccion-lista li + li {
+  margin-top: 0.4rem;
+}
+
+.eleccion-desafios {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.eleccion-juego:focus-visible,
+.eleccion-juego button:focus-visible,
+.eleccion-juego input:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.eleccion-controles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.eleccion-controles .btn-sim-action {
+  min-height: 2.25rem;
+  touch-action: none;
+}
+
+.eleccion-escenario {
+  background: #0c1825;
+}
+
+.eleccion-escenario canvas {
+  display: block;
+  width: min(100%, 640px);
+  height: auto;
+  margin-inline: auto;
+}
+
+.eleccion-estado {
+  display: flex;
+  align-items: center;
+  flex: 1 1 15rem;
+  min-height: 2.5rem;
+}
+
+.escape-escenario {
+  width: min(100%, 640px);
+  margin-inline: auto;
+  padding: clamp(1rem, 4vw, 2rem);
+  color: #e2e8f0;
+  background: radial-gradient(ellipse at top, #34294a, #171728);
+}
+
+.escape-objetos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.escape-objetos button {
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+  min-height: 5.5rem;
+  padding: 0.75rem;
+  border: 1px solid #8675ab;
+  border-radius: var(--radius-md);
+  background: #28213b;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.escape-objetos button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.escape-objetos span {
+  font-size: 1.6rem;
+}
+
+.escape-codigo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.escape-codigo[hidden] {
+  display: none;
+}
+
+.escape-codigo input {
+  width: 6rem;
+  padding: 0.35rem;
+  border: 1px solid var(--border-tech);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}

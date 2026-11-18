@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proyecto 8: Escape Room | PIAR</title>
+  <link rel="stylesheet" href="../../../css/style.css">
+  <link rel="stylesheet" href="../../../css/scratch-blocks.css">
+  <link rel="stylesheet" href="../../../css/simulator.css">
+  <link rel="stylesheet" href="../../../css/scratch-eleccion.css">
+  <link rel="stylesheet" href="../../../css/scratch-tutorial.css">
+</head>
+<body>
+
+  <!-- Cabecera y Navegación -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="../../../index.html" class="brand-logo">
+        <span class="brand-badge">PIAR</span>
+        <span>Portal de Aprendizaje</span>
+      </a>
+      <nav class="main-nav">
+        <a href="../../../index.html" class="nav-link">Inicio</a>
+        <a href="../index.html" class="nav-link active">Programación <span class="nav-link-badge">Scratch</span></a>
+        <a href="../../ia/index.html" class="nav-link">Inteligencia Artificial</a>
+        <a href="../../robotica/index.html" class="nav-link">Robótica</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <!-- Migas de pan (Breadcrumb) -->
+    <nav class="breadcrumb" aria-label="Navegación">
+      <a href="../../../index.html">Inicio</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="../index.html">Programación</a>
+      <span class="breadcrumb-separator">/</span>
+      <a href="index.html">Scratch</a>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-current">Proyecto 8: Escape Room</span>
+    </nav>
+
+    <div class="tutorial-layout">
+      <aside class="tutorial-sidebar">
+        <h2 class="sidebar-title">En este tutorial</h2>
+        <ul class="toc-list">
+          <li><a href="#el-reto" class="toc-link">1. El Reto y Simulador</a></li>
+          <li><a href="#conceptos-clave" class="toc-link">2. Conceptos Básicos</a></li>
+          <li><a href="#misiones-guiadas" class="toc-link">3. Misiones Paso a Paso</a></li>
+          <li><a href="#codigo-referencia" class="toc-link">4. Pistas y Código</a></li>
+          <li><a href="#desafios-pro" class="toc-link">5. Desafíos Pro</a></li>
+          <li><a href="#autoevaluacion" class="toc-link">6. Test de Comprensión</a></li>
+          <li><a href="#materiales" class="toc-link">7. Recursos</a></li>
+        </ul>
+        <div class="eleccion-enlace-editor">
+          <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener" class="btn btn-scratch">Abrir Scratch Web ↗</a>
+        </div>
+      </aside>
+
+      <article class="tutorial-content scratch-tutorial eleccion-tutorial">
+        <header class="tutorial-header">
+          <div class="tutorial-badge-row">
+            <span class="card-badge-top badge-scratch">Tema 1 · Scratch</span>
+          </div>
+          <h1 class="tutorial-title">Proyecto 8: Escape Room</h1>
+          <p class="tutorial-lead">Estás en una habitación con una llave, una nota y una puerta. Guarda la llave en el inventario y usa la nota para resolver un único código.</p>
+        </header>
+
+        <section id="el-reto">
+          <div class="section-header">
+            <h2 class="section-title">🎯 1. El Objetivo del Juego</h2>
+            <p class="section-desc" id="ayuda-juego">Pulsa la bandera verde y haz clic en los objetos de la habitación. Si la puerta pide el código, escríbelo y confirma.</p>
+          </div>
+          <div class="callout callout-info">
+            <span class="callout-icon" aria-hidden="true">💡</span>
+            <div class="callout-content">
+              <p><strong>Reglas del juego</strong></p>
+              <ol class="eleccion-lista">
+                <li>Haz clic en la llave para guardarla en el inventario.</li>
+                <li>La nota contiene la pista. Cuenta en el orden indicado.</li>
+                <li>La puerta pide el código solo cuando tienes la llave. Puedes reintentar.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="simulator-box eleccion-juego" data-scratch-game="escape-room" role="group" tabindex="0"
+               aria-label="Simulador de Escape Room" aria-describedby="ayuda-juego">
+            <div class="simulator-header">
+              <div class="scratch-toolbar">
+                <button type="button" data-start class="btn-flag" title="Iniciar o reiniciar" aria-label="Bandera verde">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2v20l17-10L4 2z"/></svg>
+                </button>
+                <button type="button" data-stop class="btn-stop" title="Detener juego" aria-label="Detener">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="simulator-main">
+                <div class="escape-escenario">
+                  <div class="escape-objetos" aria-label="Objetos de la habitación">
+                    <button type="button" data-key disabled><span aria-hidden="true">🔑</span> Llave</button>
+                    <button type="button" data-note disabled><span aria-hidden="true">📜</span> Nota</button>
+                    <button type="button" data-door disabled><span aria-hidden="true">🚪</span> Puerta</button>
+                  </div>
+                  <form class="escape-codigo" hidden>
+                    <label for="escape-codigo">Código</label>
+                    <input id="escape-codigo" name="codigo" inputmode="numeric" maxlength="3" autocomplete="off" required>
+                    <button class="btn-sim-action" type="submit">Probar código</button>
+                  </form>
+                </div>
+              <div class="telemetry-bar">
+                <div class="telemetry-item">
+                  <span class="telemetry-label">Inventario</span>
+                  <span class="telemetry-value" data-score>Vacío</span>
+                </div>
+                <div class="eleccion-estado" data-status role="status">Pulsa la bandera verde para jugar.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="conceptos-clave">
+          <div class="section-header">
+            <h2 class="section-title">🧠 2. Los Conceptos Clave</h2>
+            <p class="section-desc">En este juego el reto es recordar qué ha recogido el jugador y decidir qué puede hacer a continuación. La llave cambia el inventario y la puerta usa ese dato para elegir qué pregunta hacer.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">A</span>
+              <h3 class="step-title">El inventario guarda datos, esconde objetos y desbloquea acciones</h3>
+            </div>
+            <p class="step-explanation">El inventario es una lista de textos compartida por todos los objetos. La llave es un dibujo en el escenario. Cuando haces clic, Scratch añade la palabra <code>llave</code> a la lista y esconde el dibujo. Son dos acciones distintas.</p>
+            <figure class="concept-figure">
+              <figcaption>El estado del juego antes y después de recoger la llave</figcaption>
+              <table class="concept-table">
+                <thead><tr><th scope="col">Momento</th><th scope="col">¿Se ve la llave?</th><th scope="col">Inventario</th><th scope="col">¿La puerta pide el código?</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Al empezar</th><td>Sí</td><td>Vacío</td><td>No</td></tr>
+                  <tr><th scope="row">Tras hacer clic</th><td>No</td><td>llave</td><td>Sí</td></tr>
+                  <tr><th scope="row">Al reiniciar</th><td>Sí</td><td>Vacío</td><td>No</td></tr>
+                </tbody>
+              </table>
+            </figure>
+            <p class="step-explanation">La puerta consulta la lista con <strong>¿llave está en Inventario?</strong>. Esta pregunta devuelve sí o no. Usa el mismo texto al guardar y al buscar el objeto. Al reiniciar, vacía la lista y vuelve a mostrar el dibujo.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">B</span>
+              <h3 class="step-title">Un condicional puede quedar dentro de otro</h3>
+            </div>
+            <p class="step-explanation">En <strong>si… si no</strong>, Scratch ejecuta la primera rama si la condición es verdadera y la segunda si es falsa. Pon la comprobación del código dentro de la rama en que la puerta encontró la llave.</p>
+            <figure class="concept-figure">
+              <figcaption>La puerta hace dos preguntas en este orden</figcaption>
+              <ul class="concept-tree" role="list">
+                <li><strong>¿El inventario contiene la llave?</strong>
+                  <ul>
+                    <li><strong>No.</strong> Muestra «Necesitas una llave».</li>
+                    <li><strong>Sí.</strong> Pide el código y pregunta <strong>¿la respuesta coincide?</strong>
+                      <ul>
+                        <li><strong>No.</strong> Da una pista y permite probar de nuevo.</li>
+                        <li><strong>Sí.</strong> Envía el mensaje <code>escapar</code>.</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </figure>
+            <p class="step-explanation">Si falta la llave, Scratch acaba ese clic tras mostrar el aviso. Aunque el jugador conozca el código, solo verá la pregunta después de recoger la llave.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">C</span>
+              <h3 class="step-title">Preguntar, esperar y leer la respuesta</h3>
+            </div>
+            <p class="step-explanation"><strong>Preguntar y esperar</strong> abre una caja de texto y detiene ese programa hasta que el jugador confirma. El bloque <strong>respuesta</strong> de Sensores contiene el dato escrito. El programa puede compararlo con el código justo después de preguntar.</p>
+            <figure class="concept-figure">
+              <figcaption>De la pista a la puerta abierta</figcaption>
+              <ol class="concept-flow" role="list">
+                <li><strong>Lee la nota</strong>Dos círculos, tres triángulos, un cuadrado.</li>
+                <li><strong>Escribe una cifra por grupo</strong>2, después 3, después 1.</li>
+                <li><strong>Comprueba la respuesta</strong>Si coincide con 231, cambia al fondo Salida.</li>
+              </ol>
+            </figure>
+            <p class="step-explanation">Prueba con los mismos números en otro orden. <code>321</code> falla porque el orden forma parte del código. Un fallo conserva la llave y permite volver a pulsar la puerta.</p>
+          </div>
+        </section>
+
+        <section id="misiones-guiadas">
+          <div class="section-header">
+            <h2 class="section-title">🛠️ 3. Misiones Guiadas</h2>
+            <p class="section-desc">Crea un proyecto vacío en el <a href="https://scratch.mit.edu/projects/editor/" target="_blank" rel="noopener">editor de Scratch</a>. Sigue los pasos en orden y haz la prueba al final de cada misión.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">1</span>
+              <h3 class="step-title">Construye una habitación</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>Borra el gato del proyecto vacío.</li>
+              <li>Selecciona <strong>Escenario → Fondos</strong> y pinta <code>Habitación</code>. Crea otro fondo llamado <code>Salida</code> con un mensaje de victoria.</li>
+              <li>Con <strong>Elige un objeto → Pintar</strong>, crea por separado <code>Llave</code>, <code>Nota</code> y <code>Puerta</code>.</li>
+              <li>Coloca los tres objetos sin que se tapen. Deja sitio encima de la puerta para su bocadillo.</li>
+              <li>En el escenario, pon un programa de bandera verde que cambie a <code>Habitación</code>. En cada objeto, usa la bandera verde para mostrarlo.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Cambia a Salida a mano y pulsa la bandera. Debe volver a verse la habitación con sus tres objetos.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">2</span>
+              <h3 class="step-title">Prepara el inventario y la pista</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>En <strong>Variables → Crear una lista</strong>, crea <code>Inventario</code> para todos los objetos. Deja visible su monitor.</li>
+              <li>En el escenario, conecta <strong>eliminar todos de [Inventario]</strong> al script de bandera.</li>
+              <li>En <code>Llave</code>, añade un programa <strong>al hacer clic en este objeto</strong> y usa la <a href="#escape-recoger">pieza de recogida</a>.</li>
+              <li>En <code>Nota</code>, añade otro programa de clic. Haz que diga durante varios segundos «Dos círculos, tres triángulos, un cuadrado. Escribe las cantidades en ese orden».</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> La nota muestra la pista. Al hacer clic en la llave aparece una fila en el inventario y desaparece el dibujo. La bandera deshace ambas cosas.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card-header">
+              <span class="step-number">3</span>
+              <h3 class="step-title">Haz que la puerta decida</h3>
+            </div>
+            <ol class="step-explanation mission-steps">
+              <li>En <code>Puerta</code>, empieza con <strong>al hacer clic en este objeto</strong>. Añade un bloque <strong>si… si no</strong>.</li>
+              <li>Coloca la <a href="#escape-llave">condición del inventario</a> en la primera decisión. En <strong>si no</strong>, haz que la puerta diga «Necesitas una llave».</li>
+              <li>En la rama que sí tiene la llave, coloca la <a href="#escape-pregunta">pieza de la pregunta</a>. Debajo de la pregunta, añade otro <strong>si… si no</strong> dentro de la misma rama.</li>
+              <li>Usa la <a href="#escape-comparar">comparación del código</a> en esa segunda decisión. Si acierta, envía <code>escapar</code>. Si falla, di «Revisa la pista e inténtalo de nuevo».</li>
+              <li>En el escenario, cambia al fondo <code>Salida</code> <strong>al recibir</strong> <code>escapar</code>. En cada uno de los tres objetos, usa el mismo mensaje para esconderlo.</li>
+            </ol>
+            <p class="mission-check"><strong>Comprueba.</strong> Pulsa la puerta sin llave. Después, con la llave, prueba un número incorrecto y vuelve a intentarlo con la pista. Reinicia tras salir y comprueba que puedes jugar de nuevo.</p>
+          </div>
+        </section>
+
+        <section id="codigo-referencia">
+          <div class="section-header">
+            <h2 class="section-title">🔍 4. Pistas y Código de Referencia</h2>
+            <p class="section-desc">Usa cada fragmento en el objeto y en el momento que indica la misión. Prueba el fragmento y decide qué bloques hacen falta antes o después para que encaje.</p>
+          </div>
+
+          <div class="step-card" id="escape-recoger">
+            <h3 class="step-title">Guarda el objeto y cambia lo que se ve</h3>
+            <p class="step-explanation">Esta pieza va debajo del evento de clic de Llave. La primera acción guarda el dato. La segunda evita recogerlo otra vez.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+añadir [llave] a [Inventario v]
+esconder
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Pulsa la bandera después de recogerla. Localiza en qué programa vacías la lista y en cuál vuelves a mostrar el dibujo.</p>
+          </div>
+
+          <div class="step-card" id="escape-llave">
+            <h3 class="step-title">Haz la primera pregunta a la lista</h3>
+            <p class="step-explanation">Esta pieza naranja devuelve verdadero si existe un elemento con ese nombre. Encájala en el primer <strong>si… si no</strong> del botón Puerta.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+&lt;¿[llave] está en [Inventario v]?&gt;
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Antes de programar el código, prueba las dos ramas. ¿En cuál colocas el aviso de llave pendiente?</p>
+          </div>
+
+          <div class="step-card" id="escape-pregunta">
+            <h3 class="step-title">Da tiempo al jugador para escribir</h3>
+            <p class="step-explanation">La pregunta solo va en la rama que encontró la llave. Espera la respuesta antes de que el programa siga.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+preguntar [¿Cuál es el código de tres cifras?] y esperar
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Añade debajo un segundo <strong>si… si no</strong>. Colócalo todavía dentro de la rama donde tienes la llave.</p>
+          </div>
+
+          <div class="step-card" id="escape-comparar">
+            <h3 class="step-title">Utiliza la respuesta en una segunda decisión</h3>
+            <p class="step-explanation">Este operador compara lo escrito en la caja de texto con el código de la nota.</p>
+            <div class="scratch-code">
+              <pre class="blocks">
+&lt;(respuesta) = [231]&gt;
+              </pre>
+            </div>
+            <p class="step-explanation"><strong>Conecta la pieza.</strong> Encaja el operador en el segundo <strong>si… si no</strong>. Completa sus dos ramas. Decide cuál avisa al escenario y cuál deja la habitación abierta para otro intento.</p>
+          </div>
+        </section>
+
+        <section id="desafios-pro">
+          <div class="section-header">
+            <h2 class="section-title">🚀 5. Desafíos Pro</h2>
+            <p class="section-desc">Cuando funcione el juego básico, elige una ampliación.</p>
+          </div>
+
+          <div class="cards-grid eleccion-desafios">
+            <div class="card">
+              <h3 class="card-title">Otra habitación</h3>
+              <p class="card-text">Añade un fondo donde un segundo objeto del inventario complete una combinación.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Contrarreloj</h3>
+              <p class="card-text">Reinicia el cronómetro al comenzar y muestra el tiempo restante. Si se agota, muestra un final distinto.</p>
+            </div>
+            <div class="card">
+              <h3 class="card-title">Puzle dentro del puzle</h3>
+              <p class="card-text">Sustituye la nota por un código binario sencillo o un panel de cables de colores.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="autoevaluacion">
+          <div class="section-header">
+            <h2 class="section-title">📝 6. Test de Autocomprobación</h2>
+          </div>
+
+          <div class="quiz-container">
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">1. ¿Dónde comprueba la puerta si ya recogiste la llave?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="El nombre guardado en Inventario representa que el jugador lleva la llave.">En el disfraz de la puerta</button>
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="El nombre guardado en Inventario representa que el jugador lleva la llave.">En la lista Inventario</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+            <div class="quiz-question">
+              <h3 class="quiz-question-title">2. ¿Cuándo pide el juego el código?</h3>
+              <div class="quiz-options">
+                <button type="button" class="quiz-option" data-correct="true" data-explanation="La pregunta se ejecuta dentro de la rama en la que el inventario contiene llave.">Después de comprobar que tienes la llave</button>
+                <button type="button" class="quiz-option" data-correct="false" data-explanation="La pregunta se ejecuta dentro de la rama en la que el inventario contiene llave.">Antes de mirar el inventario</button>
+              </div>
+              <div class="quiz-feedback" role="status"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="materiales">
+          <div class="section-header">
+            <h2 class="section-title">📦 7. Recursos</h2>
+            <p class="section-desc">Dibuja tus propios personajes y objetos y fondos en el editor de Scratch para completar las misiones.</p>
+          </div>
+
+          <div class="asset-download-grid">
+            <div class="asset-card" style="border-color: #86efac;">
+              <div class="asset-preview" style="color: #16a34a;" aria-hidden="true">✅</div>
+              <span class="asset-tag">Proyecto Scratch .sb3</span>
+              <h3 class="asset-name">Proyecto básico</h3>
+              <p class="asset-desc">Versión terminada para comparar con tu proyecto al acabar las misiones.</p>
+              <a href="../../../assets/scratch/escape-room/escape-room-basico.sb3" download="escape-room-basico.sb3" class="btn btn-outline btn-download-asset">
+                📥 Descargar SB3
+              </a>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <h3>PIAR - Aula Digital</h3>
+        <p>Portal educativo de Programación, Inteligencia Artificial y Robótica. Materiales didácticos y proyectos prácticos para el alumnado.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Temario</h4>
+        <ul class="footer-links">
+          <li><a href="../index.html">Programación con Scratch</a></li>
+          <li><a href="../../ia/index.html">Inteligencia Artificial</a></li>
+          <li><a href="../../robotica/index.html">Robótica y Sensores</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces Útiles</h4>
+        <ul class="footer-links">
+          <li><a href="https://scratch.mit.edu" target="_blank" rel="noopener">Scratch MIT</a></li>
+          <li><a href="index.html#proyectos">Proyectos de Scratch</a></li>
+          <li><a href="../../../index.html">Página Principal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>PIAR &copy; 2026 - Departamento de Tecnología e Informática</span>
+      <span>Aprender Creando · Pensamiento Computacional</span>
+    </div>
+  </footer>
+
+  <!-- Motor de renderizado de bloques Scratch (100% offline) -->
+  <script src="../../../js/vendor/scratchblocks.min.js"></script>
+  <script src="../../../js/vendor/translations-all.js"></script>
+  <script src="../../../js/main.js"></script>
+  <script src="../../../js/scratch-eleccion-sim.js"></script>
+</body>
+</html>

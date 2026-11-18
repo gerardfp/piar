@@ -1,0 +1,160 @@
+.scratch-tutorial code {
+  padding: 0.1em 0.35em;
+  border: 1px solid #c9def0;
+  border-radius: 0.3em;
+  background: #edf5fc;
+  color: #17466b;
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.scratch-tutorial .mission-steps {
+  padding-inline-start: 1.5rem;
+}
+
+.mission-steps li + li {
+  margin-top: 0.6rem;
+}
+
+.mission-check {
+  margin-top: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-inline-start: 3px solid #0f766e;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: #effaf7;
+  color: #174b45;
+  font-size: 0.9rem;
+}
+
+.scratch-tutorial #codigo-referencia .step-card {
+  scroll-margin-top: 7rem;
+}
+
+.scratch-tutorial #codigo-referencia .step-title {
+  margin-bottom: 0.55rem;
+}
+
+.concept-figure {
+  margin: 1rem 0;
+  padding: clamp(0.65rem, 2.5vw, 1rem);
+  border: 1px solid var(--border-tech);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-panel);
+  color: var(--text-main);
+  font-size: 0.88rem;
+}
+
+.concept-figure figcaption {
+  margin-bottom: 0.75rem;
+  color: var(--blue-deep);
+  font-weight: 700;
+}
+
+.concept-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.concept-table th,
+.concept-table td {
+  padding: 0.45rem 0.55rem;
+  border: 1px solid var(--border-tech);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.concept-table thead th {
+  background: #e2effb;
+}
+
+.concept-table tbody tr:nth-child(odd) {
+  background: #fff;
+}
+
+.concept-table .concept-focus {
+  background: #dbeafe;
+  font-weight: 700;
+}
+
+.concept-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 1.6rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.concept-flow > li {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0.55rem 0.65rem;
+  border: 1px solid var(--border-tech);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  overflow-wrap: anywhere;
+}
+
+.concept-flow > li + li::before {
+  content: '→';
+  position: absolute;
+  inset-inline-start: -1.3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #0369a1;
+  font-weight: 700;
+}
+
+.concept-flow strong {
+  display: block;
+  margin-bottom: 0.15rem;
+  color: #17466b;
+}
+
+.concept-diagram {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  height: auto;
+  margin-inline: auto;
+  font-family: inherit;
+}
+
+.concept-tree,
+.concept-tree ul {
+  margin: 0;
+  padding-inline-start: 1.1rem;
+  list-style: none;
+}
+
+.concept-tree li {
+  padding: 0.25rem 0.65rem;
+  border-inline-start: 2px solid #94b7d0;
+}
+
+.concept-tree ul {
+  margin-top: 0.3rem;
+}
+
+@media (max-width: 640px) {
+  .concept-flow {
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .concept-flow > li + li::before {
+    content: '↓';
+    inset-inline-start: 0.8rem;
+    top: -1.3rem;
+    transform: none;
+  }
+
+  .concept-table th,
+  .concept-table td {
+    padding: 0.35rem;
+  }
+}
